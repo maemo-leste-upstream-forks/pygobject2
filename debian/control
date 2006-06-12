@@ -14,7 +14,7 @@ Description: Python bindings for the GObject
  programs. 
  .
  This package is a dependency package, which select the right package 
- for the default Python version (currently v2.4).
+ for the default Python version.
 
 Package: python-gobject-dev
 Architecture: all
