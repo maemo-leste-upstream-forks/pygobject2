@@ -1,0 +1,167 @@
+#!/usr/bin/make -f
+# Sample debian/rules that uses debhelper. 
+# GNU copyright 1997 by Joey Hess.
+#
+# This version is for a hypothetical package that builds an
+# architecture-dependant package, as well as an architecture-independent
+# package.
+
+# Include dpatch stuff.
+include /usr/share/dpatch/dpatch.make
+include /usr/share/gnome-pkg-tools/1/rules/uploaders.mk 
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+
+ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -g
+endif
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+	INSTALL_PROGRAM += -s
+endif
+
+build-2.3/config.status:
+	dh_testdir
+	mkdir -p build-2.3
+	cd build-2.3 && PYTHON=`which python2.3` \
+		../configure --host=$(DEB_HOST_GNU_TYPE) 	\
+			--build=$(DEB_BUILD_GNU_TYPE) 		\
+			--prefix=/usr --enable-thread
+	touch build-2.3/config.status
+
+build-2.4/config.status:
+	dh_testdir
+	mkdir -p build-2.4
+	cd build-2.4 && PYTHON=`which python2.4` \
+		../configure --host=$(DEB_HOST_GNU_TYPE) 	\
+			--build=$(DEB_BUILD_GNU_TYPE) 		\
+			--prefix=/usr --enable-thread
+	touch build-2.4/config.status
+
+build-arch: build-2.3/config.status build-2.4/config.status build-arch-stamp
+build-arch-stamp: 
+	dh_testdir
+	$(MAKE) -C build-2.3
+	$(MAKE) -C build-2.4
+	xvfb-run $(MAKE) -C build-2.3 check
+	xvfb-run $(MAKE) -C build-2.4 check
+	touch build-arch-stamp
+
+build-indep: build-2.3/config.status build-2.4/config.status build-indep-stamp
+build-indep-stamp:
+	dh_testdir
+	touch build-indep-stamp
+
+build: patch build-arch
+
+clean::	unpatch
+	dh_testdir
+	dh_testroot
+	rm -f build-arch-stamp build-indep-stamp 
+	rm -Rf debian/tmp-*
+	rm -Rf build-2.3
+	rm -Rf build-2.4
+	- test -f config.sub && \
+	  test -r /usr/share/misc/config.sub && \
+	  cp -f /usr/share/misc/config.sub config.sub
+	- test -f config.guess && \
+	  test -r /usr/share/misc/config.guess && \
+	  cp -f /usr/share/misc/config.guess config.guess
+	dh_clean codegen/*.pyc
+
+install: DH_OPTIONS=
+install: build
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+	$(MAKE) -C build-2.3 install DESTDIR=$(CURDIR)/debian/tmp-2.3
+	dh_clean -k
+	dh_installdirs
+	$(MAKE) -C build-2.4 install DESTDIR=$(CURDIR)/debian/tmp-2.4
+
+# Build architecture-independent files here.
+# Pass -i to all debhelper commands in this target to reduce clutter.
+binary-indep: 
+	dh_testdir -i
+	dh_testroot -i
+	dh_install -i --sourcedir=debian/tmp-2.3
+	dh_install -i --sourcedir=debian/tmp-2.4
+	dh_installdocs -i
+	dh_installexamples -i
+
+	# Replace all '#!' calls to python with python
+	# and make them executable
+	for i in `find debian/python-* -type f`; do \
+	  sed '1s,#!.*python[^ ]*\(.*\),#!/usr/bin/python,' \
+		$$i > $$i.temp; \
+	  if cmp --quiet $$i $$i.temp; then \
+	    rm -f $$i.temp; \
+	  else \
+	    mv -f $$i.temp $$i; \
+	    chmod 755 $$i; \
+	    echo "fixed interpreter: $$i"; \
+	  fi; \
+	done
+
+	dh_installmenu -i
+	dh_installcron -i
+	dh_installinfo -i
+	dh_installchangelogs ChangeLog -i
+	dh_link -i
+	dh_compress -i -X.py
+	dh_fixperms -i
+	dh_python -i /usr/share/pygtk/2.0/codegen/
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddeb -i
+
+# Build architecture-dependent files here.
+binary-arch: build install
+	dh_testdir -a
+	dh_testroot -a
+	dh_install -a --sourcedir=debian/tmp-2.3
+	dh_install -a --sourcedir=debian/tmp-2.4
+	rm -f debian/python2.3-gobject/usr/lib/python2.4/site-packages/gtk-2.0/gobject.la
+	rm -f debian/python2.4-gobject/usr/lib/python2.4/site-packages/gtk-2.0/gobject.la
+	rm -f debian/python2.3-gobject/usr/lib/python2.4/site-packages/*.py[oc]
+	rm -f debian/python2.4-gobject/usr/lib/python2.4/site-packages/*.py[oc]
+	dh_installdocs -a
+	dh_installexamples -a
+
+	# Replace all '#!' calls to python with python2.x
+	# and make them executable
+	for pversion in 2.3; do \
+	  for i in `find debian/python$${pversion}* -type f`; do \
+	    sed '1s,#!.*python[^ ]*\(.*\),#!/usr/bin/python'$${pversion}, \
+		  $$i > $$i.temp; \
+	    if cmp --quiet $$i $$i.temp; then \
+	      rm -f $$i.temp; \
+	    else \
+	      mv -f $$i.temp $$i; \
+	      chmod 755 $$i; \
+	      echo "fixed interpreter: $$i"; \
+	    fi; \
+	  done; \
+	done
+
+	dh_installmenu -a
+	dh_installcron -a
+	dh_installinfo -a
+	dh_installchangelogs ChangeLog -a
+	dh_strip -a
+	dh_link -a
+	dh_compress -a -X.py
+	dh_fixperms -a
+	dh_python -a
+	dh_installdeb -a
+	dh_shlibdeps -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddeb -a
+
+binary: binary-arch binary-indep
+.PHONY: build clean binary-indep binary-arch binary install 

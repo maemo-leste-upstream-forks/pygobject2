@@ -1,0 +1,48 @@
+Source: pygobject
+Section: python
+Priority: optional
+Maintainer: Marco Cabizza <marco87@gmail.com>
+Uploaders: @GNOME_TEAM@
+Build-Depends: debhelper (>= 4.1.65), gnome-pkg-tools, dpatch, python2.3-dev, python2.4-dev, libglib2.0-dev (>= 2.8), python, xvfb
+Standards-Version: 3.7.2
+
+Package: python-gobject
+Architecture: all
+Depends: python2.3-gobject (= ${Source-Version})
+Description: Python bindings for the GObject
+ This archive contains modules that allow you to use GObject in Python
+ programs. 
+ .
+ This package is a dependency package, which select the right package 
+ for the default Python version (currently v2.4).
+
+Package: python-gobject-dev
+Architecture: all
+Depends: ${python:Depends}, python2.3-gobject (= ${Source-Version}), libglib2.0-dev (>= 2.8)
+Replaces: python-gtk2-dev (<< 2.8.3)
+Conflicts: python-gtk2-dev (<< 2.8.3)
+Description: GObject bindings: devel files
+ This archive contains files that allow you to build wrappers for addon
+ that interoperate python-gobject (pyobject).
+
+Package: python2.3-gobject
+Architecture: any
+Replaces: python2.3-gtk2  (<< 2.8.3)
+Conflicts: python2.3-gtk2 (<< 2.8.3)
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
+Description: Python bindings for the GObject
+ This archive contains modules that allow you to use GObject in Python
+ programs.
+ .
+ This package contains bindings for Python 2.3
+
+Package: python2.4-gobject
+Architecture: any
+Replaces: python2.4-gtk2  (<< 2.8.3)
+Conflicts: python2.4-gtk2 (<< 2.8.3)
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
+Description: Python bindings for the GObject
+ This archive contains modules that allow you to use GObject in Python
+ programs.
+ .
+ This package contains bindings for Python 2.4
