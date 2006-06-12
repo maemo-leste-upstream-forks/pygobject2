@@ -6,9 +6,8 @@
 # architecture-dependant package, as well as an architecture-independent
 # package.
 
-# Include dpatch stuff.
-include /usr/share/dpatch/dpatch.make
 include /usr/share/gnome-pkg-tools/1/rules/uploaders.mk 
+
 
 # These are used for cross-compiling and for saving the configure script
 # from having to guess our platform (since we know it already)
@@ -41,23 +40,35 @@ build-2.4/config.status:
 			--prefix=/usr --enable-thread
 	touch build-2.4/config.status
 
-build-arch: build-2.3/config.status build-2.4/config.status build-arch-stamp
-build-arch-stamp: 
+build-arch-2.3: build-2.3/config.status build-arch-stamp-2.3
+build-arch-stamp-2.3: 
 	dh_testdir
 	$(MAKE) -C build-2.3
-	$(MAKE) -C build-2.4
-	xvfb-run $(MAKE) -C build-2.3 check
-	xvfb-run $(MAKE) -C build-2.4 check
+	$(MAKE) -C build-2.3 check
 	touch build-arch-stamp
 
-build-indep: build-2.3/config.status build-2.4/config.status build-indep-stamp
-build-indep-stamp:
+build-arch-2.4: build-2.4/config.status build-arch-stamp-2.4
+build-arch-stamp-2.4: 
+	dh_testdir
+	$(MAKE) -C build-2.4
+	$(MAKE) -C build-2.4 check
+	touch build-arch-stamp
+
+build-indep-2.3: build-2.3/config.status build-indep-stamp-2.3
+build-indep-stamp-2.3:
 	dh_testdir
 	touch build-indep-stamp
 
-build: patch build-arch
+build-indep-2.4: build-2.4/config.status build-indep-stamp-2.4
+build-indep-stamp-2.4:
+	dh_testdir
+	touch build-indep-stamp
 
-clean::	unpatch
+build-arch: build-arch-2.3 build-arch-2.4
+
+build: build-arch
+
+clean::
 	dh_testdir
 	dh_testroot
 	rm -f build-arch-stamp build-indep-stamp 
@@ -123,11 +134,11 @@ binary-indep:
 binary-arch: build install
 	dh_testdir -a
 	dh_testroot -a
-	dh_install -a --sourcedir=debian/tmp-2.3
-	dh_install -a --sourcedir=debian/tmp-2.4
-	rm -f debian/python2.3-gobject/usr/lib/python2.4/site-packages/gtk-2.0/gobject.la
+	dh_install -a -Xpython2.4 --sourcedir=debian/tmp-2.3
+	dh_install -a -Xpython2.3 --sourcedir=debian/tmp-2.4
+	rm -f debian/python2.3-gobject/usr/lib/python2.3/site-packages/gtk-2.0/gobject.la
 	rm -f debian/python2.4-gobject/usr/lib/python2.4/site-packages/gtk-2.0/gobject.la
-	rm -f debian/python2.3-gobject/usr/lib/python2.4/site-packages/*.py[oc]
+	rm -f debian/python2.3-gobject/usr/lib/python2.3/site-packages/*.py[oc]
 	rm -f debian/python2.4-gobject/usr/lib/python2.4/site-packages/*.py[oc]
 	dh_installdocs -a
 	dh_installexamples -a

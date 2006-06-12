@@ -3,6 +3,8 @@ pygobject (2.10.1-1) unstable; urgency=low
   * First Debian release, fork off Ubuntu:
     - adding Python 2.3 support
     - standards bump to 3.7.2
+    - don't Build-Depends on xvfb
+    - Build-Depends on xbase-clients
 
  -- Marco Cabizza <marco87@gmail.com>  Mon, 12 Jun 2006 02:01:06 +0200
 

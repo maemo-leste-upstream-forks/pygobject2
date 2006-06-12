@@ -3,7 +3,7 @@ Section: python
 Priority: optional
 Maintainer: Marco Cabizza <marco87@gmail.com>
 Uploaders: @GNOME_TEAM@
-Build-Depends: debhelper (>= 4.1.65), gnome-pkg-tools, dpatch, python2.3-dev, python2.4-dev, libglib2.0-dev (>= 2.8), python, xvfb
+Build-Depends: debhelper (>= 4.1.65), gnome-pkg-tools, python2.3-dev, python2.4-dev, libglib2.0-dev (>= 2.8), python, xbase-clients
 Standards-Version: 3.7.2
 
 Package: python-gobject

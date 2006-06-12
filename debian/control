@@ -3,7 +3,7 @@ Section: python
 Priority: optional
 Maintainer: Marco Cabizza <marco87@gmail.com>
 Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Akira TAGOH <tagoh@debian.org>, Andreas Rottmann <rotty@debian.org>, Andrew Lau <netsnipe@users.sourceforge.net>, Clément Stenac <zorglub@debian.org>, Dafydd Harries <daf@debian.org>, Guilherme de S. Pastore <gpastore@debian.org>, Gustavo Franco <stratus@debian.org>, Gustavo Noronha Silva <kov@debian.org>, J.H.M. Dassen (Ray) <jdassen@debian.org>, Jordi Mallach <jordi@debian.org>, Jose Carlos Garcia Sogo <jsogo@debian.org>, Josselin Mouette <joss@debian.org>, Loic Minier <lool@dooz.org>, Marc 'HE' Brockschmidt <he@debian.org>, Ondřej Surý <ondrej@debian.org>, Ross Burton <ross@debian.org>, Sebastien Bacher <seb128@debian.org>, Sjoerd Simons <sjoerd@debian.org>, Takuo KITAME <kitame@debian.org>
-Build-Depends: debhelper (>= 4.1.65), gnome-pkg-tools, dpatch, python2.3-dev, python2.4-dev, libglib2.0-dev (>= 2.8), python, xvfb
+Build-Depends: debhelper (>= 4.1.65), gnome-pkg-tools, python2.3-dev, python2.4-dev, libglib2.0-dev (>= 2.8), python, xbase-clients
 Standards-Version: 3.7.2
 
 Package: python-gobject
