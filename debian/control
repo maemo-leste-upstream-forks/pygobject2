@@ -19,16 +19,16 @@ Description: Python bindings for the GObject
 Package: python-gobject-dev
 Architecture: all
 Depends: ${python:Depends}, python2.3-gobject (= ${Source-Version}), libglib2.0-dev (>= 2.8)
-Replaces: python-gtk2-dev (<< 2.8.3)
-Conflicts: python-gtk2-dev (<< 2.8.3)
+Replaces: python-gtk2-dev (<< 2.9.0)
+Conflicts: python-gtk2-dev (<< 2.9.0)
 Description: GObject bindings: devel files
  This archive contains files that allow you to build wrappers for addon
  that interoperate python-gobject (pyobject).
 
 Package: python2.3-gobject
 Architecture: any
-Replaces: python2.3-gtk2  (<< 2.8.3)
-Conflicts: python2.3-gtk2 (<< 2.8.3)
+Replaces: python2.3-gtk2  (<< 2.9.0)
+Conflicts: python2.3-gtk2 (<< 2.9.0)
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
 Description: Python bindings for the GObject
  This archive contains modules that allow you to use GObject in Python
@@ -38,8 +38,8 @@ Description: Python bindings for the GObject
 
 Package: python2.4-gobject
 Architecture: any
-Replaces: python2.4-gtk2  (<< 2.8.3)
-Conflicts: python2.4-gtk2 (<< 2.8.3)
+Replaces: python2.4-gtk2  (<< 2.9.0)
+Conflicts: python2.4-gtk2 (<< 2.9.0)
 Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
 Description: Python bindings for the GObject
  This archive contains modules that allow you to use GObject in Python

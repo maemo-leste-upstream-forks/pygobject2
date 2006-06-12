@@ -5,6 +5,7 @@ pygobject (2.10.1-1) unstable; urgency=low
     - standards bump to 3.7.2
     - don't Build-Depends on xvfb
     - Build-Depends on xbase-clients
+    - Conflicts Replaces bumped to << 2.9.0
 
  -- Marco Cabizza <marco87@gmail.com>  Mon, 12 Jun 2006 02:01:06 +0200
 
