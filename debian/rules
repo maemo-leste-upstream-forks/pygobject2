@@ -44,7 +44,6 @@ install: build install-clean $(PYVERS:%=install-%)
 	dh_testdir
 	dh_testroot
 	find debian/python-gobject-dev -name \*.la -exec rm -f \{\} \;
-	rm -rf debian/python-gobject-dev/usr/share/pygobject
 	mkdir -p debian/python-gobject/usr/lib
 	mv debian/python-gobject-dev/usr/lib/python* debian/python-gobject/usr/lib/
 
@@ -69,6 +68,8 @@ binary-indep: build install
 	dh_link -i
 	dh_compress -i -X.py
 	dh_fixperms -i
+	# More permission fixing
+	chmod 755 `grep -rl "^#\!.*python" debian/python-gobject-dev/usr`
 	dh_pysupport -i
 	dh_installdeb -i
 	dh_gencontrol -i
