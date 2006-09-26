@@ -43,6 +43,8 @@ install-%: build-%/build-stamp
 install: build install-clean $(PYVERS:%=install-%)
 	dh_testdir
 	dh_testroot
+	find debian/python-gobject-dev -name \*.la -exec rm -f \{\} \;
+	rm -rf debian/python-gobject-dev/usr/share/pygobject
 	mkdir -p debian/python-gobject/usr/lib
 	mv debian/python-gobject-dev/usr/lib/python* debian/python-gobject/usr/lib/
 
