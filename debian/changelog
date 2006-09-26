@@ -1,0 +1,6 @@
+pygobject (2.12.1-1) experimental; urgency=low
+
+  * Initial release.
+  * This package was split out from pygtk.
+
+ -- Josselin Mouette <joss@debian.org>  Tue, 26 Sep 2006 21:30:26 +0200

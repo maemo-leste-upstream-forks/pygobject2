@@ -1,0 +1,32 @@
+Source: pygobject
+Section: python
+Priority: optional
+Maintainer: Josselin Mouette <joss@debian.org>
+Uploaders: @GNOME_TEAM@
+Build-Depends: debhelper (>= 5), python-support (>= 0.4), gnome-pkg-tools, cdbs, python-all-dev
+Standards-Version: 3.7.2
+
+Package: python-gobject
+Architecture: any
+Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Provides: ${python:Provides}
+Conflicts: python-gtk2 (<< 2.10)
+Description: Python bindings for the GObject library
+ GObject is an abstraction layer that allows to program with an object 
+ paradigm that is compatible with many languages. It is a part of Glib, 
+ the core library used to build GTK+ and GNOME.
+ .
+ This package contains the python bindings for GObject. It is mostly 
+ used by other bindings to map their GObjects to python objects.
+
+Package: python-gobject-dev
+Architecture: all
+Depends: python-gobject (>= ${Source-Version})
+Conflicts: python-gtk2-dev (<< 2.10)
+Description: Development headers for the GObject python bindings
+ GObject is an abstraction layer that allows to program with an object
+ paradigm that is compatible with many languages. It is a part of Glib,
+ the core library used to build GTK+ and GNOME.
+ .
+ This package contains the development headers needed to build 
+ other python bindings relying on pygobject.

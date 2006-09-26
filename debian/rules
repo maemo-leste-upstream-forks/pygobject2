@@ -1,0 +1,94 @@
+#! /usr/bin/make -f
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/gnome-pkg-tools/1/rules/uploaders.mk 
+
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
+        CFLAGS += -g
+endif
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+        INSTALL_PROGRAM += -s
+endif
+
+PYVERS := $(shell pysupport-parseversions debian/pyversions)
+
+build-%/configure-stamp:
+	dh_testdir
+	mkdir -p build-$*
+	cd build-$* && PYTHON=/usr/bin/python$* \
+		../configure --host=$(DEB_HOST_GNU_TYPE)	\
+			--build=$(DEB_BUILD_GNU_TYPE)		\
+			--prefix=/usr --enable-thread
+	touch $@
+
+build-%/build-stamp: build-%/configure-stamp
+	dh_testdir
+	$(MAKE) -C build-$*
+	touch $@
+
+build: apply-patches $(PYVERS:%=build-%/build-stamp)
+
+install-clean:
+	dh_testdir
+	dh_testroot
+	dh_clean -k
+
+install-%: build-%/build-stamp
+	dh_testdir
+	dh_testroot
+	$(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dev
+
+install: build install-clean $(PYVERS:%=install-%)
+	dh_testdir
+	dh_testroot
+	mkdir -p debian/python-gobject/usr/lib
+	mv debian/python-gobject-dev/usr/lib/python* debian/python-gobject/usr/lib/
+
+clean:: reverse-patches
+	dh_testdir
+	dh_testroot
+	rm -Rf build-*
+	- test -f config.sub && \
+	  test -r /usr/share/misc/config.sub && \
+	  cp -f /usr/share/misc/config.sub config.sub
+	- test -f config.guess && \
+	  test -r /usr/share/misc/config.guess && \
+	  cp -f /usr/share/misc/config.guess config.guess
+	dh_clean *.pyc */*.pyc
+
+binary-indep: 
+	dh_testdir -i
+	dh_testroot -i
+	dh_installdocs -i
+	dh_installexamples -i
+	dh_installchangelogs ChangeLog -i
+	dh_link -i
+	dh_compress -i -X.py
+	dh_fixperms -i
+	dh_pysupport -i
+	dh_installdeb -i
+	dh_gencontrol -i
+	dh_md5sums -i
+	dh_builddep -i
+
+binary-arch: 
+	dh_testdir -a
+	dh_testroot -a
+	dh_installdocs -a
+	dh_installexamples -a
+	dh_installchangelogs ChangeLog -a
+	dh_strip -a
+	dh_link -a
+	dh_compress -a -X.py
+	dh_fixperms -a
+	dh_pysupport -a
+	dh_installdeb -a
+	dh_shlibdeps -a
+	dh_gencontrol -a
+	dh_md5sums -a
+	dh_builddep -a
+
+binary: binary-arch binary-indep
+.PHONY: build clean binary-indep binary-arch binary install 
