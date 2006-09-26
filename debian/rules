@@ -12,7 +12,7 @@ ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
         INSTALL_PROGRAM += -s
 endif
 
-PYVERS := $(shell pysupport-parseversions debian/pyversions)
+PYVERS := $(shell pyversions -vs)
 
 build-%/configure-stamp:
 	dh_testdir
@@ -58,7 +58,7 @@ clean:: reverse-patches
 	  cp -f /usr/share/misc/config.guess config.guess
 	dh_clean *.pyc */*.pyc
 
-binary-indep: 
+binary-indep: build install
 	dh_testdir -i
 	dh_testroot -i
 	dh_installdocs -i
@@ -71,9 +71,9 @@ binary-indep:
 	dh_installdeb -i
 	dh_gencontrol -i
 	dh_md5sums -i
-	dh_builddep -i
+	dh_builddeb -i
 
-binary-arch: 
+binary-arch: build install
 	dh_testdir -a
 	dh_testroot -a
 	dh_installdocs -a
@@ -88,7 +88,7 @@ binary-arch:
 	dh_shlibdeps -a
 	dh_gencontrol -a
 	dh_md5sums -a
-	dh_builddep -a
+	dh_builddeb -a
 
 binary: binary-arch binary-indep
 .PHONY: build clean binary-indep binary-arch binary install 
