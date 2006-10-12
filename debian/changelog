@@ -1,3 +1,11 @@
+pygobject (2.12.1-2) experimental; urgency=low
+
+  * 01_doc_licensing.patch: stolen from upstream CVS. Upstream agreed to 
+    relicense the documentation to LGPL.
+  * copyright: document that.
+
+ -- Josselin Mouette <joss@debian.org>  Thu, 12 Oct 2006 20:35:45 +0200
+
 pygobject (2.12.1-1) experimental; urgency=low
 
   * Initial release.

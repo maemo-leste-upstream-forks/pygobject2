@@ -1,0 +1,44 @@
+===================================================================
+RCS file: /cvs/gnome/pygobject/docs/reference/pygobject-introduction.xml,v
+retrieving revision 1.1
+retrieving revision 1.2
+diff -u -r1.1 -r1.2
+--- pygobject-introduction.xml	2006/07/19 09:49:55	1.1
++++ pygobject-introduction.xml	2006/10/12 06:29:14	1.2
+@@ -10,12 +10,10 @@
+   functions. Deprecated classes, functions and methods have been
+   specifically left out of this reference though classes that have become
+   deprecated since PyGObject 2.0 have been left in but annotated with a
+-  deprecation warning. I have attempted to document as much of the
+-  <literal>PyGObject</literal> <literal>API</literal> as I can but there are
+-  undoubtedly errors and omissions. If you discover any of these please send
+-  me email at <email><ulink
+-  url="mailto:finlay@moeraki.com">finlay@moeraki.com</ulink></email> or file
+-  a bug report at <ulink
++  deprecation warning. This document attempts to document as much of the
++  <literal>PyGObject</literal> <literal>API</literal> as possible but there
++  are undoubtedly errors and omissions. If you discover any of these please
++  file a bug report at <ulink
+   url="http://bugzilla.gnome.org">bugzilla.gnome.org</ulink> for the
+   <literal>pygobject</literal> project. Specific areas that have not been
+   documented include:</para>
+@@ -221,19 +219,4 @@
+ 
+   </sect1>
+ 
+-  <sect1 id="pygobject-reference-copyright">
+-    <title>Copyright and License Notice</title>
+-
+-    <para>The PyGObject 2.0 Reference is Copyright (C) 2004-2006 John
+-    Finlay.</para>
+-
+-    <para>This work is licensed under the Creative Commons
+-    Attribution-ShareAlike License. To view a copy of this license, visit
+-    <ulink
+-    url="http://creativecommons.org/licenses/by-sa/1.0/">http://creativecommons.org/licenses/by-sa/1.0/</ulink>
+-    or send a letter to Creative Commons, 559 Nathan Abbott Way, Stanford,
+-    California 94305, USA.</para>
+-
+-  </sect1>
+-
+   </chapter>
