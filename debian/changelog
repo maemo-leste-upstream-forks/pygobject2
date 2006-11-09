@@ -1,3 +1,9 @@
+pygobject (2.12.1-3) UNRELEASED; urgency=low
+
+  * Build-depend on docbook-xsl (closes: #397811).
+
+ -- Josselin Mouette <joss@debian.org>  Thu,  9 Nov 2006 20:35:40 +0100
+
 pygobject (2.12.1-2) experimental; urgency=low
 
   * 01_doc_licensing.patch: stolen from upstream CVS. Upstream agreed to 
