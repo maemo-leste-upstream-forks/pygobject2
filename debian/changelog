@@ -1,8 +1,12 @@
-pygobject (2.12.1-3) UNRELEASED; urgency=low
+pygobject (2.12.1-3) experimental; urgency=low
 
+  [ Josselin Mouette ]
   * Build-depend on docbook-xsl (closes: #397811).
 
- -- Josselin Mouette <joss@debian.org>  Thu,  9 Nov 2006 20:35:40 +0100
+  [ Loic Minier ]
+  * Upload.
+
+ -- Loic Minier <lool@dooz.org>  Sun,  3 Dec 2006 13:50:38 +0100
 
 pygobject (2.12.1-2) experimental; urgency=low
 
