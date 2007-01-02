@@ -23,6 +23,7 @@ Package: python-gobject-dev
 Architecture: all
 Depends: ${python:Depends}, python-gobject (>= ${Source-Version})
 Conflicts: python-gtk2-dev (<< 2.10)
+Recommends: docbook-xsl
 Description: Development headers for the GObject python bindings
  GObject is an abstraction layer that allows to program with an object
  paradigm that is compatible with many languages. It is a part of Glib,
