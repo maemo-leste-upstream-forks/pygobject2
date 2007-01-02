@@ -1,4 +1,4 @@
-pygobject (2.12.1-4) UNRELEASED; urgency=low
+pygobject (2.12.1-4) experimental; urgency=low
 
   * python-gobject-dev recommends docbook-xsl.
   * python-gobject-dev depends on python-dev.
