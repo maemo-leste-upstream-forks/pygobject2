@@ -1,8 +1,9 @@
 pygobject (2.12.1-4) UNRELEASED; urgency=low
 
   * python-gobject-dev recommends docbook-xsl.
+  * python-gobject-dev depends on python-dev.
 
- -- Josselin Mouette <joss@debian.org>  Tue,  2 Jan 2007 14:09:13 +0100
+ -- Josselin Mouette <joss@debian.org>  Tue,  2 Jan 2007 22:27:27 +0100
 
 pygobject (2.12.1-3) experimental; urgency=low
 
