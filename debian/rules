@@ -6,7 +6,8 @@
 # architecture-dependant package, as well as an architecture-independent
 # package.
 
-include /usr/share/gnome-pkg-tools/1/rules/uploaders.mk 
+include /usr/share/gnome-pkg-tools/1/rules/uploaders.mk
+-include /usr/share/gnome-pkg-tools/1/rules/gnome-get-source.mk
 
 
 # These are used for cross-compiling and for saving the configure script
