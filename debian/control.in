@@ -3,7 +3,7 @@ Section: python
 Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
 Uploaders: @GNOME_TEAM@
-Build-Depends: debhelper (>= 5), python-support (>= 0.4), gnome-pkg-tools, cdbs, python-all-dev, libglib2.0-dev (>= 2.8.0), xsltproc, docbook-xsl
+Build-Depends: debhelper (>= 5), python-support (>= 0.4), gnome-pkg-tools (>= 0.10), cdbs, python-all-dev, libglib2.0-dev (>= 2.8.0), xsltproc, docbook-xsl
 Standards-Version: 3.7.2
 
 Package: python-gobject
