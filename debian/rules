@@ -62,8 +62,8 @@ clean:: reverse-patches
 	dh_clean *.pyc */*.pyc
 
 binary-indep: build install
-	dh_testdir -i
-	dh_testroot -i
+	dh_testdir
+	dh_testroot
 	dh_installdocs -i
 	dh_installexamples -i
 	dh_installchangelogs ChangeLog -i
@@ -79,8 +79,8 @@ binary-indep: build install
 	dh_builddeb -i
 
 binary-arch: build install
-	dh_testdir -a
-	dh_testroot -a
+	dh_testdir
+	dh_testroot
 	dh_installdocs -a
 	dh_installexamples -a
 	dh_installchangelogs ChangeLog -a
@@ -96,4 +96,4 @@ binary-arch: build install
 	dh_builddeb -a
 
 binary: binary-arch binary-indep
-.PHONY: build clean binary-indep binary-arch binary install 
+.PHONY: build clean binary-indep binary-arch binary install
