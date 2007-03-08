@@ -10,9 +10,6 @@ DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
         CFLAGS += -g
 endif
-ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
-        INSTALL_PROGRAM += -s
-endif
 
 PYVERS := $(shell pyversions -vs)
 
