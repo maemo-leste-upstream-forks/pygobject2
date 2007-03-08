@@ -4,8 +4,9 @@ pygobject (2.12.3-2) UNRELEASED; urgency=low
   * Include the new check-dist Makefile to prevent accidental uploads to
     unstable; bump build-dep on gnome-pkg-tools to >= 0.10.
   * Cleanup rules.
+  * Build-depend on autotools-dev.
 
- -- Loic Minier <lool@dooz.org>  Thu,  8 Mar 2007 16:01:04 +0100
+ -- Loic Minier <lool@dooz.org>  Thu,  8 Mar 2007 16:08:56 +0100
 
 pygobject (2.12.3-1) experimental; urgency=low
 
