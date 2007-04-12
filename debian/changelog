@@ -5,8 +5,10 @@ pygobject (2.12.3-2) UNRELEASED; urgency=low
     unstable; bump build-dep on gnome-pkg-tools to >= 0.10.
   * Cleanup rules.
   * Build-depend on autotools-dev.
+  * Honor CFLAGS we set in rules, doh!
+  * Set some sane default CFLAGS and honor noopt in DEB_BUILD_OPTIONS.
 
- -- Loic Minier <lool@dooz.org>  Thu,  8 Mar 2007 16:08:56 +0100
+ -- Loic Minier <lool@dooz.org>  Thu, 12 Apr 2007 15:14:32 +0200
 
 pygobject (2.12.3-1) experimental; urgency=low
 

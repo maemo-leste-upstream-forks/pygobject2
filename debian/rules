@@ -7,8 +7,12 @@ include /usr/share/gnome-pkg-tools/1/rules/check-dist.mk
 DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
-ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
-        CFLAGS += -g
+CFLAGS += -Wall -g
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
 endif
 
 PYVERS := $(shell pyversions -vs)
@@ -16,10 +20,12 @@ PYVERS := $(shell pyversions -vs)
 build-%/configure-stamp:
 	dh_testdir
 	mkdir -p build-$*
-	cd build-$* && PYTHON=/usr/bin/python$* \
-		../configure --host=$(DEB_HOST_GNU_TYPE)	\
-			--build=$(DEB_BUILD_GNU_TYPE)		\
-			--prefix=/usr --enable-thread
+	cd build-$* && \
+		PYTHON=/usr/bin/python$* CFLAGS="$(CFLAGS)" \
+			../configure --host=$(DEB_HOST_GNU_TYPE) \
+				--build=$(DEB_BUILD_GNU_TYPE) \
+				--prefix=/usr \
+				--enable-thread
 	touch $@
 
 build-%/build-stamp: build-%/configure-stamp
