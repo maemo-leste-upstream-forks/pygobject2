@@ -1,4 +1,4 @@
-pygobject (2.12.3-2) UNRELEASED; urgency=low
+pygobject (2.12.3-2) unstable; urgency=low
 
   * Add a get-orig-source target to retrieve the upstream tarball.
   * Include the new check-dist Makefile to prevent accidental uploads to
