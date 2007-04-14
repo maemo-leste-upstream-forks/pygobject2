@@ -11,8 +11,10 @@ pygobject (2.12.3-2) UNRELEASED; urgency=low
   * Add watch file.
   * Fix URL in copyright.
   * Wrap build-deps and deps.
+  * Set XS-Python-Version to >= 2.3 and build-conflict on python2.3-dev <<
+    2.3.5; add XB-Python-Version; bump python-all-dev build-dep to >= 2.3.5.
 
- -- Loic Minier <lool@dooz.org>  Sat, 14 Apr 2007 13:04:25 +0200
+ -- Loic Minier <lool@dooz.org>  Sat, 14 Apr 2007 13:17:27 +0200
 
 pygobject (2.12.3-1) experimental; urgency=low
 
