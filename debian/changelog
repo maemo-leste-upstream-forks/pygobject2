@@ -10,8 +10,9 @@ pygobject (2.12.3-2) UNRELEASED; urgency=low
   * Upload to unstable; drop check-dist include.
   * Add watch file.
   * Fix URL in copyright.
+  * Wrap build-deps and deps.
 
- -- Loic Minier <lool@dooz.org>  Sat, 14 Apr 2007 13:03:46 +0200
+ -- Loic Minier <lool@dooz.org>  Sat, 14 Apr 2007 13:04:25 +0200
 
 pygobject (2.12.3-1) experimental; urgency=low
 

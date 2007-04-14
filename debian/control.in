@@ -3,12 +3,22 @@ Section: python
 Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
 Uploaders: @GNOME_TEAM@
-Build-Depends: debhelper (>= 5), python-support (>= 0.4), gnome-pkg-tools (>= 0.10), cdbs, python-all-dev, libglib2.0-dev (>= 2.8.0), xsltproc, docbook-xsl, autotools-dev
+Build-Depends: debhelper (>= 5),
+               python-support (>= 0.4),
+               gnome-pkg-tools (>= 0.10),
+               cdbs,
+               python-all-dev,
+               libglib2.0-dev (>= 2.8.0),
+               xsltproc,
+               docbook-xsl,
+               autotools-dev
 Standards-Version: 3.7.2
 
 Package: python-gobject
 Architecture: any
-Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Depends: ${python:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends}
 Provides: ${python:Provides}
 Conflicts: python-gtk2 (<< 2.10)
 Description: Python bindings for the GObject library
@@ -21,7 +31,9 @@ Description: Python bindings for the GObject library
 
 Package: python-gobject-dev
 Architecture: all
-Depends: ${python:Depends}, python-gobject (>= ${Source-Version}), python-dev
+Depends: ${python:Depends},
+         python-gobject (>= ${Source-Version}),
+         python-dev
 Conflicts: python-gtk2-dev (<< 2.10)
 Recommends: docbook-xsl
 Description: Development headers for the GObject python bindings
