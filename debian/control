@@ -35,6 +35,7 @@ Description: Python bindings for the GObject library
 Package: python-gobject-dev
 Architecture: all
 Depends: ${python:Depends},
+         ${misc:Depends},
          python-gobject (>= ${Source-Version}),
          python-dev
 Conflicts: python-gtk2-dev (<< 2.10)
