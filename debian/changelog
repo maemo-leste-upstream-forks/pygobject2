@@ -14,8 +14,12 @@ pygobject (2.12.3-2) UNRELEASED; urgency=low
   * Set XS-Python-Version to >= 2.3 and build-conflict on python2.3-dev <<
     2.3.5; add XB-Python-Version; bump python-all-dev build-dep to >= 2.3.5.
   * Add a ${misc:Depends}.
+  * Don't pass --host to configure when DEB_BUILD_GNU_TYPE equals
+    DEB_HOST_GNU_TYPE.
+  * build target is PHONY.
+  * Cleanups.
 
- -- Loic Minier <lool@dooz.org>  Sat, 14 Apr 2007 13:23:29 +0200
+ -- Loic Minier <lool@dooz.org>  Sat, 14 Apr 2007 13:29:37 +0200
 
 pygobject (2.12.3-1) experimental; urgency=low
 

@@ -25,11 +25,11 @@ Provides: ${python:Provides}
 XB-Python-Version: ${python:Versions}
 Conflicts: python-gtk2 (<< 2.10)
 Description: Python bindings for the GObject library
- GObject is an abstraction layer that allows to program with an object 
- paradigm that is compatible with many languages. It is a part of Glib, 
+ GObject is an abstraction layer that allows to program with an object
+ paradigm that is compatible with many languages. It is a part of Glib,
  the core library used to build GTK+ and GNOME.
  .
- This package contains the python bindings for GObject. It is mostly 
+ This package contains the python bindings for GObject. It is mostly
  used by other bindings to map their GObjects to python objects.
 
 Package: python-gobject-dev
@@ -45,5 +45,5 @@ Description: Development headers for the GObject python bindings
  paradigm that is compatible with many languages. It is a part of Glib,
  the core library used to build GTK+ and GNOME.
  .
- This package contains the development headers needed to build 
+ This package contains the development headers needed to build
  other python bindings relying on pygobject.
