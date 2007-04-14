@@ -1,48 +1,33 @@
 Source: pygobject
 Section: python
 Priority: optional
-Maintainer: Marco Cabizza <marco87@gmail.com>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Akira TAGOH <tagoh@debian.org>, Andreas Rottmann <rotty@debian.org>, Andrew Lau <netsnipe@users.sourceforge.net>, Clément Stenac <zorglub@debian.org>, Dafydd Harries <daf@debian.org>, Guilherme de S. Pastore <gpastore@debian.org>, Gustavo Franco <stratus@debian.org>, Gustavo Noronha Silva <kov@debian.org>, J.H.M. Dassen (Ray) <jdassen@debian.org>, Jordi Mallach <jordi@debian.org>, Jose Carlos Garcia Sogo <jsogo@debian.org>, Josselin Mouette <joss@debian.org>, Loic Minier <lool@dooz.org>, Marc 'HE' Brockschmidt <he@debian.org>, Ondřej Surý <ondrej@debian.org>, Ross Burton <ross@debian.org>, Sebastien Bacher <seb128@debian.org>, Sjoerd Simons <sjoerd@debian.org>, Takuo KITAME <kitame@debian.org>
-Build-Depends: debhelper (>= 4.1.65), gnome-pkg-tools, python2.3-dev, python2.4-dev, libglib2.0-dev (>= 2.8), python, xbase-clients
+Maintainer: Josselin Mouette <joss@debian.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Andrew Lau <netsnipe@users.sourceforge.net>, Clément Stenac <zorglub@debian.org>, Dafydd Harries <daf@debian.org>, Guilherme de S. Pastore <gpastore@debian.org>, Gustavo Franco <stratus@debian.org>, Gustavo Noronha Silva <kov@debian.org>, J.H.M. Dassen (Ray) <jdassen@debian.org>, Jordi Mallach <jordi@debian.org>, Jose Carlos Garcia Sogo <jsogo@debian.org>, Kilian Krause <kilian@debian.org>, Loic Minier <lool@dooz.org>, Marc 'HE' Brockschmidt <he@debian.org>, Marco Cabizza <marco87@gmail.com>, Oystein Gisnas <oystein@gisnas.net>, Ondřej Surý <ondrej@debian.org>, Ross Burton <ross@debian.org>, Sebastien Bacher <seb128@debian.org>, Sjoerd Simons <sjoerd@debian.org>
+Build-Depends: debhelper (>= 5), python-support (>= 0.4), gnome-pkg-tools (>= 0.10), cdbs, python-all-dev, libglib2.0-dev (>= 2.8.0), xsltproc, docbook-xsl, autotools-dev
 Standards-Version: 3.7.2
 
 Package: python-gobject
-Architecture: all
-Depends: python2.3-gobject (= ${Source-Version})
-Description: Python bindings for the GObject
- This archive contains modules that allow you to use GObject in Python
- programs. 
+Architecture: any
+Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Provides: ${python:Provides}
+Conflicts: python-gtk2 (<< 2.10)
+Description: Python bindings for the GObject library
+ GObject is an abstraction layer that allows to program with an object 
+ paradigm that is compatible with many languages. It is a part of Glib, 
+ the core library used to build GTK+ and GNOME.
  .
- This package is a dependency package, which select the right package 
- for the default Python version.
+ This package contains the python bindings for GObject. It is mostly 
+ used by other bindings to map their GObjects to python objects.
 
 Package: python-gobject-dev
 Architecture: all
-Depends: ${python:Depends}, python2.3-gobject (= ${Source-Version}), libglib2.0-dev (>= 2.8)
-Replaces: python-gtk2-dev (<< 2.9.0)
-Conflicts: python-gtk2-dev (<< 2.9.0)
-Description: GObject bindings: devel files
- This archive contains files that allow you to build wrappers for addon
- that interoperate python-gobject (pyobject).
-
-Package: python2.3-gobject
-Architecture: any
-Replaces: python2.3-gtk2  (<< 2.9.0)
-Conflicts: python2.3-gtk2 (<< 2.9.0)
-Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
-Description: Python bindings for the GObject
- This archive contains modules that allow you to use GObject in Python
- programs.
+Depends: ${python:Depends}, python-gobject (>= ${Source-Version}), python-dev
+Conflicts: python-gtk2-dev (<< 2.10)
+Recommends: docbook-xsl
+Description: Development headers for the GObject python bindings
+ GObject is an abstraction layer that allows to program with an object
+ paradigm that is compatible with many languages. It is a part of Glib,
+ the core library used to build GTK+ and GNOME.
  .
- This package contains bindings for Python 2.3
-
-Package: python2.4-gobject
-Architecture: any
-Replaces: python2.4-gtk2  (<< 2.9.0)
-Conflicts: python2.4-gtk2 (<< 2.9.0)
-Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}
-Description: Python bindings for the GObject
- This archive contains modules that allow you to use GObject in Python
- programs.
- .
- This package contains bindings for Python 2.4
+ This package contains the development headers needed to build 
+ other python bindings relying on pygobject.
