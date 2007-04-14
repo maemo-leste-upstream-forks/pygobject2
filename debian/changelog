@@ -7,8 +7,9 @@ pygobject (2.12.3-2) UNRELEASED; urgency=low
   * Build-depend on autotools-dev.
   * Honor CFLAGS we set in rules, doh!
   * Set some sane default CFLAGS and honor noopt in DEB_BUILD_OPTIONS.
+  * Upload to unstable; drop check-dist include.
 
- -- Loic Minier <lool@dooz.org>  Thu, 12 Apr 2007 15:14:32 +0200
+ -- Loic Minier <lool@dooz.org>  Sat, 14 Apr 2007 13:01:49 +0200
 
 pygobject (2.12.3-1) experimental; urgency=low
 
