@@ -9,6 +9,7 @@ Build-Depends: debhelper (>= 5),
                cdbs,
                python-all-dev (>= 2.3.5),
                libglib2.0-dev (>= 2.8.0),
+               libffi-dev,
                xsltproc,
                docbook-xsl,
                autotools-dev
@@ -36,7 +37,7 @@ Package: python-gobject-dev
 Architecture: all
 Depends: ${python:Depends},
          ${misc:Depends},
-         python-gobject (>= ${Source-Version}),
+         python-gobject (>= ${source:Version}),
          python-dev
 Conflicts: python-gtk2-dev (<< 2.10)
 Recommends: docbook-xsl

@@ -1,3 +1,11 @@
+pygobject (2.14.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * Use source:Version.
+  * Build-depend on libffi-dev.
+
+ -- Josselin Mouette <joss@debian.org>  Sat, 22 Sep 2007 10:11:58 +0200
+
 pygobject (2.12.3-2) unstable; urgency=low
 
   * Add a get-orig-source target to retrieve the upstream tarball.
