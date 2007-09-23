@@ -38,7 +38,9 @@ Architecture: all
 Depends: ${python:Depends},
          ${misc:Depends},
          python-gobject (>= ${source:Version}),
-         python-dev
+         python-dev,
+         libglib2.0-dev (>= 2.8.0),
+         libffi-dev
 Conflicts: python-gtk2-dev (<< 2.10)
 Recommends: docbook-xsl
 Description: Development headers for the GObject python bindings
