@@ -1,8 +1,8 @@
-pygobject (2.14.0-2) UNRELEASED; urgency=low
+pygobject (2.14.0-2) unstable; urgency=low
 
   * python-gobject-dev depends on libglib2.0-dev and libffi-dev.
 
- -- Josselin Mouette <joss@debian.org>  Sun, 23 Sep 2007 22:36:44 +0200
+ -- Josselin Mouette <joss@debian.org>  Sun, 23 Sep 2007 22:43:19 +0200
 
 pygobject (2.14.0-1) unstable; urgency=low
 
