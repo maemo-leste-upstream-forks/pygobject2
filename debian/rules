@@ -28,12 +28,26 @@ build-%/configure-stamp:
 			$(CURDIR)/configure $(configure_flags)
 	touch $@
 
+dbg-build-%/configure-stamp:
+	dh_testdir
+	mkdir -p dbg-build-$*
+	cd dbg-build-$* && \
+		PYTHON=/usr/bin/python$*-dbg CFLAGS="$(CFLAGS) -O0" \
+			$(CURDIR)/configure $(configure_flags)
+	touch $@
+
 build-%/build-stamp: build-%/configure-stamp
 	dh_testdir
 	$(MAKE) -C build-$*
+	$(MAKE) -C build-$* check
 	touch $@
 
-build: apply-patches $(PYVERS:%=build-%/build-stamp)
+dbg-build-%/build-stamp: dbg-build-%/configure-stamp
+	dh_testdir
+	$(MAKE) -C dbg-build-$*
+	touch $@
+
+build: apply-patches $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stamp)
 
 install-clean:
 	dh_testdir
@@ -45,17 +59,28 @@ install-%: build-%/build-stamp
 	dh_testroot
 	$(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dev
 
-install: build install-clean $(PYVERS:%=install-%)
+dbg-install-%: dbg-build-%/build-stamp
+	dh_testdir
+	dh_testroot
+	$(MAKE) -C dbg-build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dbg
+	find debian/python-gobject-dbg ! -type d ! -name '*.so' | xargs rm -f
+	find debian/python-gobject-dbg -depth -empty -exec rmdir {} \;
+
+install: build install-clean $(PYVERS:%=install-%) $(PYVERS:%=dbg-install-%)
 	dh_testdir
 	dh_testroot
 	find debian/python-gobject-dev -name \*.la -exec rm -f \{\} \;
 	mkdir -p debian/python-gobject/usr/lib
 	mv debian/python-gobject-dev/usr/lib/python* debian/python-gobject/usr/lib/
+	for i in $$(find debian/python-gobject-dbg -name '*.so'); do \
+		b=$$(basename $$i .so); \
+		mv $$i $$(dirname $$i)/$${b}_d.so; \
+	done
 
 clean:: reverse-patches
 	dh_testdir
 	dh_testroot
-	rm -Rf build-*
+	rm -Rf build-* dbg-build-*
 	-test -f config.sub && \
 	  test -r /usr/share/misc/config.sub && \
 	  cp -f /usr/share/misc/config.sub config.sub
@@ -87,7 +112,9 @@ binary-arch: build install
 	dh_installdocs -a
 	dh_installexamples -a
 	dh_installchangelogs ChangeLog -a
-	dh_strip -a
+	dh_strip -ppython-gobject --dbg-package=python-gobject-dbg
+	rm -rf debian/python-gobject-dbg/usr/share/doc/python-gobject-dbg
+	ln -sf python-gobject debian/python-gobject-dbg/usr/share/doc/python-gobject-dbg
 	dh_link -a
 	dh_compress -a -X.py
 	dh_fixperms -a

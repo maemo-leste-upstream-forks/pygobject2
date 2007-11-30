@@ -1,3 +1,15 @@
+pygobject (2.14.0-3) unstable; urgency=low
+
+  * debian/control.in:
+    - Build-Depends on python-all-dbg
+    - Conflicts,Provides,Replaces python-gobject-doc
+    - list python-gobject-dbg package
+  * debian/rules:
+    - build dbg variant
+    - run make check
+
+ -- Sebastien Bacher <seb128@debian.org>  Fri, 30 Nov 2007 12:46:58 +0100
+
 pygobject (2.14.0-2) unstable; urgency=low
 
   * python-gobject-dev depends on libglib2.0-dev and libffi-dev.
