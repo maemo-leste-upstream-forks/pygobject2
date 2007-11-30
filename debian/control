@@ -2,7 +2,7 @@ Source: pygobject
 Section: python
 Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Loic Minier <lool@dooz.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Loic Minier <lool@dooz.org>, Sebastien Bacher <seb128@debian.org>
 Build-Depends: debhelper (>= 5),
                python-support (>= 0.4),
                gnome-pkg-tools (>= 0.10),
@@ -12,7 +12,8 @@ Build-Depends: debhelper (>= 5),
                libffi-dev,
                xsltproc,
                docbook-xsl,
-               autotools-dev
+               autotools-dev,
+               python-all-dbg
 Build-Conflicts: python2.3-dev (<< 2.3.5)
 XS-Python-Version: >= 2.3
 Standards-Version: 3.7.2
@@ -24,6 +25,7 @@ Depends: ${python:Depends},
          ${misc:Depends}
 Provides: ${python:Provides}
 XB-Python-Version: ${python:Versions}
+Suggests: python-gobject-dbg
 Conflicts: python-gtk2 (<< 2.10)
 Description: Python bindings for the GObject library
  GObject is an abstraction layer that allows to program with an object
@@ -41,7 +43,9 @@ Depends: ${python:Depends},
          python-dev,
          libglib2.0-dev (>= 2.8.0),
          libffi-dev
-Conflicts: python-gtk2-dev (<< 2.10)
+Conflicts: python-gtk2-dev (<< 2.10), python-gobject-doc
+Replaces: python-gobject-doc
+Provides: python-gobject-doc
 Recommends: docbook-xsl
 Description: Development headers for the GObject python bindings
  GObject is an abstraction layer that allows to program with an object
@@ -50,3 +54,18 @@ Description: Development headers for the GObject python bindings
  .
  This package contains the development headers needed to build
  other python bindings relying on pygobject.
+
+Package: python-gobject-dbg
+Priority: extra
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, python-dbg, python-gobject (= ${Source-Version})
+Conflicts: python-gtk2 (<< 2.10)
+Description: Python bindings for the GObject library (debug extension)
+ GObject is an abstraction layer that allows to program with an object
+ paradigm that is compatible with many languages. It is a part of
+ Glib,
+ the core library used to build GTK+ and GNOME.
+ .
+ This package contains the python bindings for GObject. It is
+ mostly
+ used by other bindings to map their GObjects to python objects.
