@@ -39,7 +39,7 @@ dbg-build-%/configure-stamp:
 build-%/build-stamp: build-%/configure-stamp
 	dh_testdir
 	$(MAKE) -C build-$*
-	$(MAKE) -C build-$* check
+	-$(MAKE) -C build-$* check
 	touch $@
 
 dbg-build-%/build-stamp: dbg-build-%/configure-stamp

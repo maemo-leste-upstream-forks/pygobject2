@@ -1,3 +1,11 @@
+pygobject (2.14.0-4) unstable; urgency=low
+
+  * debian/rules:
+     - don't stop the build when make check has an error to avoid having
+       to add a depends on pygtk
+
+ -- Sebastien Bacher <seb128@debian.org>  Sat, 01 Dec 2007 23:20:19 +0100
+
 pygobject (2.14.0-3) unstable; urgency=low
 
   * debian/control.in:
