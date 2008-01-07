@@ -1,3 +1,9 @@
+pygobject (2.14.1-1) unstable; urgency=low
+
+  * New upstream release; new features / bug fixes.
+
+ -- Loic Minier <lool@dooz.org>  Mon, 07 Jan 2008 10:59:32 +0100
+
 pygobject (2.14.0-4) unstable; urgency=low
 
   * debian/rules:
