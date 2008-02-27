@@ -1,3 +1,12 @@
+pygobject (2.14.1-2) unstable; urgency=low
+
+  * New patch, 60_use-python-config-for-includes, use python-config to set
+    PYTHON_INCLUDES; fixes support for -dbg package; GNOME #448173;
+    closes: #468130.  NB: the patch also ships m4/ from upstream SVN as this
+    wasn't disted properly and also updated autoconf.
+
+ -- Loic Minier <lool@dooz.org>  Wed, 27 Feb 2008 16:09:00 +0100
+
 pygobject (2.14.1-1) unstable; urgency=low
 
   * New upstream release; new features / bug fixes.
