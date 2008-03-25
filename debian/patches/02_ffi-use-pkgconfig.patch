@@ -1,0 +1,40 @@
+--- configure.ac.orig	2008-03-25 00:20:15.300650330 +0100
++++ configure.ac	2008-03-25 00:22:13.024650481 +0100
+@@ -65,6 +65,8 @@
+ AC_LIBTOOL_WIN32_DLL
+ AC_PROG_LIBTOOL
+ 
++PKG_PROG_PKG_CONFIG
++
+ AM_PATH_PYTHON(2.3.5)
+ 
+ AM_CHECK_PYTHON_HEADERS(,[AC_MSG_ERROR(could not find Python headers)])
+@@ -144,15 +146,9 @@
+ AS_AC_EXPAND(DATADIR, $datadir)
+ 
+ dnl libffi
+-AC_MSG_CHECKING(for ffi.h)
+-AC_TRY_CPP([#include <ffi.h>], pygobject_ffi_h=yes, pygobject_ffi_h=no)
+-if test $pygobject_ffi_h = yes; then
+-   AC_DEFINE(HAVE_FFI_H,1,[Have ffi.h include file])
+-   FFI_LIBS="-lffi"
+-fi
++PKG_CHECK_MODULES(FFI, libffi, [enable_ffi=yes], [enable_ffi=no])
+ AC_MSG_RESULT([$pygobject_ffi_h])
+-AM_CONDITIONAL(HAVE_LIBFFI, test "$pygobject_ffi_h" = "yes")
+-AC_SUBST(FFI_LIBS)
++AM_CONDITIONAL(HAVE_LIBFFI, test "$enable_ffi" = "yes")
+ 
+ dnl add required cflags ...
+ if test "x$GCC" = "xyes"; then
+--- gobject/Makefile.am.orig	2008-03-25 00:20:24.508651015 +0100
++++ gobject/Makefile.am	2008-03-25 00:21:38.236681331 +0100
+@@ -33,7 +33,7 @@
+ CLEANFILES = constants.py
+ EXTRA_DIST = constants.py.in
+ 
+-_gobject_la_CFLAGS = $(GLIB_CFLAGS)
++_gobject_la_CFLAGS = $(GLIB_CFLAGS) $(FFI_CFLAGS)
+ _gobject_la_LDFLAGS = $(common_ldflags) -export-symbols-regex init_gobject
+ _gobject_la_LIBADD = $(GLIB_LIBS) $(FFI_LIBS)
+ _gobject_la_SOURCES = \

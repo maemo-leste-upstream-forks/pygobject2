@@ -1,9 +1,10 @@
 --- pygobject-2.0.pc.in.orig	2008-03-24 23:08:38.496678562 +0100
-+++ pygobject-2.0.pc.in	2008-03-24 23:09:01.156649964 +0100
-@@ -16,5 +16,5 @@
++++ pygobject-2.0.pc.in	2008-03-24 23:57:17.900679259 +0100
+@@ -15,6 +15,6 @@
+ Name: PyGObject
  Description: Python bindings for GObject
  Requires: gobject-2.0
++Requires.private: libffi
  Version: @VERSION@
 -Libs: -L${libdir} @FFI_LIBS@
-+Libs.private: -L${libdir} @FFI_LIBS@
  Cflags: -I${pygtkincludedir}
