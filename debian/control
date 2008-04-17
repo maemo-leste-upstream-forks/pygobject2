@@ -9,7 +9,7 @@ Build-Depends: debhelper (>= 5),
                cdbs,
                python-all-dev (>= 2.3.5),
                libglib2.0-dev (>= 2.8.0),
-               libffi-dev,
+               libffi-dev (>= 3.0.5),
                xsltproc,
                docbook-xsl,
                autotools-dev,
@@ -42,7 +42,7 @@ Depends: ${python:Depends},
          python-gobject (>= ${source:Version}),
          python-dev,
          libglib2.0-dev (>= 2.8.0),
-         libffi-dev
+         libffi-dev (>= 3.0.5)
 Conflicts: python-gtk2-dev (<< 2.10), python-gobject-doc
 Replaces: python-gobject-doc
 Provides: python-gobject-doc
