@@ -1,7 +1,7 @@
 From the fix to the initial SETWAKEUPFD support in GNOME #481569.
 
 --- pygobject-2.14.1/gobject/pygmainloop.c	2008-01-03 12:09:19.000000000 +0100
-+++ pygobject-2.14.1.new/gobject/pygmainloop.c	2008-05-15 14:56:28.000000000 +0200
++++ pygobject-2.14.1.new/gobject/pygmainloop.c	2008-05-16 14:13:41.000000000 +0200
 @@ -24,6 +24,7 @@
  #ifdef HAVE_CONFIG_H
  #  include <config.h>
@@ -33,19 +33,23 @@ From the fix to the initial SETWAKEUPFD support in GNOME #481569.
      PySignal_SetWakeupFd(real_source->fds[1]);
  
  #else /* !HAVE_PYSIGNAL_SETWAKEUPFD */
-@@ -165,11 +174,14 @@
- {
+@@ -166,10 +175,19 @@
      PyGILState_STATE state;
      GMainLoop *main_loop;
--
+ 
++#ifdef HAVE_PYSIGNAL_SETWAKEUPFD
 +    PySignalWatchSource *real_source = (PySignalWatchSource *)source;
 +    char buf[1];
-+	
++#endif
++
      state = pyg_gil_state_ensure();
  
      main_loop = pyg_get_current_main_loop();
  
++#ifdef HAVE_PYSIGNAL_SETWAKEUPFD
 +    read(real_source->fds[0], &buf, 1);
++#endif
++
      if (PyErr_CheckSignals() == -1 && main_loop != NULL) {
  	PyErr_SetNone(PyExc_KeyboardInterrupt);
  	g_main_loop_quit(main_loop);

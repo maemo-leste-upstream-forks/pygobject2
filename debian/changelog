@@ -1,3 +1,10 @@
+pygobject (2.14.1-6) unstable; urgency=low
+
+  * Update 61_wakeupfd-fix to use more ifdefs for python without the wakeupfd
+    support; see #481457.
+
+ -- Loic Minier <lool@dooz.org>  Fri, 16 May 2008 14:14:06 +0200
+
 pygobject (2.14.1-5) unstable; urgency=low
 
   * New patch, 61_wakeupfd-fix, from the fix to the initial SETWAKEUPFD
