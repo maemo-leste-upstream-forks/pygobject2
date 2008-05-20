@@ -1,6 +1,6 @@
 pygobject (2.14.1-7) unstable; urgency=low
 
-  * Also add an explicit python2.5 (>= 2.5.2-5) dep.
+  * Also add an explicit python2.5 (>= 2.5.2-5) dep; closes: #481936.
 
  -- Loic Minier <lool@dooz.org>  Tue, 20 May 2008 11:26:02 +0200
 
