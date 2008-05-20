@@ -1,3 +1,9 @@
+pygobject (2.14.1-7) unstable; urgency=low
+
+  * Also add an explicit python2.5 (>= 2.5.2-5) dep.
+
+ -- Loic Minier <lool@dooz.org>  Tue, 20 May 2008 11:26:02 +0200
+
 pygobject (2.14.1-6) unstable; urgency=low
 
   * Update 61_wakeupfd-fix to use more ifdefs for python without the wakeupfd

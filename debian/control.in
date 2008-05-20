@@ -22,6 +22,7 @@ Standards-Version: 3.7.3
 Package: python-gobject
 Architecture: any
 Depends: ${python:Depends},
+         python2.5 (>= 2.5.2-5),
          ${shlibs:Depends},
          ${misc:Depends}
 Provides: ${python:Provides}
