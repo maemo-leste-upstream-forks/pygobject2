@@ -7,7 +7,6 @@ Build-Depends: debhelper (>= 5),
                python-support (>= 0.4),
                gnome-pkg-tools (>= 0.10),
                cdbs,
-               python2.5-dev (>= 2.5.2-5),
                python-all-dev (>= 2.3.5),
                libglib2.0-dev (>= 2.8.0),
                libffi-dev (>= 3.0.5),
@@ -22,7 +21,6 @@ Standards-Version: 3.7.3
 Package: python-gobject
 Architecture: any
 Depends: ${python:Depends},
-         python2.5 (>= 2.5.2-5),
          ${shlibs:Depends},
          ${misc:Depends}
 Provides: ${python:Provides}
@@ -42,7 +40,6 @@ Architecture: all
 Depends: ${python:Depends},
          ${misc:Depends},
          python-gobject (>= ${source:Version}),
-         python2.5-dev (>= 2.5.2-5),
          python-dev,
          libglib2.0-dev (>= 2.8.0),
          libffi-dev (>= 3.0.5)
