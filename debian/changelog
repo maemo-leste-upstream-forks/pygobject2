@@ -1,3 +1,11 @@
+pygobject (2.14.1-8) unstable; urgency=low
+
+  * Revert last upload, the pygobject patch was fine and the bug lies in 
+    pygtk. Furthermore, wakeupfd gets used anyway since Python supports 
+    it, so we *need* this patch.
+
+ -- Josselin Mouette <joss@debian.org>  Wed, 04 Jun 2008 00:08:02 +0200
+
 pygobject (2.14.1-7) unstable; urgency=low
 
   * Also add an explicit python2.5 (>= 2.5.2-5) dep; closes: #481936.
