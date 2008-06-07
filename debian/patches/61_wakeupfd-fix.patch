@@ -1,7 +1,9 @@
 From the fix to the initial SETWAKEUPFD support in GNOME #481569.
 
---- pygobject-2.14.1/gobject/pygmainloop.c	2008-01-03 12:09:19.000000000 +0100
-+++ pygobject-2.14.1.new/gobject/pygmainloop.c	2008-05-16 14:13:41.000000000 +0200
+Index: pygobject-2.14.2/gobject/pygmainloop.c
+===================================================================
+--- pygobject-2.14.2.orig/gobject/pygmainloop.c	2008-06-07 14:06:05.826506163 +0200
++++ pygobject-2.14.2/gobject/pygmainloop.c	2008-06-07 15:06:05.219010028 +0200
 @@ -24,6 +24,7 @@
  #ifdef HAVE_CONFIG_H
  #  include <config.h>
@@ -10,7 +12,7 @@ From the fix to the initial SETWAKEUPFD support in GNOME #481569.
  
  #include "pygobject-private.h"
  #include "pythread.h"
-@@ -112,7 +113,10 @@
+@@ -112,7 +113,10 @@ static gboolean
  pyg_signal_watch_prepare(GSource *source,
  			 int     *timeout)
  {
@@ -21,7 +23,7 @@ From the fix to the initial SETWAKEUPFD support in GNOME #481569.
  
      /* Python only invokes signal handlers from the main thread,
       * so if a thread other than the main thread receives the signal
-@@ -146,6 +150,11 @@
+@@ -146,6 +150,11 @@ pyg_signal_watch_prepare(GSource *source
      real_source->fd.events = G_IO_IN | G_IO_HUP | G_IO_ERR;
      g_source_add_poll(source, &real_source->fd);
  
@@ -33,7 +35,7 @@ From the fix to the initial SETWAKEUPFD support in GNOME #481569.
      PySignal_SetWakeupFd(real_source->fds[1]);
  
  #else /* !HAVE_PYSIGNAL_SETWAKEUPFD */
-@@ -166,10 +175,19 @@
+@@ -166,10 +175,20 @@ pyg_signal_watch_check(GSource *source)
      PyGILState_STATE state;
      GMainLoop *main_loop;
  
@@ -47,7 +49,8 @@ From the fix to the initial SETWAKEUPFD support in GNOME #481569.
      main_loop = pyg_get_current_main_loop();
  
 +#ifdef HAVE_PYSIGNAL_SETWAKEUPFD
-+    read(real_source->fds[0], &buf, 1);
++    if (real_source->fds[0])
++        read(real_source->fds[0], &buf, 1);
 +#endif
 +
      if (PyErr_CheckSignals() == -1 && main_loop != NULL) {

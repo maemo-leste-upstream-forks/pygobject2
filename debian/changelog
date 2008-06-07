@@ -1,3 +1,14 @@
+pygobject (2.14.2-1) unstable; urgency=low
+
+  * Switch to quilt; build-depend on quilt.
+  * New upstream release.
+    + Refresh patches.
+  * 03_maintainer_mode.patch: add AM_MAINTAINER_MODE.
+  * 61_wakeupfd-fix.patch: do not use the wakeupfd in non-threaded 
+    applications, as it is not initialized.
+
+ -- Josselin Mouette <joss@debian.org>  Sat, 07 Jun 2008 15:05:11 +0200
+
 pygobject (2.14.1-8) unstable; urgency=low
 
   * Revert last upload, the pygobject patch was fine and the bug lies in 
