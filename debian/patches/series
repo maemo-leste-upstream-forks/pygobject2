@@ -1,0 +1,6 @@
+01_pkgconfig-private.patch
+02_ffi-use-pkgconfig.patch
+03_maintainer_mode.patch
+60_use-python-config-for-includes.patch
+61_wakeupfd-fix.patch
+90_autofoo.patch

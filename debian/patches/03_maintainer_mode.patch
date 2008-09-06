@@ -1,0 +1,12 @@
+Index: pygobject-2.14.2/configure.ac
+===================================================================
+--- pygobject-2.14.2.orig/configure.ac	2008-06-07 14:06:28.131010994 +0200
++++ pygobject-2.14.2/configure.ac	2008-06-07 14:06:35.211005448 +0200
+@@ -25,6 +25,7 @@ AC_CONFIG_SRCDIR([gobject/gobjectmodule.
+ AM_CONFIG_HEADER(config.h)
+ 
+ AM_INIT_AUTOMAKE
++AM_MAINTAINER_MODE
+ 
+ dnl put the ACLOCAL flags in the makefile
+ ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
