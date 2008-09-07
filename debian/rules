@@ -63,7 +63,7 @@ dbg-install-%: dbg-build-%/build-stamp
 	dh_testdir
 	dh_testroot
 	$(MAKE) -C dbg-build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dbg
-	find debian/python-gobject-dbg ! -type d ! -name '*.so' | xargs rm -f
+	find debian/python-gobject-dbg ! -type d ! \( -name '*.so' -o -name '*.so.*' \) -print0 | xargs -0 rm -f
 	find debian/python-gobject-dbg -depth -empty -exec rmdir {} \;
 
 install: build install-clean $(PYVERS:%=install-%) $(PYVERS:%=dbg-install-%)
@@ -72,7 +72,15 @@ install: build install-clean $(PYVERS:%=install-%) $(PYVERS:%=dbg-install-%)
 	find debian/python-gobject-dev -name \*.la -exec rm -f \{\} \;
 	mkdir -p debian/python-gobject/usr/lib
 	mv debian/python-gobject-dev/usr/lib/python* debian/python-gobject/usr/lib/
-	for i in $$(find debian/python-gobject-dbg -name '*.so'); do \
+	mkdir -p debian/python-gobject/usr/lib/pygobject
+	cp -a debian/python-gobject-dev/usr/lib/pygobject/python* \
+	    debian/python-gobject/usr/lib/pygobject
+	cp -a debian/python-gobject-dbg/usr/lib/pygobject/python* \
+	    debian/python-gobject-dev/usr/lib/pygobject
+	rm -f debian/python-gobject-dev/usr/lib/pygobject/python*/*.so.*
+	rm -f debian/python-gobject/usr/lib/pygobject/python*/*.so
+	rm -f debian/python-gobject-dbg/usr/lib/pygobject/python*/*.so
+	for i in $$(find debian/python-gobject-dbg -name '*.so' -path 'debian/python-gobject-dbg/usr/lib/python*/site-packages/*'); do \
 		b=$$(basename $$i .so); \
 		mv $$i $$(dirname $$i)/$${b}_d.so; \
 	done
@@ -119,6 +127,7 @@ binary-arch: build install
 	dh_compress -a -X.py
 	dh_fixperms -a
 	dh_pysupport -a
+	dh_makeshlibs -a -V'python-gobject (>= 2.15.2)'
 	dh_installdeb -a
 	dh_shlibdeps -a
 	dh_gencontrol -a

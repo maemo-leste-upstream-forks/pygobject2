@@ -1,0 +1,14 @@
+GNOME #550235
+
+--- pygobject-2.15.3.orig/glib/Makefile.am	2008-07-26 15:57:53.000000000 +0200
++++ pygobject-2.15.3/glib/Makefile.am	2008-09-03 18:43:58.000000000 +0200
+@@ -4,7 +4,8 @@
+ pkgincludedir = $(includedir)/pygtk-2.0
+ pkginclude_HEADERS = pyglib.h
+ 
+-lib_LTLIBRARIES = libpyglib-2.0.la
++libpyglibdir = $(libdir)/$(PACKAGE_NAME)/`basename $(PYTHON)`
++libpyglib_LTLIBRARIES = libpyglib-2.0.la
+ 
+ pkgpyexecdir = $(pyexecdir)/gtk-2.0
+ 

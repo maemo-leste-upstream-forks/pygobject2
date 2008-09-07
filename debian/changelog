@@ -1,3 +1,33 @@
+pygobject (2.15.4-1) UNRELEASED; urgency=low
+
+  * New upstream release. Closes: #492647.
+    - Build-Depend on libglib2.0-dev >= 2.14.0.
+    - debian/patches/60_use-python-config-for-includes.patch,
+      debian/patches/02_ffi-use-pkgconfig:
+      + Dropped, fixed upstream.
+    - debian/patches/debian/patches/61_wakeupfd-fix.patch:
+      + Renamed as 61_wakeupfd-fctnl-and-read.patch, updated.
+    - debian/patches/62_install-pyglib-in-libdir-with-python-version.patch:
+      + installs the new pyglib public library to the private directory
+        libdir/pygobject/python<python version> to have one lib per python
+        version; this naturally causes the
+        lib/python<python version>/site-packages/gtk-2.0/glib/_glib.so libs to
+        have a RPATH; see GNOME #550235.
+    - debian/patches/63_macro-dir.patch:
+      + 
+    - debian/patches/90_autofoo.patch:
+      + Updated for the new version.
+      + Updated instructions on how to generate it.
+    - debian/rules:
+      + Call dh_makeshlibs to generate shlibs on python-gobject >= 2.15.2.
+      + Rework -dbg support for the new pyglib shared lib.
+  * debian/control.in:
+    - Bump Standards-Version to 3.8.0.
+  * debian/rules:
+    - Use find -print0/xargs -0.
+
+ -- Emilio Pozuelo Monfort <pochu@ubuntu.com>  Sun, 07 Sep 2008 11:55:42 +0200
+
 pygobject (2.14.2-1) unstable; urgency=low
 
   * Switch to quilt; build-depend on quilt.
