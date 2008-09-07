@@ -1,7 +1,8 @@
 pygobject (2.15.4-1) UNRELEASED; urgency=low
 
-  * New upstream release. Closes: #492647.
-    - Build-Depend on libglib2.0-dev >= 2.14.0.
+  * Merged 2.15 updates from Ubuntu, thanks to Sebastien Bacher
+    and Loïc Minier:
+    - Build-Depend on libglib2.0-dev >= 2.14.
     - debian/patches/60_use-python-config-for-includes.patch,
       debian/patches/02_ffi-use-pkgconfig:
       + Dropped, fixed upstream.
@@ -10,23 +11,126 @@ pygobject (2.15.4-1) UNRELEASED; urgency=low
     - debian/patches/62_install-pyglib-in-libdir-with-python-version.patch:
       + installs the new pyglib public library to the private directory
         libdir/pygobject/python<python version> to have one lib per python
-        version; this naturally causes the
-        lib/python<python version>/site-packages/gtk-2.0/glib/_glib.so libs to
-        have a RPATH; see GNOME #550235.
+        version
     - debian/patches/63_macro-dir.patch:
-      + 
+      + Add AC_CONFIG_MACRO_DIR for libtoolize. GNOME #551227. 
+    - debian/patches/69_pyg-register-pointer-typo:
+      + fixes crash on x86-64 due to a typo. GNOME #550463.
     - debian/patches/90_autofoo.patch:
-      + Updated for the new version.
-      + Updated instructions on how to generate it.
+      + Updated.
     - debian/rules:
       + Call dh_makeshlibs to generate shlibs on python-gobject >= 2.15.2.
       + Rework -dbg support for the new pyglib shared lib.
-  * debian/control.in:
     - Bump Standards-Version to 3.8.0.
-  * debian/rules:
-    - Use find -print0/xargs -0.
+    - debian/rules:
+      + Use find -print0/xargs -0.
 
- -- Emilio Pozuelo Monfort <pochu@ubuntu.com>  Sun, 07 Sep 2008 11:55:42 +0200
+  * New upstream release. Closes: #492647.
+    - Build-Depend on libglib2.0-dev >= 2.16.0 for GIO support.
+    - debian/patches/69_pyg-register-pointer-typo:
+      + Removed, fixed upstream.
+
+ -- Emilio Pozuelo Monfort <pochu@ubuntu.com>  Sun, 07 Sep 2008 17:20:28 +0200
+
+pygobject (2.15.3-0ubuntu4) intrepid; urgency=low
+
+  * Rework -dbg support for the new pyglib shared lib;
+    - Update 62_install-pyglib-in-libdir-with-python-version to use `basename
+      $(PYTHON)` instead of $(PYTHON_VERSION) to install debug pyglib in
+      /usr/lib/pygobject/pythonX.Y-dbg.
+    - Update 90_autofoo.
+    - Also keep all *.so.* files for the -dbg, not only *.so files.
+    - Only include /usr/lib/python*/site-packages dir for the *.so -> *_d.so
+      renames.
+    - Install pyglib dev symlinks for dbg packages in the -dev.
+  * Use find -print0/xargs -0.
+
+ -- Loic Minier <lool@dooz.org>  Wed, 03 Sep 2008 18:45:27 +0200
+
+pygobject (2.15.3-0ubuntu3) intrepid; urgency=low
+
+  * New patch, 69_pyg-register-pointer-typo, fixes crash on x86-64 due to
+    typo (s/&type/type) in pyg_register_pointer(); GNOME #550463.
+  * Remove the bogus Breaks added in 2.15.3-0ubuntu2.
+
+ -- Loic Minier <lool@dooz.org>  Wed, 03 Sep 2008 00:23:15 +0200
+
+pygobject (2.15.3-0ubuntu2) intrepid; urgency=low
+
+  * python-gobject breaks python-gtk2 << 2.13.
+
+ -- Loic Minier <lool@dooz.org>  Tue, 02 Sep 2008 11:54:15 +0200
+
+pygobject (2.15.3-0ubuntu1) intrepid; urgency=low
+
+  * New upstream release
+    - Update patch 90_autofoo and update instructions to rm config.guess.
+
+ -- Loic Minier <lool@dooz.org>  Tue, 02 Sep 2008 11:37:47 +0200
+
+pygobject (2.15.2-0ubuntu1) intrepid; urgency=low
+
+  * New upstream release
+    - Drop patch 02_ffi-use-pkgconfig, fixed upstream.
+    - Update patch 61_wakeupfd-fctnl-and-read.
+    - New patch, 62_install-pyglib-in-libdir-with-python-version, installs the
+      new pyglib public library to the private directory
+      libdir/pygobject/python<python version> to have one lib per python
+      version; this naturally causes the
+      lib/python<python version>/site-packages/gtk-2.0/glib/_glib.so libs to
+      have a RPATH; see GNOME #550235.
+    - Update patch 90_autofoo and update instructions to run libtoolize
+      --force --copy.
+    - Install the new libpyglib in python-gobject and python-gobject-dev.
+    - Call dh_makeshlibs to generate shlibs on python-gobject >= 2.15.2.
+    - Bump up libglib2.0-dev build-dep to >= 2.14.0.
+  * Bump up standards version to 3.8.0.
+
+ -- Loic Minier <lool@dooz.org>  Mon, 01 Sep 2008 15:58:53 +0200
+
+pygobject (2.15.1-0ubuntu2) intrepid; urgency=low
+
+  * New patch, 61_wakeupfd-fctnl-and-read, merge back parts of patch
+    61_wakeupfd-fix (named "Do not use the wakeup fd if it not initialised" in
+    GNOME #481569) which still apply (setting the read end of the pipe() as
+    non-blocking and actually reading bytes from it); LP: #250876;
+    GNOME #481569.
+  * Refresh patch 03_maintainer_mode.
+
+ -- Loic Minier <lool@dooz.org>  Mon, 11 Aug 2008 17:28:02 +0200
+
+pygobject (2.15.1-0ubuntu1) intrepid; urgency=low
+
+  * New upstream version:
+    - Rename pygtk-codegen-2.0 to pygobject-codegen-2.0 to avoid
+      conflicting with PyGTK
+  * debian/patches/90_autofoo.patch:
+    - new version update
+
+ -- Sebastien Bacher <seb128@canonical.com>  Wed, 16 Jul 2008 10:49:09 +0100
+
+pygobject (2.15.0-0ubuntu1) intrepid; urgency=low
+
+  * New upstream version:
+    - Add GIO bindings 
+    - Move codegen from PyGTK 
+    - Add more variables to the .pc files
+    - Add pyg_option_group_new to the public API 
+    - Add g_get_application_anme and g_get_progname 
+    - Avoid making wakeups when using Python 2.6
+    - Only link against libffi when found
+    - Improve gobject.property 
+    - Improve enum comparision and warnings 
+    - Many gobject.Source improvements 
+    - Apply some fixes to make pylint happier
+    - Fix error message in pyg_io_add_watch 
+    - Improve h2def.py 
+  * debian/patches/60_use-python-config-for-includes.patch:
+    - dropped, fixed in the new version
+  * debian/patches/61_wakeupfd-fix.patch:
+    - dropped, fixed in the new version
+
+ -- Sebastien Bacher <seb128@canonical.com>  Tue, 15 Jul 2008 12:24:20 +0100
 
 pygobject (2.14.2-1) unstable; urgency=low
 
