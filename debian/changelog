@@ -25,12 +25,23 @@ pygobject (2.15.4-1) UNRELEASED; urgency=low
     - debian/rules:
       + Use find -print0/xargs -0.
 
+  [ Emilio Pozuelo Monfort ]
   * New upstream release. Closes: #492647.
     - Build-Depend on libglib2.0-dev >= 2.16.0 for GIO support.
     - debian/patches/69_pyg-register-pointer-typo:
       + Removed, fixed upstream.
+  * debian/patches/62_install-pyglib-in-libdir-with-python-version.patch:
+    - Changed so that libpyglib is in /usr/lib and shared objects linking
+      to it don't need an RPATH. The library is now in
+      $libdir/libpyglib-2.0-pythonX.Y.so
+  * debian/rules:
+    - Adjusted for the above patch.
+    - Copy config.* in build and restore it in clean, so that changes don't
+      end up in the diff.gz.
+  * debian/patches/90_autofoo.patch:
+    - Regenerated.
 
- -- Emilio Pozuelo Monfort <pochu@ubuntu.com>  Sun, 07 Sep 2008 17:20:28 +0200
+ -- Emilio Pozuelo Monfort <pochu@ubuntu.com>  Fri, 19 Sep 2008 00:37:28 +0200
 
 pygobject (2.15.3-0ubuntu4) intrepid; urgency=low
 

@@ -1,9 +1,7 @@
-libtoolize --force --copy && aclocal-1.10 -I m4 && automake-1.10 --add-missing --force --copy && autoconf && rm -rf autom4te.cache
-
-diff -ruNp pygobject-2.15.4/aclocal.m4 pygobject-2.15.4.new/aclocal.m4
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/aclocal.m4 pygobject-2.15.4.new/aclocal.m4
 --- pygobject-2.15.4/aclocal.m4	2008-09-03 09:51:06.000000000 +0200
-+++ pygobject-2.15.4.new/aclocal.m4	2008-09-07 12:23:05.000000000 +0200
-@@ -231,6645 +231,6 @@ main ()
++++ pygobject-2.15.4.new/aclocal.m4	2008-09-18 23:58:55.000000000 +0200
+@@ -231,6645 +231,6 @@
    rm -f conf.glibtest
  ])
  
@@ -6649,7 +6647,7 @@ diff -ruNp pygobject-2.15.4/aclocal.m4 pygobject-2.15.4.new/aclocal.m4
  # pkg.m4 - Macros to locate and utilise pkg-config.            -*- Autoconf -*-
  # 
  # Copyright © 2004 Scott James Remnant <scott@netsplit.com>.
-@@ -6938,14 +299,16 @@ fi])
+@@ -6938,14 +299,16 @@
  # _PKG_CONFIG([VARIABLE], [COMMAND], [MODULES])
  # ---------------------------------------------
  m4_define([_PKG_CONFIG],
@@ -6674,7 +6672,7 @@ diff -ruNp pygobject-2.15.4/aclocal.m4 pygobject-2.15.4.new/aclocal.m4
  fi[]dnl
  ])# _PKG_CONFIG
  
-@@ -6989,9 +352,9 @@ See the pkg-config man page for more det
+@@ -6989,9 +352,9 @@
  if test $pkg_failed = yes; then
          _PKG_SHORT_ERRORS_SUPPORTED
          if test $_pkg_short_errors_supported = yes; then
@@ -6686,7 +6684,7 @@ diff -ruNp pygobject-2.15.4/aclocal.m4 pygobject-2.15.4.new/aclocal.m4
          fi
  	# Put the nasty error message in config.log where it belongs
  	echo "$$1[]_PKG_ERRORS" >&AS_MESSAGE_LOG_FD
-@@ -7550,6 +913,35 @@ fi
+@@ -7550,6 +913,35 @@
  rmdir .tst 2>/dev/null
  AC_SUBST([am__leading_dot])])
  
@@ -6722,7 +6720,7 @@ diff -ruNp pygobject-2.15.4/aclocal.m4 pygobject-2.15.4.new/aclocal.m4
  # Check to see how 'make' treats includes.	            -*- Autoconf -*-
  
  # Copyright (C) 2001, 2002, 2003, 2005  Free Software Foundation, Inc.
-@@ -8102,4 +1494,9 @@ AC_SUBST([am__untar])
+@@ -8102,4 +1494,9 @@
  
  m4_include([m4/as-ac-expand.m4])
  m4_include([m4/jhflags.m4])
@@ -6732,10 +6730,10 @@ diff -ruNp pygobject-2.15.4/aclocal.m4 pygobject-2.15.4.new/aclocal.m4
 +m4_include([m4/ltversion.m4])
 +m4_include([m4/lt~obsolete.m4])
  m4_include([m4/python.m4])
-diff -ruNp pygobject-2.15.4/codegen/Makefile.in pygobject-2.15.4.new/codegen/Makefile.in
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/codegen/Makefile.in pygobject-2.15.4.new/codegen/Makefile.in
 --- pygobject-2.15.4/codegen/Makefile.in	2008-09-03 09:51:08.000000000 +0200
-+++ pygobject-2.15.4.new/codegen/Makefile.in	2008-09-07 12:23:07.000000000 +0200
-@@ -37,8 +37,10 @@ DIST_COMMON = $(codegen_PYTHON) $(srcdir
++++ pygobject-2.15.4.new/codegen/Makefile.in	2008-09-18 23:58:59.000000000 +0200
+@@ -37,8 +37,10 @@
  	$(srcdir)/Makefile.in $(srcdir)/pygobject-codegen-2.0.in
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
  am__aclocal_m4_deps = $(top_srcdir)/m4/as-ac-expand.m4 \
@@ -6748,7 +6746,7 @@ diff -ruNp pygobject-2.15.4/codegen/Makefile.in pygobject-2.15.4.new/codegen/Mak
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
  mkinstalldirs = $(install_sh) -d
-@@ -78,7 +80,7 @@ DEFS = @DEFS@
+@@ -78,7 +80,7 @@
  DEPDIR = @DEPDIR@
  DLLTOOL = @DLLTOOL@
  DSYMUTIL = @DSYMUTIL@
@@ -6757,7 +6755,7 @@ diff -ruNp pygobject-2.15.4/codegen/Makefile.in pygobject-2.15.4.new/codegen/Mak
  ECHO_C = @ECHO_C@
  ECHO_N = @ECHO_N@
  ECHO_T = @ECHO_T@
-@@ -86,6 +88,7 @@ EGREP = @EGREP@
+@@ -86,6 +88,7 @@
  EXEEXT = @EXEEXT@
  FFI_CFLAGS = @FFI_CFLAGS@
  FFI_LIBS = @FFI_LIBS@
@@ -6765,7 +6763,7 @@ diff -ruNp pygobject-2.15.4/codegen/Makefile.in pygobject-2.15.4.new/codegen/Mak
  GIOUNIX_CFLAGS = @GIOUNIX_CFLAGS@
  GIOUNIX_LIBS = @GIOUNIX_LIBS@
  GIO_CFLAGS = @GIO_CFLAGS@
-@@ -101,17 +104,23 @@ INSTALL_DATA = @INSTALL_DATA@
+@@ -101,17 +104,23 @@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
  INSTALL_SCRIPT = @INSTALL_SCRIPT@
  INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
@@ -6789,7 +6787,7 @@ diff -ruNp pygobject-2.15.4/codegen/Makefile.in pygobject-2.15.4.new/codegen/Mak
  PACKAGE = @PACKAGE@
  PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
  PACKAGE_NAME = @PACKAGE_NAME@
-@@ -143,6 +152,7 @@ abs_srcdir = @abs_srcdir@
+@@ -143,6 +152,7 @@
  abs_top_builddir = @abs_top_builddir@
  abs_top_srcdir = @abs_top_srcdir@
  ac_ct_CC = @ac_ct_CC@
@@ -6797,7 +6795,7 @@ diff -ruNp pygobject-2.15.4/codegen/Makefile.in pygobject-2.15.4.new/codegen/Mak
  am__include = @am__include@
  am__leading_dot = @am__leading_dot@
  am__quote = @am__quote@
-@@ -173,6 +183,7 @@ libdir = @libdir@
+@@ -173,6 +183,7 @@
  libexecdir = @libexecdir@
  localedir = @localedir@
  localstatedir = @localstatedir@
@@ -6805,7 +6803,7 @@ diff -ruNp pygobject-2.15.4/codegen/Makefile.in pygobject-2.15.4.new/codegen/Mak
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  oldincludedir = @oldincludedir@
-@@ -215,7 +226,7 @@ EXTRA_DIST = README.defs pygobject-codeg
+@@ -215,7 +226,7 @@
  all: all-am
  
  .SUFFIXES:
@@ -6814,7 +6812,7 @@ diff -ruNp pygobject-2.15.4/codegen/Makefile.in pygobject-2.15.4.new/codegen/Mak
  	@for dep in $?; do \
  	  case '$(am__configure_deps)' in \
  	    *$$dep*) \
-@@ -240,9 +251,9 @@ Makefile: $(srcdir)/Makefile.in $(top_bu
+@@ -240,9 +251,9 @@
  $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
  	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
  
@@ -6826,10 +6824,24 @@ diff -ruNp pygobject-2.15.4/codegen/Makefile.in pygobject-2.15.4.new/codegen/Mak
  	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
  pygobject-codegen-2.0: $(top_builddir)/config.status $(srcdir)/pygobject-codegen-2.0.in
  	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
-diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/config.h.in pygobject-2.15.4.new/config.h.in
+--- pygobject-2.15.4/config.h.in	2008-09-03 09:51:27.000000000 +0200
++++ pygobject-2.15.4.new/config.h.in	2008-09-18 23:58:58.000000000 +0200
+@@ -36,6 +36,10 @@
+ /* Define to 1 if you have the <unistd.h> header file. */
+ #undef HAVE_UNISTD_H
+ 
++/* Define to the sub-directory in which libtool stores uninstalled libraries.
++   */
++#undef LT_OBJDIR
++
+ /* Define to 1 if your C compiler doesn't accept -c and -o together. */
+ #undef NO_MINUS_C_MINUS_O
+ 
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/configure pygobject-2.15.4.new/configure
 --- pygobject-2.15.4/configure	2008-09-03 09:51:11.000000000 +0200
-+++ pygobject-2.15.4.new/configure	2008-09-07 12:23:08.000000000 +0200
-@@ -555,22 +555,22 @@ as_tr_sh="eval sed 'y%*+%pp%;s%[^_$as_cr
++++ pygobject-2.15.4.new/configure	2008-09-18 23:58:57.000000000 +0200
+@@ -555,22 +555,22 @@
  # Check that we are running under the correct shell.
  SHELL=${CONFIG_SHELL-/bin/sh}
  
@@ -6857,7 +6869,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
    :
  else
    # Restart under the correct shell.
-@@ -580,9 +580,9 @@ fi
+@@ -580,9 +580,9 @@
  if test "X$1" = X--fallback-echo; then
    # used as fallback echo
    shift
@@ -6869,7 +6881,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
    exit 0
  fi
  
-@@ -590,112 +590,111 @@ fi
+@@ -590,112 +590,111 @@
  # if CDPATH is set.
  (unset CDPATH) >/dev/null 2>&1 && unset CDPATH
  
@@ -7073,7 +7085,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  fi
  
  
-@@ -828,6 +827,9 @@ am__leading_dot
+@@ -828,6 +827,9 @@
  AMTAR
  am__tar
  am__untar
@@ -7083,7 +7095,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  build
  build_cpu
  build_vendor
-@@ -840,6 +842,10 @@ PLATFORM_WIN32_TRUE
+@@ -840,6 +842,10 @@
  PLATFORM_WIN32_FALSE
  OS_WIN32_TRUE
  OS_WIN32_FALSE
@@ -7094,7 +7106,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  CC
  CFLAGS
  LDFLAGS
-@@ -859,17 +865,21 @@ am__fastdepCC_FALSE
+@@ -859,17 +865,21 @@
  SED
  GREP
  EGREP
@@ -7121,7 +7133,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  PYTHON
  PYTHON_VERSION
  PYTHON_PREFIX
-@@ -1503,6 +1513,8 @@ if test -n "$ac_init_help"; then
+@@ -1503,6 +1513,8 @@
  Optional Features:
    --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
    --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
@@ -7130,7 +7142,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
    --enable-static[=PKGS]  build static libraries [default=no]
    --enable-shared[=PKGS]  build shared libraries [default=yes]
    --enable-fast-install[=PKGS]
-@@ -1517,9 +1529,9 @@ Optional Features:
+@@ -1517,9 +1529,9 @@
  Optional Packages:
    --with-PACKAGE[=ARG]    use PACKAGE [ARG=yes]
    --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
@@ -7141,7 +7153,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
    --without-ffi           Disable libffi support
  
  Some influential environment variables:
-@@ -1976,6 +1988,7 @@ ACLOCAL_AMFLAGS="-I m4 -I ."
+@@ -1976,6 +1988,7 @@
  
  
  
@@ -7149,7 +7161,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  cat >>confdefs.h <<\_ACEOF
  #define PYGOBJECT_MAJOR_VERSION 2
  _ACEOF
-@@ -2484,6 +2497,28 @@ am__tar='${AMTAR} chof - "$$tardir"'; am
+@@ -2484,6 +2497,28 @@
  
  
  
@@ -7178,7 +7190,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  
  ACLOCAL="$ACLOCAL $ACLOCAL_FLAGS"
  
-@@ -2642,131 +2677,24 @@ fi
+@@ -2642,131 +2677,24 @@
  
  
  
@@ -7319,7 +7331,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  else
  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
  for as_dir in $PATH
-@@ -2775,7 +2703,7 @@ do
+@@ -2775,7 +2703,7 @@
    test -z "$as_dir" && as_dir=.
    for ac_exec_ext in '' $ac_executable_extensions; do
    if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
@@ -7328,7 +7340,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
      echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
      break 2
    fi
-@@ -2785,10 +2713,10 @@ IFS=$as_save_IFS
+@@ -2785,10 +2713,10 @@
  
  fi
  fi
@@ -7343,7 +7355,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  else
    { echo "$as_me:$LINENO: result: no" >&5
  echo "${ECHO_T}no" >&6; }
-@@ -2796,17 +2724,17 @@ fi
+@@ -2796,17 +2724,17 @@
  
  
  fi
@@ -7368,7 +7380,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  else
  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
  for as_dir in $PATH
-@@ -2815,7 +2743,7 @@ do
+@@ -2815,7 +2743,7 @@
    test -z "$as_dir" && as_dir=.
    for ac_exec_ext in '' $ac_executable_extensions; do
    if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
@@ -7377,7 +7389,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
      echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
      break 2
    fi
-@@ -2825,17 +2753,17 @@ IFS=$as_save_IFS
+@@ -2825,17 +2753,17 @@
  
  fi
  fi
@@ -7401,7 +7413,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
    else
      case $cross_compiling:$ac_tool_warned in
  yes:)
-@@ -2847,23 +2775,22 @@ whose name does not start with the host 
+@@ -2847,23 +2775,22 @@
  configuration is useful to you, please write to autoconf@gnu.org." >&2;}
  ac_tool_warned=yes ;;
  esac
@@ -7433,7 +7445,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  else
  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
  for as_dir in $PATH
-@@ -2872,7 +2799,7 @@ do
+@@ -2872,7 +2799,7 @@
    test -z "$as_dir" && as_dir=.
    for ac_exec_ext in '' $ac_executable_extensions; do
    if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
@@ -7442,7 +7454,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
      echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
      break 2
    fi
-@@ -2882,30 +2809,29 @@ IFS=$as_save_IFS
+@@ -2882,30 +2809,29 @@
  
  fi
  fi
@@ -7485,7 +7497,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
  for as_dir in $PATH
  do
-@@ -2913,11 +2839,7 @@ do
+@@ -2913,11 +2839,7 @@
    test -z "$as_dir" && as_dir=.
    for ac_exec_ext in '' $ac_executable_extensions; do
    if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
@@ -7498,7 +7510,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
      echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
      break 2
    fi
-@@ -2925,44 +2847,46 @@ done
+@@ -2925,44 +2847,46 @@
  done
  IFS=$as_save_IFS
  
@@ -7570,7 +7582,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  else
  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
  for as_dir in $PATH
-@@ -2971,7 +2895,7 @@ do
+@@ -2971,7 +2895,7 @@
    test -z "$as_dir" && as_dir=.
    for ac_exec_ext in '' $ac_executable_extensions; do
    if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
@@ -7579,7 +7591,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
      echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
      break 2
    fi
-@@ -2981,32 +2905,28 @@ IFS=$as_save_IFS
+@@ -2981,32 +2905,28 @@
  
  fi
  fi
@@ -7623,7 +7635,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  else
  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
  for as_dir in $PATH
-@@ -3015,7 +2935,7 @@ do
+@@ -3015,7 +2935,7 @@
    test -z "$as_dir" && as_dir=.
    for ac_exec_ext in '' $ac_executable_extensions; do
    if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
@@ -7632,7 +7644,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
      echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
      break 2
    fi
-@@ -3025,21 +2945,17 @@ IFS=$as_save_IFS
+@@ -3025,21 +2945,17 @@
  
  fi
  fi
@@ -7660,7 +7672,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
    else
      case $cross_compiling:$ac_tool_warned in
  yes:)
-@@ -3051,618 +2967,120 @@ whose name does not start with the host 
+@@ -3051,618 +2967,120 @@
  configuration is useful to you, please write to autoconf@gnu.org." >&2;}
  ac_tool_warned=yes ;;
  esac
@@ -8343,7 +8355,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  
  
  ac_ext=c
-@@ -3670,873 +3088,734 @@ ac_cpp='$CPP $CPPFLAGS'
+@@ -3670,873 +3088,734 @@
  ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
  ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
  ac_compiler_gnu=$ac_cv_c_compiler_gnu
@@ -9829,7 +9841,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  /* confdefs.h.  */
  _ACEOF
  cat confdefs.h >>conftest.$ac_ext
-@@ -4551,14 +3830,14 @@ main ()
+@@ -4551,14 +3830,14 @@
    return 0;
  }
  _ACEOF
@@ -9847,7 +9859,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
    ac_status=$?
    grep -v '^ *+' conftest.er1 >conftest.err
    rm -f conftest.er1
-@@ -4567,983 +3846,960 @@ eval "echo \"\$as_me:$LINENO: $ac_try_ec
+@@ -4567,983 +3846,960 @@
    (exit $ac_status); } && {
  	 test -z "$ac_c_werror_flag" ||
  	 test ! -s conftest.err
@@ -11641,7 +11653,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
    msdosdjgpp*)
      # On DJGPP, this test can blow up pretty badly due to problems in libc
      # (any single argument exceeding 2000 bytes causes a buffer overrun
-@@ -5614,7 +4870,7 @@ else
+@@ -5614,7 +4870,7 @@
    sysv5* | sco5v6* | sysv4.2uw2*)
      kargmax=`grep ARG_MAX /etc/conf/cf.d/stune 2>/dev/null`
      if test -n "$kargmax"; then
@@ -11650,7 +11662,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
      else
        lt_cv_sys_max_cmd_len=32768
      fi
-@@ -5625,20 +4881,28 @@ else
+@@ -5625,20 +4881,28 @@
        lt_cv_sys_max_cmd_len=`expr $lt_cv_sys_max_cmd_len \/ 4`
        lt_cv_sys_max_cmd_len=`expr $lt_cv_sys_max_cmd_len \* 3`
      else
@@ -11686,7 +11698,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
        lt_cv_sys_max_cmd_len=`expr $lt_cv_sys_max_cmd_len \/ 2`
      fi
      ;;
-@@ -5653,311 +4917,336 @@ else
+@@ -5653,311 +4917,336 @@
    { echo "$as_me:$LINENO: result: none" >&5
  echo "${ECHO_T}none" >&6; }
  fi
@@ -12280,7 +12292,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  done
  IFS=$as_save_IFS
  
-@@ -6031,16 +5320,29 @@ else
+@@ -6031,16 +5320,29 @@
    AR="$ac_cv_prog_AR"
  fi
  
@@ -12315,7 +12327,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  else
  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
  for as_dir in $PATH
-@@ -6049,7 +5351,7 @@ do
+@@ -6049,7 +5351,7 @@
    test -z "$as_dir" && as_dir=.
    for ac_exec_ext in '' $ac_executable_extensions; do
    if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
@@ -12324,7 +12336,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
      echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
      break 2
    fi
-@@ -6059,10 +5361,10 @@ IFS=$as_save_IFS
+@@ -6059,10 +5361,10 @@
  
  fi
  fi
@@ -12339,7 +12351,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  else
    { echo "$as_me:$LINENO: result: no" >&5
  echo "${ECHO_T}no" >&6; }
-@@ -6070,17 +5372,17 @@ fi
+@@ -6070,17 +5372,17 @@
  
  
  fi
@@ -12364,7 +12376,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  else
  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
  for as_dir in $PATH
-@@ -6089,7 +5391,7 @@ do
+@@ -6089,7 +5391,7 @@
    test -z "$as_dir" && as_dir=.
    for ac_exec_ext in '' $ac_executable_extensions; do
    if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
@@ -12373,7 +12385,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
      echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
      break 2
    fi
-@@ -6099,17 +5401,17 @@ IFS=$as_save_IFS
+@@ -6099,17 +5401,17 @@
  
  fi
  fi
@@ -12397,7 +12409,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
    else
      case $cross_compiling:$ac_tool_warned in
  yes:)
-@@ -6121,22 +5423,29 @@ whose name does not start with the host 
+@@ -6121,22 +5423,29 @@
  configuration is useful to you, please write to autoconf@gnu.org." >&2;}
  ac_tool_warned=yes ;;
  esac
@@ -12434,7 +12446,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  else
  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
  for as_dir in $PATH
-@@ -6145,7 +5454,7 @@ do
+@@ -6145,7 +5454,7 @@
    test -z "$as_dir" && as_dir=.
    for ac_exec_ext in '' $ac_executable_extensions; do
    if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
@@ -12443,7 +12455,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
      echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
      break 2
    fi
-@@ -6155,10 +5464,10 @@ IFS=$as_save_IFS
+@@ -6155,10 +5464,10 @@
  
  fi
  fi
@@ -12458,7 +12470,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  else
    { echo "$as_me:$LINENO: result: no" >&5
  echo "${ECHO_T}no" >&6; }
-@@ -6166,17 +5475,17 @@ fi
+@@ -6166,17 +5475,17 @@
  
  
  fi
@@ -12483,7 +12495,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  else
  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
  for as_dir in $PATH
-@@ -6185,7 +5494,7 @@ do
+@@ -6185,7 +5494,7 @@
    test -z "$as_dir" && as_dir=.
    for ac_exec_ext in '' $ac_executable_extensions; do
    if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
@@ -12492,7 +12504,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
      echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
      break 2
    fi
-@@ -6195,17 +5504,17 @@ IFS=$as_save_IFS
+@@ -6195,17 +5504,17 @@
  
  fi
  fi
@@ -12516,7 +12528,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
    else
      case $cross_compiling:$ac_tool_warned in
  yes:)
-@@ -6217,36 +5526,21 @@ whose name does not start with the host 
+@@ -6217,36 +5526,21 @@
  configuration is useful to you, please write to autoconf@gnu.org." >&2;}
  ac_tool_warned=yes ;;
  esac
@@ -12561,7 +12573,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  old_postinstall_cmds='chmod 644 $oldlib'
  old_postuninstall_cmds=
  
-@@ -6262,381 +5556,434 @@ if test -n "$RANLIB"; then
+@@ -6262,381 +5556,434 @@
    old_archive_cmds="$old_archive_cmds~\$RANLIB \$oldlib"
  fi
  
@@ -13330,7 +13342,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  /* confdefs.h.  */
  _ACEOF
  cat confdefs.h >>conftest.$ac_ext
-@@ -6669,1078 +6016,933 @@ eval "echo \"\$as_me:$LINENO: $ac_try_ec
+@@ -6669,1078 +6016,933 @@
  	 test ! -s conftest.err
         } && test -s conftest$ac_exeext &&
         $as_test_x conftest$ac_exeext; then
@@ -15209,7 +15221,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  
  int
  main ()
-@@ -7750,14 +6952,14 @@ main ()
+@@ -7750,14 +6952,14 @@
    return 0;
  }
  _ACEOF
@@ -15227,7 +15239,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
    ac_status=$?
    grep -v '^ *+' conftest.er1 >conftest.err
    rm -f conftest.er1
-@@ -7766,2583 +6968,1787 @@ eval "echo \"\$as_me:$LINENO: $ac_try_ec
+@@ -7766,2583 +6968,1787 @@
    (exit $ac_status); } && {
  	 test -z "$ac_c_werror_flag" ||
  	 test ! -s conftest.err
@@ -19284,7 +19296,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
  /* confdefs.h.  */
  _ACEOF
  cat confdefs.h >>conftest.$ac_ext
-@@ -10357,1634 +8763,4185 @@ main ()
+@@ -10357,1634 +8763,4185 @@
    return 0;
  }
  _ACEOF
@@ -24876,7 +24888,7 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
       t end
       s/^\([^=]*\)=\(.*\)$/\1=${\1=\2}/
       :end' >>confcache
-@@ -11995,1386 +12952,2302 @@ if diff "$cache_file" confcache >/dev/nu
+@@ -11995,1386 +12952,2302 @@
  echo "$as_me: updating cache $cache_file" >&6;}
      cat confcache >$cache_file
    else
@@ -28416,10 +28428,10 @@ diff -ruNp pygobject-2.15.4/configure pygobject-2.15.4.new/configure
   ;;
  
    esac
-diff -ruNp pygobject-2.15.4/docs/Makefile.in pygobject-2.15.4.new/docs/Makefile.in
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/docs/Makefile.in pygobject-2.15.4.new/docs/Makefile.in
 --- pygobject-2.15.4/docs/Makefile.in	2008-09-03 09:51:09.000000000 +0200
-+++ pygobject-2.15.4.new/docs/Makefile.in	2008-09-07 12:23:07.000000000 +0200
-@@ -36,8 +36,10 @@ subdir = docs
++++ pygobject-2.15.4.new/docs/Makefile.in	2008-09-18 23:58:59.000000000 +0200
+@@ -36,8 +36,10 @@
  DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
  am__aclocal_m4_deps = $(top_srcdir)/m4/as-ac-expand.m4 \
@@ -28432,7 +28444,7 @@ diff -ruNp pygobject-2.15.4/docs/Makefile.in pygobject-2.15.4.new/docs/Makefile.
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
  mkinstalldirs = $(install_sh) -d
-@@ -76,7 +78,7 @@ DEFS = @DEFS@
+@@ -76,7 +78,7 @@
  DEPDIR = @DEPDIR@
  DLLTOOL = @DLLTOOL@
  DSYMUTIL = @DSYMUTIL@
@@ -28441,7 +28453,7 @@ diff -ruNp pygobject-2.15.4/docs/Makefile.in pygobject-2.15.4.new/docs/Makefile.
  ECHO_C = @ECHO_C@
  ECHO_N = @ECHO_N@
  ECHO_T = @ECHO_T@
-@@ -84,6 +86,7 @@ EGREP = @EGREP@
+@@ -84,6 +86,7 @@
  EXEEXT = @EXEEXT@
  FFI_CFLAGS = @FFI_CFLAGS@
  FFI_LIBS = @FFI_LIBS@
@@ -28449,7 +28461,7 @@ diff -ruNp pygobject-2.15.4/docs/Makefile.in pygobject-2.15.4.new/docs/Makefile.
  GIOUNIX_CFLAGS = @GIOUNIX_CFLAGS@
  GIOUNIX_LIBS = @GIOUNIX_LIBS@
  GIO_CFLAGS = @GIO_CFLAGS@
-@@ -99,17 +102,23 @@ INSTALL_DATA = @INSTALL_DATA@
+@@ -99,17 +102,23 @@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
  INSTALL_SCRIPT = @INSTALL_SCRIPT@
  INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
@@ -28473,7 +28485,7 @@ diff -ruNp pygobject-2.15.4/docs/Makefile.in pygobject-2.15.4.new/docs/Makefile.
  PACKAGE = @PACKAGE@
  PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
  PACKAGE_NAME = @PACKAGE_NAME@
-@@ -141,6 +150,7 @@ abs_srcdir = @abs_srcdir@
+@@ -141,6 +150,7 @@
  abs_top_builddir = @abs_top_builddir@
  abs_top_srcdir = @abs_top_srcdir@
  ac_ct_CC = @ac_ct_CC@
@@ -28481,7 +28493,7 @@ diff -ruNp pygobject-2.15.4/docs/Makefile.in pygobject-2.15.4.new/docs/Makefile.
  am__include = @am__include@
  am__leading_dot = @am__leading_dot@
  am__quote = @am__quote@
-@@ -171,6 +181,7 @@ libdir = @libdir@
+@@ -171,6 +181,7 @@
  libexecdir = @libexecdir@
  localedir = @localedir@
  localstatedir = @localstatedir@
@@ -28489,7 +28501,7 @@ diff -ruNp pygobject-2.15.4/docs/Makefile.in pygobject-2.15.4.new/docs/Makefile.
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  oldincludedir = @oldincludedir@
-@@ -256,7 +267,7 @@ all: $(BUILT_SOURCES)
+@@ -256,7 +267,7 @@
  	$(MAKE) $(AM_MAKEFLAGS) all-am
  
  .SUFFIXES:
@@ -28498,7 +28510,7 @@ diff -ruNp pygobject-2.15.4/docs/Makefile.in pygobject-2.15.4.new/docs/Makefile.
  	@for dep in $?; do \
  	  case '$(am__configure_deps)' in \
  	    *$$dep*) \
-@@ -281,9 +292,9 @@ Makefile: $(srcdir)/Makefile.in $(top_bu
+@@ -281,9 +292,9 @@
  $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
  	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
  
@@ -28510,10 +28522,10 @@ diff -ruNp pygobject-2.15.4/docs/Makefile.in pygobject-2.15.4.new/docs/Makefile.
  	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
  
  mostlyclean-libtool:
-diff -ruNp pygobject-2.15.4/examples/Makefile.in pygobject-2.15.4.new/examples/Makefile.in
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/examples/Makefile.in pygobject-2.15.4.new/examples/Makefile.in
 --- pygobject-2.15.4/examples/Makefile.in	2008-09-03 09:51:09.000000000 +0200
-+++ pygobject-2.15.4.new/examples/Makefile.in	2008-09-07 12:23:07.000000000 +0200
-@@ -35,8 +35,10 @@ subdir = examples
++++ pygobject-2.15.4.new/examples/Makefile.in	2008-09-18 23:58:59.000000000 +0200
+@@ -35,8 +35,10 @@
  DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
  am__aclocal_m4_deps = $(top_srcdir)/m4/as-ac-expand.m4 \
@@ -28526,7 +28538,7 @@ diff -ruNp pygobject-2.15.4/examples/Makefile.in pygobject-2.15.4.new/examples/M
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
  mkinstalldirs = $(install_sh) -d
-@@ -65,7 +67,7 @@ DEFS = @DEFS@
+@@ -65,7 +67,7 @@
  DEPDIR = @DEPDIR@
  DLLTOOL = @DLLTOOL@
  DSYMUTIL = @DSYMUTIL@
@@ -28535,7 +28547,7 @@ diff -ruNp pygobject-2.15.4/examples/Makefile.in pygobject-2.15.4.new/examples/M
  ECHO_C = @ECHO_C@
  ECHO_N = @ECHO_N@
  ECHO_T = @ECHO_T@
-@@ -73,6 +75,7 @@ EGREP = @EGREP@
+@@ -73,6 +75,7 @@
  EXEEXT = @EXEEXT@
  FFI_CFLAGS = @FFI_CFLAGS@
  FFI_LIBS = @FFI_LIBS@
@@ -28543,7 +28555,7 @@ diff -ruNp pygobject-2.15.4/examples/Makefile.in pygobject-2.15.4.new/examples/M
  GIOUNIX_CFLAGS = @GIOUNIX_CFLAGS@
  GIOUNIX_LIBS = @GIOUNIX_LIBS@
  GIO_CFLAGS = @GIO_CFLAGS@
-@@ -88,17 +91,23 @@ INSTALL_DATA = @INSTALL_DATA@
+@@ -88,17 +91,23 @@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
  INSTALL_SCRIPT = @INSTALL_SCRIPT@
  INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
@@ -28567,7 +28579,7 @@ diff -ruNp pygobject-2.15.4/examples/Makefile.in pygobject-2.15.4.new/examples/M
  PACKAGE = @PACKAGE@
  PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
  PACKAGE_NAME = @PACKAGE_NAME@
-@@ -130,6 +139,7 @@ abs_srcdir = @abs_srcdir@
+@@ -130,6 +139,7 @@
  abs_top_builddir = @abs_top_builddir@
  abs_top_srcdir = @abs_top_srcdir@
  ac_ct_CC = @ac_ct_CC@
@@ -28575,7 +28587,7 @@ diff -ruNp pygobject-2.15.4/examples/Makefile.in pygobject-2.15.4.new/examples/M
  am__include = @am__include@
  am__leading_dot = @am__leading_dot@
  am__quote = @am__quote@
-@@ -160,6 +170,7 @@ libdir = @libdir@
+@@ -160,6 +170,7 @@
  libexecdir = @libexecdir@
  localedir = @localedir@
  localstatedir = @localstatedir@
@@ -28583,7 +28595,7 @@ diff -ruNp pygobject-2.15.4/examples/Makefile.in pygobject-2.15.4.new/examples/M
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  oldincludedir = @oldincludedir@
-@@ -183,7 +194,7 @@ EXTRA_DIST = properties.py signal.py opt
+@@ -183,7 +194,7 @@
  all: all-am
  
  .SUFFIXES:
@@ -28592,7 +28604,7 @@ diff -ruNp pygobject-2.15.4/examples/Makefile.in pygobject-2.15.4.new/examples/M
  	@for dep in $?; do \
  	  case '$(am__configure_deps)' in \
  	    *$$dep*) \
-@@ -208,9 +219,9 @@ Makefile: $(srcdir)/Makefile.in $(top_bu
+@@ -208,9 +219,9 @@
  $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
  	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
  
@@ -28604,10 +28616,10 @@ diff -ruNp pygobject-2.15.4/examples/Makefile.in pygobject-2.15.4.new/examples/M
  	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
  
  mostlyclean-libtool:
-diff -ruNp pygobject-2.15.4/gio/Makefile.in pygobject-2.15.4.new/gio/Makefile.in
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/gio/Makefile.in pygobject-2.15.4.new/gio/Makefile.in
 --- pygobject-2.15.4/gio/Makefile.in	2008-09-03 09:51:09.000000000 +0200
-+++ pygobject-2.15.4.new/gio/Makefile.in	2008-09-07 12:23:07.000000000 +0200
-@@ -43,8 +43,10 @@ DIST_COMMON = $(pygio_PYTHON) $(srcdir)/
++++ pygobject-2.15.4.new/gio/Makefile.in	2008-09-18 23:58:59.000000000 +0200
+@@ -43,8 +43,10 @@
  	$(srcdir)/Makefile.in
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
  am__aclocal_m4_deps = $(top_srcdir)/m4/as-ac-expand.m4 \
@@ -28620,7 +28632,16 @@ diff -ruNp pygobject-2.15.4/gio/Makefile.in pygobject-2.15.4.new/gio/Makefile.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
  mkinstalldirs = $(install_sh) -d
-@@ -121,7 +123,7 @@ DEFS = @DEFS@
+@@ -63,7 +65,7 @@
+ LTLIBRARIES = $(pkgpyexec_LTLIBRARIES) $(pyexec_LTLIBRARIES)
+ am__DEPENDENCIES_1 =
+ _gio_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+-	$(top_builddir)/glib/libpyglib-2.0.la
++	$(top_builddir)/glib/libpyglib-2.0-python@PYTHON_VERSION@.la
+ am__gio_la_OBJECTS = _gio_la-giomodule.lo _gio_la-pygio-utils.lo
+ nodist__gio_la_OBJECTS = _gio_la-gio.lo
+ _gio_la_OBJECTS = $(am__gio_la_OBJECTS) $(nodist__gio_la_OBJECTS)
+@@ -121,7 +123,7 @@
  DEPDIR = @DEPDIR@
  DLLTOOL = @DLLTOOL@
  DSYMUTIL = @DSYMUTIL@
@@ -28629,7 +28650,7 @@ diff -ruNp pygobject-2.15.4/gio/Makefile.in pygobject-2.15.4.new/gio/Makefile.in
  ECHO_C = @ECHO_C@
  ECHO_N = @ECHO_N@
  ECHO_T = @ECHO_T@
-@@ -129,6 +131,7 @@ EGREP = @EGREP@
+@@ -129,6 +131,7 @@
  EXEEXT = @EXEEXT@
  FFI_CFLAGS = @FFI_CFLAGS@
  FFI_LIBS = @FFI_LIBS@
@@ -28637,7 +28658,7 @@ diff -ruNp pygobject-2.15.4/gio/Makefile.in pygobject-2.15.4.new/gio/Makefile.in
  GIOUNIX_CFLAGS = @GIOUNIX_CFLAGS@
  GIOUNIX_LIBS = @GIOUNIX_LIBS@
  GIO_CFLAGS = @GIO_CFLAGS@
-@@ -144,17 +147,23 @@ INSTALL_DATA = @INSTALL_DATA@
+@@ -144,17 +147,23 @@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
  INSTALL_SCRIPT = @INSTALL_SCRIPT@
  INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
@@ -28661,7 +28682,7 @@ diff -ruNp pygobject-2.15.4/gio/Makefile.in pygobject-2.15.4.new/gio/Makefile.in
  PACKAGE = @PACKAGE@
  PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
  PACKAGE_NAME = @PACKAGE_NAME@
-@@ -186,6 +195,7 @@ abs_srcdir = @abs_srcdir@
+@@ -186,6 +195,7 @@
  abs_top_builddir = @abs_top_builddir@
  abs_top_srcdir = @abs_top_srcdir@
  ac_ct_CC = @ac_ct_CC@
@@ -28669,7 +28690,7 @@ diff -ruNp pygobject-2.15.4/gio/Makefile.in pygobject-2.15.4.new/gio/Makefile.in
  am__include = @am__include@
  am__leading_dot = @am__leading_dot@
  am__quote = @am__quote@
-@@ -216,6 +226,7 @@ libdir = @libdir@
+@@ -216,6 +226,7 @@
  libexecdir = @libexecdir@
  localedir = @localedir@
  localstatedir = @localstatedir@
@@ -28677,7 +28698,16 @@ diff -ruNp pygobject-2.15.4/gio/Makefile.in pygobject-2.15.4.new/gio/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  oldincludedir = @oldincludedir@
-@@ -302,7 +313,7 @@ all: all-am
+@@ -283,7 +294,7 @@
+ GIO_DEFS = gio.defs gio-types.defs $(GIO_OVERRIDES)
+ _gio_la_CFLAGS = $(GIO_CFLAGS)
+ _gio_la_LDFLAGS = $(common_ldflags) -export-symbols-regex init_gio
+-_gio_la_LIBADD = $(GIO_LIBS) $(top_builddir)/glib/libpyglib-2.0.la
++_gio_la_LIBADD = $(GIO_LIBS) $(top_builddir)/glib/libpyglib-2.0-python@PYTHON_VERSION@.la
+ _gio_la_SOURCES = \
+ 	giomodule.c \
+ 	pygio-utils.c \
+@@ -302,7 +313,7 @@
  
  .SUFFIXES:
  .SUFFIXES: .c .defs .lo .o .obj
@@ -28686,7 +28716,7 @@ diff -ruNp pygobject-2.15.4/gio/Makefile.in pygobject-2.15.4.new/gio/Makefile.in
  	@for dep in $?; do \
  	  case '$(am__configure_deps)' in \
  	    *$$dep*) \
-@@ -327,9 +338,9 @@ Makefile: $(srcdir)/Makefile.in $(top_bu
+@@ -327,9 +338,9 @@
  $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
  	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
  
@@ -28698,10 +28728,10 @@ diff -ruNp pygobject-2.15.4/gio/Makefile.in pygobject-2.15.4.new/gio/Makefile.in
  	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
  install-pkgpyexecLTLIBRARIES: $(pkgpyexec_LTLIBRARIES)
  	@$(NORMAL_INSTALL)
-diff -ruNp pygobject-2.15.4/glib/Makefile.in pygobject-2.15.4.new/glib/Makefile.in
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/glib/Makefile.in pygobject-2.15.4.new/glib/Makefile.in
 --- pygobject-2.15.4/glib/Makefile.in	2008-09-03 09:51:09.000000000 +0200
-+++ pygobject-2.15.4.new/glib/Makefile.in	2008-09-07 12:23:07.000000000 +0200
-@@ -39,8 +39,10 @@ DIST_COMMON = $(pkginclude_HEADERS) $(py
++++ pygobject-2.15.4.new/glib/Makefile.in	2008-09-18 23:58:59.000000000 +0200
+@@ -39,8 +39,10 @@
  	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
  am__aclocal_m4_deps = $(top_srcdir)/m4/as-ac-expand.m4 \
@@ -28714,22 +28744,54 @@ diff -ruNp pygobject-2.15.4/glib/Makefile.in pygobject-2.15.4.new/glib/Makefile.
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
  mkinstalldirs = $(install_sh) -d
-@@ -52,11 +54,11 @@ am__vpath_adj = case $$p in \
-     *) f=$$p;; \
-   esac;
- am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
--am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(pyglibdir)" \
-+am__installdirs = "$(DESTDIR)$(libpyglibdir)" "$(DESTDIR)$(pyglibdir)" \
- 	"$(DESTDIR)$(pyglibdir)" "$(DESTDIR)$(pkgincludedir)"
--libLTLIBRARIES_INSTALL = $(INSTALL)
-+libpyglibLTLIBRARIES_INSTALL = $(INSTALL)
+@@ -58,7 +60,8 @@
  pyglibLTLIBRARIES_INSTALL = $(INSTALL)
--LTLIBRARIES = $(lib_LTLIBRARIES) $(pyglib_LTLIBRARIES)
-+LTLIBRARIES = $(libpyglib_LTLIBRARIES) $(pyglib_LTLIBRARIES)
+ LTLIBRARIES = $(lib_LTLIBRARIES) $(pyglib_LTLIBRARIES)
  am__DEPENDENCIES_1 =
- _glib_la_DEPENDENCIES = $(am__DEPENDENCIES_1) libpyglib-2.0.la
+-_glib_la_DEPENDENCIES = $(am__DEPENDENCIES_1) libpyglib-2.0.la
++_glib_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
++	libpyglib-2.0-python@PYTHON_VERSION@.la
  am__glib_la_OBJECTS = _glib_la-glibmodule.lo _glib_la-pygiochannel.lo \
-@@ -116,7 +118,7 @@ DEFS = @DEFS@
+ 	_glib_la-pygoptioncontext.lo _glib_la-pygoptiongroup.lo \
+ 	_glib_la-pygmaincontext.lo _glib_la-pygmainloop.lo \
+@@ -67,13 +70,16 @@
+ _glib_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+ 	--mode=link $(CCLD) $(_glib_la_CFLAGS) $(CFLAGS) \
+ 	$(_glib_la_LDFLAGS) $(LDFLAGS) -o $@
+-libpyglib_2_0_la_DEPENDENCIES = $(am__DEPENDENCIES_1) \
+-	$(am__DEPENDENCIES_1)
+-am_libpyglib_2_0_la_OBJECTS = libpyglib_2_0_la-pyglib.lo
+-libpyglib_2_0_la_OBJECTS = $(am_libpyglib_2_0_la_OBJECTS)
+-libpyglib_2_0_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libpyglib_2_0_la_CFLAGS) \
+-	$(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
++libpyglib_2_0_python@PYTHON_VERSION@_la_DEPENDENCIES =  \
++	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
++am_libpyglib_2_0_python@PYTHON_VERSION@_la_OBJECTS =  \
++	libpyglib_2_0_python@PYTHON_VERSION@_la-pyglib.lo
++libpyglib_2_0_python@PYTHON_VERSION@_la_OBJECTS =  \
++	$(am_libpyglib_2_0_python@PYTHON_VERSION@_la_OBJECTS)
++libpyglib_2_0_python@PYTHON_VERSION@_la_LINK = $(LIBTOOL) --tag=CC \
++	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
++	$(libpyglib_2_0_python@PYTHON_VERSION@_la_CFLAGS) $(CFLAGS) \
++	$(AM_LDFLAGS) $(LDFLAGS) -o $@
+ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)
+ depcomp = $(SHELL) $(top_srcdir)/depcomp
+ am__depfiles_maybe = depfiles
+@@ -86,8 +92,10 @@
+ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+ 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+ 	$(LDFLAGS) -o $@
+-SOURCES = $(_glib_la_SOURCES) $(libpyglib_2_0_la_SOURCES)
+-DIST_SOURCES = $(_glib_la_SOURCES) $(libpyglib_2_0_la_SOURCES)
++SOURCES = $(_glib_la_SOURCES) \
++	$(libpyglib_2_0_python@PYTHON_VERSION@_la_SOURCES)
++DIST_SOURCES = $(_glib_la_SOURCES) \
++	$(libpyglib_2_0_python@PYTHON_VERSION@_la_SOURCES)
+ pyglibPYTHON_INSTALL = $(INSTALL_DATA)
+ py_compile = $(top_srcdir)/py-compile
+ pkgincludeHEADERS_INSTALL = $(INSTALL_HEADER)
+@@ -116,7 +124,7 @@
  DEPDIR = @DEPDIR@
  DLLTOOL = @DLLTOOL@
  DSYMUTIL = @DSYMUTIL@
@@ -28738,7 +28800,7 @@ diff -ruNp pygobject-2.15.4/glib/Makefile.in pygobject-2.15.4.new/glib/Makefile.
  ECHO_C = @ECHO_C@
  ECHO_N = @ECHO_N@
  ECHO_T = @ECHO_T@
-@@ -124,6 +126,7 @@ EGREP = @EGREP@
+@@ -124,6 +132,7 @@
  EXEEXT = @EXEEXT@
  FFI_CFLAGS = @FFI_CFLAGS@
  FFI_LIBS = @FFI_LIBS@
@@ -28746,7 +28808,7 @@ diff -ruNp pygobject-2.15.4/glib/Makefile.in pygobject-2.15.4.new/glib/Makefile.
  GIOUNIX_CFLAGS = @GIOUNIX_CFLAGS@
  GIOUNIX_LIBS = @GIOUNIX_LIBS@
  GIO_CFLAGS = @GIO_CFLAGS@
-@@ -139,17 +142,23 @@ INSTALL_DATA = @INSTALL_DATA@
+@@ -139,17 +148,23 @@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
  INSTALL_SCRIPT = @INSTALL_SCRIPT@
  INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
@@ -28770,7 +28832,7 @@ diff -ruNp pygobject-2.15.4/glib/Makefile.in pygobject-2.15.4.new/glib/Makefile.
  PACKAGE = @PACKAGE@
  PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
  PACKAGE_NAME = @PACKAGE_NAME@
-@@ -181,6 +190,7 @@ abs_srcdir = @abs_srcdir@
+@@ -181,6 +196,7 @@
  abs_top_builddir = @abs_top_builddir@
  abs_top_srcdir = @abs_top_srcdir@
  ac_ct_CC = @ac_ct_CC@
@@ -28778,7 +28840,7 @@ diff -ruNp pygobject-2.15.4/glib/Makefile.in pygobject-2.15.4.new/glib/Makefile.
  am__include = @am__include@
  am__leading_dot = @am__leading_dot@
  am__quote = @am__quote@
-@@ -211,6 +221,7 @@ libdir = @libdir@
+@@ -211,6 +227,7 @@
  libexecdir = @libexecdir@
  localedir = @localedir@
  localstatedir = @localstatedir@
@@ -28786,17 +28848,38 @@ diff -ruNp pygobject-2.15.4/glib/Makefile.in pygobject-2.15.4.new/glib/Makefile.
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  oldincludedir = @oldincludedir@
-@@ -233,7 +244,8 @@ top_srcdir = @top_srcdir@
+@@ -233,7 +250,7 @@
  AUTOMAKE_OPTIONS = 1.7
  INCLUDES = $(PYTHON_INCLUDES) $(GLIB_CFLAGS) -DPY_SSIZE_T_CLEAN
  pkginclude_HEADERS = pyglib.h
 -lib_LTLIBRARIES = libpyglib-2.0.la
-+libpyglibdir = $(libdir)/$(PACKAGE_NAME)/`basename $(PYTHON)`
-+libpyglib_LTLIBRARIES = libpyglib-2.0.la
++lib_LTLIBRARIES = libpyglib-2.0-python@PYTHON_VERSION@.la
  pyglibdir = $(pkgpyexecdir)/glib
  pyglib_PYTHON = \
  	__init__.py	\
-@@ -273,7 +285,7 @@ all: all-am
+@@ -241,9 +258,9 @@
+ 
+ pyglib_LTLIBRARIES = _glib.la
+ common_ldflags = -module -avoid-version $(am__append_1)
+-libpyglib_2_0_la_CFLAGS = $(GLIB_CFLAGS)
+-libpyglib_2_0_la_LIBADD = $(GLIB_LIBS) $(FFI_LIBS)
+-libpyglib_2_0_la_SOURCES = \
++libpyglib_2_0_python@PYTHON_VERSION@_la_CFLAGS = $(GLIB_CFLAGS)
++libpyglib_2_0_python@PYTHON_VERSION@_la_LIBADD = $(GLIB_LIBS) $(FFI_LIBS)
++libpyglib_2_0_python@PYTHON_VERSION@_la_SOURCES = \
+ 	pyglib.c		\
+ 	pyglib.h		\
+ 	pyglib-private.h 	\
+@@ -251,7 +268,7 @@
+ 
+ _glib_la_CFLAGS = $(GLIB_CFLAGS) $(am__append_2)
+ _glib_la_LDFLAGS = $(common_ldflags) -export-symbols-regex "_glib|PyInit__glib"
+-_glib_la_LIBADD = $(GLIB_LIBS) libpyglib-2.0.la
++_glib_la_LIBADD = $(GLIB_LIBS) libpyglib-2.0-python@PYTHON_VERSION@.la
+ _glib_la_SOURCES = \
+ 	glibmodule.c	 	\
+ 	pygiochannel.c 	 	\
+@@ -273,7 +290,7 @@
  
  .SUFFIXES:
  .SUFFIXES: .c .lo .o .obj
@@ -28805,7 +28888,7 @@ diff -ruNp pygobject-2.15.4/glib/Makefile.in pygobject-2.15.4.new/glib/Makefile.
  	@for dep in $?; do \
  	  case '$(am__configure_deps)' in \
  	    *$$dep*) \
-@@ -298,32 +310,32 @@ Makefile: $(srcdir)/Makefile.in $(top_bu
+@@ -298,9 +315,9 @@
  $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
  	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
  
@@ -28815,137 +28898,50 @@ diff -ruNp pygobject-2.15.4/glib/Makefile.in pygobject-2.15.4.new/glib/Makefile.
 -$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
 +$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
  	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
--install-libLTLIBRARIES: $(lib_LTLIBRARIES)
-+install-libpyglibLTLIBRARIES: $(libpyglib_LTLIBRARIES)
+ install-libLTLIBRARIES: $(lib_LTLIBRARIES)
  	@$(NORMAL_INSTALL)
--	test -z "$(libdir)" || $(MKDIR_P) "$(DESTDIR)$(libdir)"
--	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
-+	test -z "$(libpyglibdir)" || $(MKDIR_P) "$(DESTDIR)$(libpyglibdir)"
-+	@list='$(libpyglib_LTLIBRARIES)'; for p in $$list; do \
- 	  if test -f $$p; then \
- 	    f=$(am__strip_dir) \
--	    echo " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(libLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(libdir)/$$f'"; \
--	    $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(libLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(libdir)/$$f"; \
-+	    echo " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(libpyglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(libpyglibdir)/$$f'"; \
-+	    $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(libpyglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(libpyglibdir)/$$f"; \
- 	  else :; fi; \
+@@ -358,8 +375,8 @@
  	done
- 
--uninstall-libLTLIBRARIES:
-+uninstall-libpyglibLTLIBRARIES:
- 	@$(NORMAL_UNINSTALL)
--	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
-+	@list='$(libpyglib_LTLIBRARIES)'; for p in $$list; do \
- 	  p=$(am__strip_dir) \
--	  echo " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=uninstall rm -f '$(DESTDIR)$(libdir)/$$p'"; \
--	  $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=uninstall rm -f "$(DESTDIR)$(libdir)/$$p"; \
-+	  echo " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=uninstall rm -f '$(DESTDIR)$(libpyglibdir)/$$p'"; \
-+	  $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=uninstall rm -f "$(DESTDIR)$(libpyglibdir)/$$p"; \
- 	done
- 
--clean-libLTLIBRARIES:
--	-test -z "$(lib_LTLIBRARIES)" || rm -f $(lib_LTLIBRARIES)
--	@list='$(lib_LTLIBRARIES)'; for p in $$list; do \
-+clean-libpyglibLTLIBRARIES:
-+	-test -z "$(libpyglib_LTLIBRARIES)" || rm -f $(libpyglib_LTLIBRARIES)
-+	@list='$(libpyglib_LTLIBRARIES)'; for p in $$list; do \
- 	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
- 	  test "$$dir" != "$$p" || dir=.; \
- 	  echo "rm -f \"$${dir}/so_locations\""; \
-@@ -359,7 +371,7 @@ clean-pyglibLTLIBRARIES:
  _glib.la: $(_glib_la_OBJECTS) $(_glib_la_DEPENDENCIES) 
  	$(_glib_la_LINK) -rpath $(pyglibdir) $(_glib_la_OBJECTS) $(_glib_la_LIBADD) $(LIBS)
- libpyglib-2.0.la: $(libpyglib_2_0_la_OBJECTS) $(libpyglib_2_0_la_DEPENDENCIES) 
+-libpyglib-2.0.la: $(libpyglib_2_0_la_OBJECTS) $(libpyglib_2_0_la_DEPENDENCIES) 
 -	$(libpyglib_2_0_la_LINK) -rpath $(libdir) $(libpyglib_2_0_la_OBJECTS) $(libpyglib_2_0_la_LIBADD) $(LIBS)
-+	$(libpyglib_2_0_la_LINK) -rpath $(libpyglibdir) $(libpyglib_2_0_la_OBJECTS) $(libpyglib_2_0_la_LIBADD) $(LIBS)
++libpyglib-2.0-python@PYTHON_VERSION@.la: $(libpyglib_2_0_python@PYTHON_VERSION@_la_OBJECTS) $(libpyglib_2_0_python@PYTHON_VERSION@_la_DEPENDENCIES) 
++	$(libpyglib_2_0_python@PYTHON_VERSION@_la_LINK) -rpath $(libdir) $(libpyglib_2_0_python@PYTHON_VERSION@_la_OBJECTS) $(libpyglib_2_0_python@PYTHON_VERSION@_la_LIBADD) $(LIBS)
  
  mostlyclean-compile:
  	-rm -f *.$(OBJEXT)
-@@ -589,7 +601,7 @@ check-am: all-am
- check: check-am
- all-am: Makefile $(LTLIBRARIES) $(HEADERS)
- installdirs:
--	for dir in "$(DESTDIR)$(libdir)" "$(DESTDIR)$(pyglibdir)" "$(DESTDIR)$(pyglibdir)" "$(DESTDIR)$(pkgincludedir)"; do \
-+	for dir in "$(DESTDIR)$(libpyglibdir)" "$(DESTDIR)$(pyglibdir)" "$(DESTDIR)$(pyglibdir)" "$(DESTDIR)$(pkgincludedir)"; do \
- 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
- 	done
- install: install-am
-@@ -618,7 +630,7 @@ maintainer-clean-generic:
- 	@echo "it deletes files that may require special tools to rebuild."
- clean: clean-am
+@@ -375,7 +392,7 @@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/_glib_la-pygoptiongroup.Plo@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/_glib_la-pygsource.Plo@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/_glib_la-pygspawn.Plo@am__quote@
+-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpyglib_2_0_la-pyglib.Plo@am__quote@
++@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libpyglib_2_0_python@PYTHON_VERSION@_la-pyglib.Plo@am__quote@
  
--clean-am: clean-generic clean-libLTLIBRARIES clean-libtool \
-+clean-am: clean-generic clean-libpyglibLTLIBRARIES clean-libtool \
- 	clean-pyglibLTLIBRARIES mostlyclean-am
+ .c.o:
+ @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@@ -454,12 +471,12 @@
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+ @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(_glib_la_CFLAGS) $(CFLAGS) -c -o _glib_la-pygspawn.lo `test -f 'pygspawn.c' || echo '$(srcdir)/'`pygspawn.c
  
- distclean: distclean-am
-@@ -637,12 +649,13 @@ info: info-am
+-libpyglib_2_0_la-pyglib.lo: pyglib.c
+-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpyglib_2_0_la_CFLAGS) $(CFLAGS) -MT libpyglib_2_0_la-pyglib.lo -MD -MP -MF $(DEPDIR)/libpyglib_2_0_la-pyglib.Tpo -c -o libpyglib_2_0_la-pyglib.lo `test -f 'pyglib.c' || echo '$(srcdir)/'`pyglib.c
+-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libpyglib_2_0_la-pyglib.Tpo $(DEPDIR)/libpyglib_2_0_la-pyglib.Plo
+-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='pyglib.c' object='libpyglib_2_0_la-pyglib.lo' libtool=yes @AMDEPBACKSLASH@
++libpyglib_2_0_python@PYTHON_VERSION@_la-pyglib.lo: pyglib.c
++@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpyglib_2_0_python@PYTHON_VERSION@_la_CFLAGS) $(CFLAGS) -MT libpyglib_2_0_python@PYTHON_VERSION@_la-pyglib.lo -MD -MP -MF $(DEPDIR)/libpyglib_2_0_python@PYTHON_VERSION@_la-pyglib.Tpo -c -o libpyglib_2_0_python@PYTHON_VERSION@_la-pyglib.lo `test -f 'pyglib.c' || echo '$(srcdir)/'`pyglib.c
++@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libpyglib_2_0_python@PYTHON_VERSION@_la-pyglib.Tpo $(DEPDIR)/libpyglib_2_0_python@PYTHON_VERSION@_la-pyglib.Plo
++@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='pyglib.c' object='libpyglib_2_0_python@PYTHON_VERSION@_la-pyglib.lo' libtool=yes @AMDEPBACKSLASH@
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpyglib_2_0_la_CFLAGS) $(CFLAGS) -c -o libpyglib_2_0_la-pyglib.lo `test -f 'pyglib.c' || echo '$(srcdir)/'`pyglib.c
++@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libpyglib_2_0_python@PYTHON_VERSION@_la_CFLAGS) $(CFLAGS) -c -o libpyglib_2_0_python@PYTHON_VERSION@_la-pyglib.lo `test -f 'pyglib.c' || echo '$(srcdir)/'`pyglib.c
  
- info-am:
- 
--install-data-am: install-pkgincludeHEADERS install-pyglibLTLIBRARIES \
-+install-data-am: install-libpyglibLTLIBRARIES \
-+	install-pkgincludeHEADERS install-pyglibLTLIBRARIES \
- 	install-pyglibPYTHON
- 
- install-dvi: install-dvi-am
- 
--install-exec-am: install-libLTLIBRARIES
-+install-exec-am:
- 
- install-html: install-html-am
- 
-@@ -674,27 +687,29 @@ ps: ps-am
- 
- ps-am:
- 
--uninstall-am: uninstall-libLTLIBRARIES uninstall-pkgincludeHEADERS \
--	uninstall-pyglibLTLIBRARIES uninstall-pyglibPYTHON
-+uninstall-am: uninstall-libpyglibLTLIBRARIES \
-+	uninstall-pkgincludeHEADERS uninstall-pyglibLTLIBRARIES \
-+	uninstall-pyglibPYTHON
- 
- .MAKE: install-am install-strip
- 
- .PHONY: CTAGS GTAGS all all-am check check-am clean clean-generic \
--	clean-libLTLIBRARIES clean-libtool clean-pyglibLTLIBRARIES \
--	ctags distclean distclean-compile distclean-generic \
--	distclean-libtool distclean-tags distdir dvi dvi-am html \
--	html-am info info-am install install-am install-data \
--	install-data-am install-dvi install-dvi-am install-exec \
--	install-exec-am install-html install-html-am install-info \
--	install-info-am install-libLTLIBRARIES install-man install-pdf \
--	install-pdf-am install-pkgincludeHEADERS install-ps \
--	install-ps-am install-pyglibLTLIBRARIES install-pyglibPYTHON \
--	install-strip installcheck installcheck-am installdirs \
--	maintainer-clean maintainer-clean-generic mostlyclean \
--	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
--	pdf pdf-am ps ps-am tags uninstall uninstall-am \
--	uninstall-libLTLIBRARIES uninstall-pkgincludeHEADERS \
--	uninstall-pyglibLTLIBRARIES uninstall-pyglibPYTHON
-+	clean-libpyglibLTLIBRARIES clean-libtool \
-+	clean-pyglibLTLIBRARIES ctags distclean distclean-compile \
-+	distclean-generic distclean-libtool distclean-tags distdir dvi \
-+	dvi-am html html-am info info-am install install-am \
-+	install-data install-data-am install-dvi install-dvi-am \
-+	install-exec install-exec-am install-html install-html-am \
-+	install-info install-info-am install-libpyglibLTLIBRARIES \
-+	install-man install-pdf install-pdf-am \
-+	install-pkgincludeHEADERS install-ps install-ps-am \
-+	install-pyglibLTLIBRARIES install-pyglibPYTHON install-strip \
-+	installcheck installcheck-am installdirs maintainer-clean \
-+	maintainer-clean-generic mostlyclean mostlyclean-compile \
-+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-+	tags uninstall uninstall-am uninstall-libpyglibLTLIBRARIES \
-+	uninstall-pkgincludeHEADERS uninstall-pyglibLTLIBRARIES \
-+	uninstall-pyglibPYTHON
- 
- # Tell versions [3.59,3.63) of GNU make to not export all variables.
- # Otherwise a system limit (for SysV at least) may be exceeded.
-diff -ruNp pygobject-2.15.4/gobject/Makefile.in pygobject-2.15.4.new/gobject/Makefile.in
+ mostlyclean-libtool:
+ 	-rm -f *.lo
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/gobject/Makefile.in pygobject-2.15.4.new/gobject/Makefile.in
 --- pygobject-2.15.4/gobject/Makefile.in	2008-09-03 09:51:10.000000000 +0200
-+++ pygobject-2.15.4.new/gobject/Makefile.in	2008-09-07 12:23:08.000000000 +0200
-@@ -42,8 +42,10 @@ DIST_COMMON = $(pkginclude_HEADERS) $(py
++++ pygobject-2.15.4.new/gobject/Makefile.in	2008-09-18 23:58:59.000000000 +0200
+@@ -42,8 +42,10 @@
  	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
  am__aclocal_m4_deps = $(top_srcdir)/m4/as-ac-expand.m4 \
@@ -28958,7 +28954,7 @@ diff -ruNp pygobject-2.15.4/gobject/Makefile.in pygobject-2.15.4.new/gobject/Mak
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
  mkinstalldirs = $(install_sh) -d
-@@ -129,7 +131,7 @@ DEFS = @DEFS@
+@@ -129,7 +131,7 @@
  DEPDIR = @DEPDIR@
  DLLTOOL = @DLLTOOL@
  DSYMUTIL = @DSYMUTIL@
@@ -28967,7 +28963,7 @@ diff -ruNp pygobject-2.15.4/gobject/Makefile.in pygobject-2.15.4.new/gobject/Mak
  ECHO_C = @ECHO_C@
  ECHO_N = @ECHO_N@
  ECHO_T = @ECHO_T@
-@@ -137,6 +139,7 @@ EGREP = @EGREP@
+@@ -137,6 +139,7 @@
  EXEEXT = @EXEEXT@
  FFI_CFLAGS = @FFI_CFLAGS@
  FFI_LIBS = @FFI_LIBS@
@@ -28975,7 +28971,7 @@ diff -ruNp pygobject-2.15.4/gobject/Makefile.in pygobject-2.15.4.new/gobject/Mak
  GIOUNIX_CFLAGS = @GIOUNIX_CFLAGS@
  GIOUNIX_LIBS = @GIOUNIX_LIBS@
  GIO_CFLAGS = @GIO_CFLAGS@
-@@ -152,17 +155,23 @@ INSTALL_DATA = @INSTALL_DATA@
+@@ -152,17 +155,23 @@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
  INSTALL_SCRIPT = @INSTALL_SCRIPT@
  INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
@@ -28999,7 +28995,7 @@ diff -ruNp pygobject-2.15.4/gobject/Makefile.in pygobject-2.15.4.new/gobject/Mak
  PACKAGE = @PACKAGE@
  PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
  PACKAGE_NAME = @PACKAGE_NAME@
-@@ -194,6 +203,7 @@ abs_srcdir = @abs_srcdir@
+@@ -194,6 +203,7 @@
  abs_top_builddir = @abs_top_builddir@
  abs_top_srcdir = @abs_top_srcdir@
  ac_ct_CC = @ac_ct_CC@
@@ -29007,7 +29003,7 @@ diff -ruNp pygobject-2.15.4/gobject/Makefile.in pygobject-2.15.4.new/gobject/Mak
  am__include = @am__include@
  am__leading_dot = @am__leading_dot@
  am__quote = @am__quote@
-@@ -224,6 +234,7 @@ libdir = @libdir@
+@@ -224,6 +234,7 @@
  libexecdir = @libexecdir@
  localedir = @localedir@
  localstatedir = @localstatedir@
@@ -29015,7 +29011,16 @@ diff -ruNp pygobject-2.15.4/gobject/Makefile.in pygobject-2.15.4.new/gobject/Mak
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  oldincludedir = @oldincludedir@
-@@ -277,7 +288,7 @@ all: all-am
+@@ -265,7 +276,7 @@
+ _gobject_la_LIBADD = \
+ 	$(GLIB_LIBS) \
+ 	$(FFI_LIBS) \
+-	$(top_builddir)/glib/libpyglib-2.0.la
++	$(top_builddir)/glib/libpyglib-2.0-python@PYTHON_VERSION@.la
+ 
+ _gobject_la_SOURCES = gobjectmodule.c pygboxed.c pygboxed.h pygenum.c \
+ 	pygenum.h pygflags.c pygflags.h pyginterface.c pyginterface.h \
+@@ -277,7 +288,7 @@
  
  .SUFFIXES:
  .SUFFIXES: .c .lo .o .obj
@@ -29024,7 +29029,7 @@ diff -ruNp pygobject-2.15.4/gobject/Makefile.in pygobject-2.15.4.new/gobject/Mak
  	@for dep in $?; do \
  	  case '$(am__configure_deps)' in \
  	    *$$dep*) \
-@@ -302,9 +313,9 @@ Makefile: $(srcdir)/Makefile.in $(top_bu
+@@ -302,9 +313,9 @@
  $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
  	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
  
@@ -29036,9 +29041,9 @@ diff -ruNp pygobject-2.15.4/gobject/Makefile.in pygobject-2.15.4.new/gobject/Mak
  	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
  install-pygobjectLTLIBRARIES: $(pygobject_LTLIBRARIES)
  	@$(NORMAL_INSTALL)
-diff -ruNp pygobject-2.15.4/INSTALL pygobject-2.15.4.new/INSTALL
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/INSTALL pygobject-2.15.4.new/INSTALL
 --- pygobject-2.15.4/INSTALL	2008-04-19 01:37:41.000000000 +0200
-+++ pygobject-2.15.4.new/INSTALL	2008-09-07 12:23:08.000000000 +0200
++++ pygobject-2.15.4.new/INSTALL	2008-09-18 23:58:59.000000000 +0200
 @@ -1,13 +1,19 @@
 -Copyright (C) 1994, 1995, 1996, 1999, 2000, 2001, 2002 Free Software
 -Foundation, Inc.
@@ -29063,7 +29068,7 @@ diff -ruNp pygobject-2.15.4/INSTALL pygobject-2.15.4.new/INSTALL
  
     The `configure' shell script attempts to guess correct values for
  various system-dependent variables used during compilation.  It uses
-@@ -20,9 +26,9 @@ debugging `configure').
+@@ -20,9 +26,9 @@
  
     It can also use an optional file (typically called `config.cache'
  and enabled with `--cache-file=config.cache' or simply `-C') that saves
@@ -29075,7 +29080,7 @@ diff -ruNp pygobject-2.15.4/INSTALL pygobject-2.15.4.new/INSTALL
  
     If you need to do unusual things to compile the package, please try
  to figure out how `configure' could check whether to do them, and mail
-@@ -32,20 +38,17 @@ some point `config.cache' contains resul
+@@ -32,20 +38,17 @@
  may remove or edit it.
  
     The file `configure.ac' (or `configure.in') is used to create
@@ -29102,7 +29107,7 @@ diff -ruNp pygobject-2.15.4/INSTALL pygobject-2.15.4.new/INSTALL
  
    2. Type `make' to compile the package.
  
-@@ -64,54 +67,55 @@ The simplest way to compile this package
+@@ -64,54 +67,55 @@
       all sorts of other programs in order to regenerate files that came
       with the distribution.
  
@@ -29178,7 +29183,7 @@ diff -ruNp pygobject-2.15.4/INSTALL pygobject-2.15.4.new/INSTALL
  kinds of files.  Run `configure --help' for a list of the directories
  you can set and what kinds of files go in them.
  
-@@ -122,7 +126,7 @@ option `--program-prefix=PREFIX' or `--p
+@@ -122,7 +126,7 @@
  Optional Features
  =================
  
@@ -29187,7 +29192,7 @@ diff -ruNp pygobject-2.15.4/INSTALL pygobject-2.15.4.new/INSTALL
  `configure', where FEATURE indicates an optional part of the package.
  They may also pay attention to `--with-PACKAGE' options, where PACKAGE
  is something like `gnu-as' or `x' (for the X Window System).  The
-@@ -137,11 +141,11 @@ you can use the `configure' options `--x
+@@ -137,11 +141,11 @@
  Specifying the System Type
  ==========================
  
@@ -29204,7 +29209,7 @@ diff -ruNp pygobject-2.15.4/INSTALL pygobject-2.15.4.new/INSTALL
  `--build=TYPE' option.  TYPE can either be a short name for the system
  type, such as `sun4', or a canonical name which has the form:
  
-@@ -156,7 +160,7 @@ where SYSTEM can have one of these forms
+@@ -156,7 +160,7 @@
  need to know the machine type.
  
     If you are _building_ compiler tools for cross-compiling, you should
@@ -29213,7 +29218,7 @@ diff -ruNp pygobject-2.15.4/INSTALL pygobject-2.15.4.new/INSTALL
  produce code for.
  
     If you want to _use_ a cross compiler, that generates code for a
-@@ -167,9 +171,9 @@ eventually be run) with `--host=TYPE'.
+@@ -167,9 +171,9 @@
  Sharing Defaults
  ================
  
@@ -29226,7 +29231,7 @@ diff -ruNp pygobject-2.15.4/INSTALL pygobject-2.15.4.new/INSTALL
  `configure' looks for `PREFIX/share/config.site' if it exists, then
  `PREFIX/etc/config.site' if it exists.  Or, you can set the
  `CONFIG_SITE' environment variable to the location of the site script.
-@@ -178,7 +182,7 @@ A warning: not all `configure' scripts l
+@@ -178,7 +182,7 @@
  Defining Variables
  ==================
  
@@ -29235,7 +29240,7 @@ diff -ruNp pygobject-2.15.4/INSTALL pygobject-2.15.4.new/INSTALL
  environment passed to `configure'.  However, some packages may run
  configure again during the build, and the customized values of these
  variables may be lost.  In order to avoid this problem, you should set
-@@ -186,14 +190,18 @@ them in the `configure' command line, us
+@@ -186,14 +190,18 @@
  
       ./configure CC=/usr/local2/bin/gcc
  
@@ -29257,9 +29262,9 @@ diff -ruNp pygobject-2.15.4/INSTALL pygobject-2.15.4.new/INSTALL
  
  `--help'
  `-h'
-diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
 --- pygobject-2.15.4/ltmain.sh	2008-01-30 21:26:55.000000000 +0100
-+++ pygobject-2.15.4.new/ltmain.sh	2008-09-07 12:23:01.000000000 +0200
++++ pygobject-2.15.4.new/ltmain.sh	2008-09-18 23:58:51.000000000 +0200
 @@ -1,52 +1,83 @@
 -# ltmain.sh - Provide generalized library-building support services.
 -# NOTE: Changing this file will not affect anything until you rerun configure.
@@ -29379,7 +29384,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  if test -n "${ZSH_VERSION+set}" && (emulate sh) >/dev/null 2>&1; then
    emulate sh
    NULLCMD=:
-@@ -60,98 +91,261 @@ fi
+@@ -60,98 +91,261 @@
  BIN_SH=xpg4; export BIN_SH # for Tru64
  DUALCASE=1; export DUALCASE # for MKS sh
  
@@ -29717,7 +29722,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  
  # func_mktempdir [string]
  # Make a temporary directory that won't clash with other running
-@@ -161,7 +355,7 @@ func_mktempdir ()
+@@ -161,7 +355,7 @@
  {
      my_template="${TMPDIR-/tmp}/${1-$progname}"
  
@@ -29726,7 +29731,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
        # Return a directory name, but don't create it in dry-run mode
        my_tmpdir="${my_template}-$$"
      else
-@@ -170,525 +364,785 @@ func_mktempdir ()
+@@ -170,525 +364,785 @@
        my_tmpdir=`mktemp -d "${my_template}-XXXXXXXX" 2>/dev/null`
  
        if test ! -d "$my_tmpdir"; then
@@ -30944,7 +30949,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  	  ;;
  
  	-no-suppress)
-@@ -702,31 +1156,25 @@ if test -z "$show_help"; then
+@@ -702,31 +1156,25 @@
  	  ;;            #  replaced later.  I would guess that would be a bug.
  
  	-Wc,*)
@@ -30984,7 +30989,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  	  # Accept the current argument as the source file.
  	  # The previous "srcfile" becomes the current argument.
  	  #
-@@ -738,65 +1186,42 @@ if test -z "$show_help"; then
+@@ -738,65 +1186,42 @@
        esac    #  case $arg_mode
  
        # Aesthetically quote the previous argument.
@@ -31067,7 +31072,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
        ;;
      esac
  
-@@ -804,7 +1229,15 @@ if test -z "$show_help"; then
+@@ -804,7 +1229,15 @@
  
      for arg in $later; do
        case $arg in
@@ -31083,7 +31088,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  	build_old_libs=yes
  	continue
  	;;
-@@ -821,28 +1254,17 @@ if test -z "$show_help"; then
+@@ -821,28 +1254,17 @@
        esac
      done
  
@@ -31121,7 +31126,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  
      # Delete any leftover library objects.
      if test "$build_old_libs" = yes; then
-@@ -851,9 +1273,6 @@ if test -z "$show_help"; then
+@@ -851,9 +1273,6 @@
        removelist="$lobj $libobj ${libobj}T"
      fi
  
@@ -31131,7 +31136,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
      # On Cygwin there's no "real" PIC flag so we must build both object types
      case $host_os in
      cygwin* | mingw* | pw32* | os2*)
-@@ -868,10 +1287,8 @@ if test -z "$show_help"; then
+@@ -868,10 +1287,8 @@
      # Calculate the filename of the output object if compiler does
      # not support -o with -c
      if test "$compiler_c_o" = no; then
@@ -31143,7 +31148,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
      else
        output_obj=
        need_locks=no
-@@ -881,13 +1298,13 @@ if test -z "$show_help"; then
+@@ -881,13 +1298,13 @@
      # Lock this critical section if it is needed
      # We use this script file to make the link, it avoids creating a new file
      if test "$need_locks" = yes; then
@@ -31160,7 +31165,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  *** ERROR, $lockfile exists and contains:
  `cat $lockfile 2>/dev/null`
  
-@@ -898,34 +1315,22 @@ repeat this compilation, it may succeed,
+@@ -898,34 +1315,22 @@
  avoid parallel builds (make -j) in this platform, or get a better
  compiler."
  
@@ -31204,7 +31209,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  
      # Only build a PIC object if we are building libtool libraries.
      if test "$build_libtool_libs" = yes; then
-@@ -939,32 +1344,19 @@ EOF
+@@ -939,32 +1344,19 @@
  	command="$base_compile $qsrcfile"
        fi
  
@@ -31241,7 +31246,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  *** ERROR, $lockfile contains:
  `cat $lockfile 2>/dev/null`
  
-@@ -978,45 +1370,27 @@ repeat this compilation, it may succeed,
+@@ -978,45 +1370,27 @@
  avoid parallel builds (make -j) in this platform, or get a better
  compiler."
  
@@ -31292,7 +31297,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
        else
  	command="$base_compile $qsrcfile $pic_flag"
        fi
-@@ -1026,17 +1400,12 @@ EOF
+@@ -1026,17 +1400,12 @@
  
        # Suppress compiler output if we already did a PIC compilation.
        command="$command$suppress_output"
@@ -31313,7 +31318,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  *** ERROR, $lockfile contains:
  `cat $lockfile 2>/dev/null`
  
-@@ -1050,5458 +1419,6252 @@ repeat this compilation, it may succeed,
+@@ -1050,5458 +1419,6252 @@
  avoid parallel builds (make -j) in this platform, or get a better
  compiler."
  
@@ -42438,7 +42443,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
      files=
      rmforce=
      exit_status=0
-@@ -6513,30 +7676,28 @@ relink_command=\"$relink_command\""
+@@ -6513,30 +7676,28 @@
      for arg
      do
        case $arg in
@@ -42478,7 +42483,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
        test "$mode" = uninstall && objdir="$dir"
  
        # Remember objdir for removal later, being careful to avoid duplicates
-@@ -6548,9 +7709,9 @@ relink_command=\"$relink_command\""
+@@ -6548,9 +7709,9 @@
        fi
  
        # Don't error if the file doesn't exist and rm -f was used.
@@ -42491,7 +42496,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  	:
        elif test -d "$file"; then
  	exit_status=1
-@@ -6564,8 +7725,8 @@ relink_command=\"$relink_command\""
+@@ -6564,8 +7725,8 @@
        case $name in
        *.la)
  	# Possibly a libtool archive, so verify it.
@@ -42502,7 +42507,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  
  	  # Delete the libtool libraries and symlinks.
  	  for n in $library_names; do
-@@ -6580,39 +7741,17 @@ relink_command=\"$relink_command\""
+@@ -6580,39 +7741,17 @@
  	    *" $dlname "*) ;;
  	    *) rmfiles="$rmfiles $objdir/$dlname" ;;
  	    esac
@@ -42545,7 +42550,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  	    fi
  	    # FIXME: should reinstall the best remaining shared library.
  	    ;;
-@@ -6622,20 +7761,20 @@ relink_command=\"$relink_command\""
+@@ -6622,20 +7761,20 @@
  
        *.lo)
  	# Possibly a libtool object, so verify it.
@@ -42572,7 +42577,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  	    rmfiles="$rmfiles $dir/$non_pic_object"
  	  fi
  	fi
-@@ -6646,17 +7785,26 @@ relink_command=\"$relink_command\""
+@@ -6646,17 +7785,26 @@
  	  noexename=$name
  	  case $file in
  	  *.exe)
@@ -42604,7 +42609,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  
  	    # note $name still contains .exe if it was in $file originally
  	    # as does the version of $file that was added into $rmfiles
-@@ -6671,239 +7819,38 @@ relink_command=\"$relink_command\""
+@@ -6671,239 +7819,38 @@
  	fi
  	;;
        esac
@@ -42858,7 +42863,7 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  
  # The TAGs below are defined such that we never get into a situation
  # in which we disable both kinds of libraries.  Given conflicting
-@@ -6917,14 +7864,17 @@ exit $?
+@@ -6917,14 +7864,17 @@
  # configuration.  But we'll never go from static-only to shared-only.
  
  # ### BEGIN LIBTOOL TAG CONFIG: disable-shared
@@ -42878,9 +42883,9 @@ diff -ruNp pygobject-2.15.4/ltmain.sh pygobject-2.15.4.new/ltmain.sh
  # End:
 +# vi:sw=2
 +
-diff -ruNp pygobject-2.15.4/m4/libtool.m4 pygobject-2.15.4.new/m4/libtool.m4
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/m4/libtool.m4 pygobject-2.15.4.new/m4/libtool.m4
 --- pygobject-2.15.4/m4/libtool.m4	1970-01-01 01:00:00.000000000 +0100
-+++ pygobject-2.15.4.new/m4/libtool.m4	2008-09-07 12:23:01.000000000 +0200
++++ pygobject-2.15.4.new/m4/libtool.m4	2008-09-18 23:58:51.000000000 +0200
 @@ -0,0 +1,7325 @@
 +# libtool.m4 - Configure libtool for the host system. -*-Autoconf-*-
 +#
@@ -50207,9 +50212,9 @@ diff -ruNp pygobject-2.15.4/m4/libtool.m4 pygobject-2.15.4.new/m4/libtool.m4
 +    ;;
 +  esac
 +])
-diff -ruNp pygobject-2.15.4/m4/lt~obsolete.m4 pygobject-2.15.4.new/m4/lt~obsolete.m4
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/m4/lt~obsolete.m4 pygobject-2.15.4.new/m4/lt~obsolete.m4
 --- pygobject-2.15.4/m4/lt~obsolete.m4	1970-01-01 01:00:00.000000000 +0100
-+++ pygobject-2.15.4.new/m4/lt~obsolete.m4	2008-09-07 12:23:01.000000000 +0200
++++ pygobject-2.15.4.new/m4/lt~obsolete.m4	2008-09-18 23:58:51.000000000 +0200
 @@ -0,0 +1,92 @@
 +# lt~obsolete.m4 -- aclocal satisfying obsolete definitions.    -*-Autoconf-*-
 +#
@@ -50303,9 +50308,9 @@ diff -ruNp pygobject-2.15.4/m4/lt~obsolete.m4 pygobject-2.15.4.new/m4/lt~obsolet
 +m4_ifndef([_LT_AC_LANG_RC_CONFIG],	[AC_DEFUN([_LT_AC_LANG_RC_CONFIG])])
 +m4_ifndef([AC_LIBTOOL_CONFIG],		[AC_DEFUN([AC_LIBTOOL_CONFIG])])
 +m4_ifndef([_LT_AC_FILE_LTDLL_C],	[AC_DEFUN([_LT_AC_FILE_LTDLL_C])])
-diff -ruNp pygobject-2.15.4/m4/ltoptions.m4 pygobject-2.15.4.new/m4/ltoptions.m4
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/m4/ltoptions.m4 pygobject-2.15.4.new/m4/ltoptions.m4
 --- pygobject-2.15.4/m4/ltoptions.m4	1970-01-01 01:00:00.000000000 +0100
-+++ pygobject-2.15.4.new/m4/ltoptions.m4	2008-09-07 12:23:01.000000000 +0200
++++ pygobject-2.15.4.new/m4/ltoptions.m4	2008-09-18 23:58:51.000000000 +0200
 @@ -0,0 +1,368 @@
 +# Helper functions for option handling.                    -*- Autoconf -*-
 +#
@@ -50675,9 +50680,9 @@ diff -ruNp pygobject-2.15.4/m4/ltoptions.m4 pygobject-2.15.4.new/m4/ltoptions.m4
 +		 [m4_define([_LTDL_TYPE], [installable])])
 +LT_OPTION_DEFINE([LTDL_INIT], [convenience],
 +		 [m4_define([_LTDL_TYPE], [convenience])])
-diff -ruNp pygobject-2.15.4/m4/ltsugar.m4 pygobject-2.15.4.new/m4/ltsugar.m4
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/m4/ltsugar.m4 pygobject-2.15.4.new/m4/ltsugar.m4
 --- pygobject-2.15.4/m4/ltsugar.m4	1970-01-01 01:00:00.000000000 +0100
-+++ pygobject-2.15.4.new/m4/ltsugar.m4	2008-09-07 12:23:01.000000000 +0200
++++ pygobject-2.15.4.new/m4/ltsugar.m4	2008-09-18 23:58:51.000000000 +0200
 @@ -0,0 +1,123 @@
 +# ltsugar.m4 -- libtool m4 base layer.                         -*-Autoconf-*-
 +#
@@ -50802,9 +50807,9 @@ diff -ruNp pygobject-2.15.4/m4/ltsugar.m4 pygobject-2.15.4.new/m4/ltsugar.m4
 +           lt_unquote(m4_split(m4_normalize(m4_foreach(_Lt_key, lt_car([m4_shiftn(4, $@)]),
 +		      [lt_if_dict_fetch([$1], _Lt_key, [$2], [$3], [_Lt_key ])])))))])[]dnl
 +])
-diff -ruNp pygobject-2.15.4/m4/ltversion.m4 pygobject-2.15.4.new/m4/ltversion.m4
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/m4/ltversion.m4 pygobject-2.15.4.new/m4/ltversion.m4
 --- pygobject-2.15.4/m4/ltversion.m4	1970-01-01 01:00:00.000000000 +0100
-+++ pygobject-2.15.4.new/m4/ltversion.m4	2008-09-07 12:23:01.000000000 +0200
++++ pygobject-2.15.4.new/m4/ltversion.m4	2008-09-18 23:58:51.000000000 +0200
 @@ -0,0 +1,23 @@
 +# ltversion.m4 -- version numbers			-*- Autoconf -*-
 +#
@@ -50829,10 +50834,10 @@ diff -ruNp pygobject-2.15.4/m4/ltversion.m4 pygobject-2.15.4.new/m4/ltversion.m4
 +_LT_DECL(, macro_version, 0, [Which release of libtool.m4 was used?])
 +_LT_DECL(, macro_revision, 0)
 +])
-diff -ruNp pygobject-2.15.4/Makefile.in pygobject-2.15.4.new/Makefile.in
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/Makefile.in pygobject-2.15.4.new/Makefile.in
 --- pygobject-2.15.4/Makefile.in	2008-09-03 09:51:10.000000000 +0200
-+++ pygobject-2.15.4.new/Makefile.in	2008-09-07 12:23:08.000000000 +0200
-@@ -47,8 +47,10 @@ DIST_COMMON = README $(am__configure_dep
++++ pygobject-2.15.4.new/Makefile.in	2008-09-18 23:58:59.000000000 +0200
+@@ -47,8 +47,10 @@
  	install-sh ltmain.sh missing py-compile
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
  am__aclocal_m4_deps = $(top_srcdir)/m4/as-ac-expand.m4 \
@@ -50845,7 +50850,7 @@ diff -ruNp pygobject-2.15.4/Makefile.in pygobject-2.15.4.new/Makefile.in
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
  am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
-@@ -119,7 +121,7 @@ DEFS = @DEFS@
+@@ -119,7 +121,7 @@
  DEPDIR = @DEPDIR@
  DLLTOOL = @DLLTOOL@
  DSYMUTIL = @DSYMUTIL@
@@ -50854,7 +50859,7 @@ diff -ruNp pygobject-2.15.4/Makefile.in pygobject-2.15.4.new/Makefile.in
  ECHO_C = @ECHO_C@
  ECHO_N = @ECHO_N@
  ECHO_T = @ECHO_T@
-@@ -127,6 +129,7 @@ EGREP = @EGREP@
+@@ -127,6 +129,7 @@
  EXEEXT = @EXEEXT@
  FFI_CFLAGS = @FFI_CFLAGS@
  FFI_LIBS = @FFI_LIBS@
@@ -50862,7 +50867,7 @@ diff -ruNp pygobject-2.15.4/Makefile.in pygobject-2.15.4.new/Makefile.in
  GIOUNIX_CFLAGS = @GIOUNIX_CFLAGS@
  GIOUNIX_LIBS = @GIOUNIX_LIBS@
  GIO_CFLAGS = @GIO_CFLAGS@
-@@ -142,17 +145,23 @@ INSTALL_DATA = @INSTALL_DATA@
+@@ -142,17 +145,23 @@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
  INSTALL_SCRIPT = @INSTALL_SCRIPT@
  INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
@@ -50886,7 +50891,7 @@ diff -ruNp pygobject-2.15.4/Makefile.in pygobject-2.15.4.new/Makefile.in
  PACKAGE = @PACKAGE@
  PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
  PACKAGE_NAME = @PACKAGE_NAME@
-@@ -184,6 +193,7 @@ abs_srcdir = @abs_srcdir@
+@@ -184,6 +193,7 @@
  abs_top_builddir = @abs_top_builddir@
  abs_top_srcdir = @abs_top_srcdir@
  ac_ct_CC = @ac_ct_CC@
@@ -50894,7 +50899,7 @@ diff -ruNp pygobject-2.15.4/Makefile.in pygobject-2.15.4.new/Makefile.in
  am__include = @am__include@
  am__leading_dot = @am__leading_dot@
  am__quote = @am__quote@
-@@ -214,6 +224,7 @@ libdir = @libdir@
+@@ -214,6 +224,7 @@
  libexecdir = @libexecdir@
  localedir = @localedir@
  localstatedir = @localstatedir@
@@ -50902,7 +50907,7 @@ diff -ruNp pygobject-2.15.4/Makefile.in pygobject-2.15.4.new/Makefile.in
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  oldincludedir = @oldincludedir@
-@@ -275,7 +286,7 @@ all: config.h
+@@ -275,7 +286,7 @@
  .SUFFIXES:
  am--refresh:
  	@:
@@ -50911,7 +50916,7 @@ diff -ruNp pygobject-2.15.4/Makefile.in pygobject-2.15.4.new/Makefile.in
  	@for dep in $?; do \
  	  case '$(am__configure_deps)' in \
  	    *$$dep*) \
-@@ -302,9 +313,9 @@ Makefile: $(srcdir)/Makefile.in $(top_bu
+@@ -302,9 +313,9 @@
  $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
  	$(SHELL) ./config.status --recheck
  
@@ -50923,7 +50928,7 @@ diff -ruNp pygobject-2.15.4/Makefile.in pygobject-2.15.4.new/Makefile.in
  	cd $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
  
  config.h: stamp-h1
-@@ -316,7 +327,7 @@ config.h: stamp-h1
+@@ -316,7 +327,7 @@
  stamp-h1: $(srcdir)/config.h.in $(top_builddir)/config.status
  	@rm -f stamp-h1
  	cd $(top_builddir) && $(SHELL) ./config.status config.h
@@ -50932,10 +50937,10 @@ diff -ruNp pygobject-2.15.4/Makefile.in pygobject-2.15.4.new/Makefile.in
  	cd $(top_srcdir) && $(AUTOHEADER)
  	rm -f stamp-h1
  	touch $@
-diff -ruNp pygobject-2.15.4/tests/Makefile.in pygobject-2.15.4.new/tests/Makefile.in
+diff -Nur -x '*.orig' -x '*~' pygobject-2.15.4/tests/Makefile.in pygobject-2.15.4.new/tests/Makefile.in
 --- pygobject-2.15.4/tests/Makefile.in	2008-09-03 09:51:10.000000000 +0200
-+++ pygobject-2.15.4.new/tests/Makefile.in	2008-09-07 12:23:08.000000000 +0200
-@@ -36,8 +36,10 @@ subdir = tests
++++ pygobject-2.15.4.new/tests/Makefile.in	2008-09-18 23:58:59.000000000 +0200
+@@ -36,8 +36,10 @@
  DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
  ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
  am__aclocal_m4_deps = $(top_srcdir)/m4/as-ac-expand.m4 \
@@ -50948,7 +50953,7 @@ diff -ruNp pygobject-2.15.4/tests/Makefile.in pygobject-2.15.4.new/tests/Makefil
  am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
  	$(ACLOCAL_M4)
  mkinstalldirs = $(install_sh) -d
-@@ -89,7 +91,7 @@ DEFS = @DEFS@
+@@ -89,7 +91,7 @@
  DEPDIR = @DEPDIR@
  DLLTOOL = @DLLTOOL@
  DSYMUTIL = @DSYMUTIL@
@@ -50957,7 +50962,7 @@ diff -ruNp pygobject-2.15.4/tests/Makefile.in pygobject-2.15.4.new/tests/Makefil
  ECHO_C = @ECHO_C@
  ECHO_N = @ECHO_N@
  ECHO_T = @ECHO_T@
-@@ -97,6 +99,7 @@ EGREP = @EGREP@
+@@ -97,6 +99,7 @@
  EXEEXT = @EXEEXT@
  FFI_CFLAGS = @FFI_CFLAGS@
  FFI_LIBS = @FFI_LIBS@
@@ -50965,7 +50970,7 @@ diff -ruNp pygobject-2.15.4/tests/Makefile.in pygobject-2.15.4.new/tests/Makefil
  GIOUNIX_CFLAGS = @GIOUNIX_CFLAGS@
  GIOUNIX_LIBS = @GIOUNIX_LIBS@
  GIO_CFLAGS = @GIO_CFLAGS@
-@@ -112,17 +115,23 @@ INSTALL_DATA = @INSTALL_DATA@
+@@ -112,17 +115,23 @@
  INSTALL_PROGRAM = @INSTALL_PROGRAM@
  INSTALL_SCRIPT = @INSTALL_SCRIPT@
  INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
@@ -50989,7 +50994,7 @@ diff -ruNp pygobject-2.15.4/tests/Makefile.in pygobject-2.15.4.new/tests/Makefil
  PACKAGE = @PACKAGE@
  PACKAGE_BUGREPORT = @PACKAGE_BUGREPORT@
  PACKAGE_NAME = @PACKAGE_NAME@
-@@ -154,6 +163,7 @@ abs_srcdir = @abs_srcdir@
+@@ -154,6 +163,7 @@
  abs_top_builddir = @abs_top_builddir@
  abs_top_srcdir = @abs_top_srcdir@
  ac_ct_CC = @ac_ct_CC@
@@ -50997,7 +51002,7 @@ diff -ruNp pygobject-2.15.4/tests/Makefile.in pygobject-2.15.4.new/tests/Makefil
  am__include = @am__include@
  am__leading_dot = @am__leading_dot@
  am__quote = @am__quote@
-@@ -184,6 +194,7 @@ libdir = @libdir@
+@@ -184,6 +194,7 @@
  libexecdir = @libexecdir@
  localedir = @localedir@
  localstatedir = @localstatedir@
@@ -51005,7 +51010,7 @@ diff -ruNp pygobject-2.15.4/tests/Makefile.in pygobject-2.15.4.new/tests/Makefil
  mandir = @mandir@
  mkdir_p = @mkdir_p@
  oldincludedir = @oldincludedir@
-@@ -245,7 +256,7 @@ all: all-am
+@@ -245,7 +256,7 @@
  
  .SUFFIXES:
  .SUFFIXES: .c .lo .o .obj
@@ -51014,7 +51019,7 @@ diff -ruNp pygobject-2.15.4/tests/Makefile.in pygobject-2.15.4.new/tests/Makefil
  	@for dep in $?; do \
  	  case '$(am__configure_deps)' in \
  	    *$$dep*) \
-@@ -270,9 +281,9 @@ Makefile: $(srcdir)/Makefile.in $(top_bu
+@@ -270,9 +281,9 @@
  $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
  	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
  
