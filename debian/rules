@@ -78,7 +78,7 @@ install: build install-clean $(PYVERS:%=install-%) $(PYVERS:%=dbg-install-%)
 	mv debian/python-gobject-dev/usr/lib/python* debian/python-gobject/usr/lib/
 	mv debian/python-gobject-dev/usr/lib/libpyglib-*so.* \
 	   debian/python-gobject/usr/lib
-	rm debian/python-gobject-dbg/usr/lib/libpyglib-*
+	rm debian/python-gobject-dbg/usr/lib/libpyglib-*.so
 	for i in $$(find debian/python-gobject-dbg -name '*.so' -path 'debian/python-gobject-dbg/usr/lib/python*/site-packages/*'); do \
 		b=$$(basename $$i .so); \
 		mv $$i $$(dirname $$i)/$${b}_d.so; \
