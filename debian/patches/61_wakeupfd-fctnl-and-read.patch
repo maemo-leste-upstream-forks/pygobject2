@@ -1,3 +1,5 @@
+From the fix to the initial SETWAKEUPFD support in GNOME #481569.
+
 --- a/glib/pygmainloop.c	(revision 959)
 +++ b/glib/pygmainloop.c	(working copy)
 @@ -24,6 +24,7 @@

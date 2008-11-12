@@ -18,7 +18,7 @@ ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
 	configure_flags += --host=$(DEB_HOST_GNU_TYPE)
 endif
 
-PYVERS := $(shell pyversions -vs)
+PYVERS := $(shell pyversions -vr)
 
 build-%/configure-stamp: apply-patches
 	dh_testdir
