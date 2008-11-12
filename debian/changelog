@@ -47,6 +47,9 @@ pygobject (2.15.4-1) experimental; urgency=low
   * Depend on python 2.5, since the test suite does not run with python 
     2.4.
   * Use pyversions -vr to really disable the 2.4 build.
+  * Pass /usr/share/pygobject to dh_pysupport.
+  * Don’t move the -dbg symbolic link to the -dev package.
+  * Run dh_makeshlibs separately for python-gobject-dbg.
 
  -- Josselin Mouette <joss@debian.org>  Wed, 12 Nov 2008 15:49:34 +0100
 

@@ -78,8 +78,6 @@ install: build install-clean $(PYVERS:%=install-%) $(PYVERS:%=dbg-install-%)
 	mv debian/python-gobject-dev/usr/lib/python* debian/python-gobject/usr/lib/
 	mv debian/python-gobject-dev/usr/lib/libpyglib-*so.* \
 	   debian/python-gobject/usr/lib
-	mv debian/python-gobject-dbg/usr/lib/libpyglib-*.so \
-           debian/python-gobject-dev/usr/lib
 	for i in $$(find debian/python-gobject-dbg -name '*.so' -path 'debian/python-gobject-dbg/usr/lib/python*/site-packages/*'); do \
 		b=$$(basename $$i .so); \
 		mv $$i $$(dirname $$i)/$${b}_d.so; \
@@ -104,7 +102,7 @@ binary-indep: build install
 	dh_fixperms -i
 	# More permission fixing
 	chmod 755 `grep -rl "^#\!.*python" debian/python-gobject-dev/usr`
-	dh_pysupport -i
+	dh_pysupport -i /usr/share/pygobject
 	dh_installdeb -i
 	dh_gencontrol -i
 	dh_md5sums -i
@@ -123,7 +121,8 @@ binary-arch: build install
 	dh_compress -a -X.py
 	dh_fixperms -a
 	dh_pysupport -a
-	dh_makeshlibs -a -V'python-gobject (>= 2.15.2)'
+	dh_makeshlibs -ppython-gobject -V'python-gobject (>= 2.15.2)'
+	dh_makeshlibs -ppython-gobject-dbg -V'python-gobject-dbg (>= 2.15.2)'
 	dh_installdeb -a
 	dh_shlibdeps -a
 	dh_gencontrol -a
