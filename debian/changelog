@@ -2,6 +2,7 @@ pygobject (2.15.4-3) UNRELEASED; urgency=low
 
   * Pass PYTHON to $(MAKE) runs for robustness in case of timestamp skews;
     thanks Colin Watson; closes: #509192.
+  * Pass --disable-maintainer-mode to configure.
 
  -- Loic Minier <lool@dooz.org>  Fri, 19 Dec 2008 15:02:47 +0100
 
