@@ -42,13 +42,13 @@ dbg-build-%/configure-stamp: apply-patches
 
 build-%/build-stamp: build-%/configure-stamp
 	dh_testdir
-	$(MAKE) -C build-$*
-	-$(MAKE) -C build-$* check
+	PYTHON=/usr/bin/python$* $(MAKE) -C build-$*
+	-PYTHON=/usr/bin/python$* $(MAKE) -C build-$* check
 	touch $@
 
 dbg-build-%/build-stamp: dbg-build-%/configure-stamp
 	dh_testdir
-	$(MAKE) -C dbg-build-$*
+	PYTHON=/usr/bin/python$* $(MAKE) -C dbg-build-$*
 	touch $@
 
 build: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stamp)
@@ -61,12 +61,12 @@ install-clean:
 install-%: build-%/build-stamp
 	dh_testdir
 	dh_testroot
-	$(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dev
+	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dev
 
 dbg-install-%: dbg-build-%/build-stamp
 	dh_testdir
 	dh_testroot
-	$(MAKE) -C dbg-build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dbg
+	PYTHON=/usr/bin/python$* $(MAKE) -C dbg-build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dbg
 	find debian/python-gobject-dbg ! -type d ! \( -name '*.so' -o -name '*.so.*' \) -print0 | xargs -0 rm -f
 	find debian/python-gobject-dbg -depth -empty -exec rmdir {} \;
 
