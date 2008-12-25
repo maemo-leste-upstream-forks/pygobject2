@@ -9,6 +9,8 @@ pygobject (2.15.4-3) UNRELEASED; urgency=low
     in the diff, and allows control over fully working and fully patched
     trees.
   * Call dh_* -s instead of -a in binary-arch.
+  * Add install-clean $(PYVERS:%=install-%) $(PYVERS:%=dbg-install-%) to
+    .PHONY.
 
  -- Loic Minier <lool@dooz.org>  Fri, 19 Dec 2008 15:02:47 +0100
 

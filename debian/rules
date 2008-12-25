@@ -154,4 +154,4 @@ binary-arch: build install
 	dh_builddeb -s
 
 binary: binary-arch binary-indep
-.PHONY: patch unpatch build clean binary-indep binary-arch binary build install
+.PHONY: patch unpatch build install-clean $(PYVERS:%=install-%) $(PYVERS:%=dbg-install-%) clean binary-indep binary-arch binary build install
