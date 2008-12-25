@@ -3,6 +3,11 @@ pygobject (2.15.4-3) UNRELEASED; urgency=low
   * Pass PYTHON to $(MAKE) runs for robustness in case of timestamp skews;
     thanks Colin Watson; closes: #509192.
   * Pass --disable-maintainer-mode to configure.
+  * Rework patch and config.sub/.guess handling: backup config.guess and .sub,
+    call quilt instead of relying on cdbs' quilt patchsys, restore
+    config.guess and .sub after unpatching.  This avoids config.guess and .sub
+    in the diff, and allows control over fully working and fully patched
+    trees.
 
  -- Loic Minier <lool@dooz.org>  Fri, 19 Dec 2008 15:02:47 +0100
 

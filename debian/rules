@@ -1,6 +1,5 @@
 #!/usr/bin/make -f
 
-include /usr/share/cdbs/1/rules/patchsys-quilt.mk
 include /usr/share/gnome-pkg-tools/1/rules/uploaders.mk
 -include /usr/share/gnome-pkg-tools/1/rules/gnome-get-source.mk
 
@@ -21,19 +20,44 @@ endif
 
 PYVERS := $(shell pyversions -vr)
 
-build-%/configure-stamp: apply-patches
+# how to call quilt
+QUILT := QUILT_PATCHES=$(PATCH_DIR) quilt --quiltrc /dev/null
+
+patch-stamp:
+	dh_testdir
+	# apply patches
+	$(QUILT) push -a || test $$? = 2
+	# backup the original files to restore them in the clean target
+	[ ! -r config.sub ]   || \
+	    (cp config.sub   config.sub.orig   && \
+	     cp /usr/share/misc/config.sub   config.sub)
+	[ ! -r config.guess ] || \
+	    (cp config.guess config.guess.orig && \
+	     cp /usr/share/misc/config.guess config.guess)
+	touch $@
+
+patch: patch-stamp
+
+unpatch:
+	rm -f patch-stamp
+	# restore files from backup (before unpatching)
+	[ ! -r config.sub.orig ]   || \
+	    cp config.sub.orig   config.sub
+	[ ! -r config.guess.orig ]   || \
+	    cp config.guess.orig config.guess
+	# unapply patches, if any
+	$(QUILT) pop -a || test $$? = 2
+	rm -rf .pc
+
+build-%/configure-stamp: patch-stamp
 	dh_testdir
 	mkdir -p build-$*
-	cp config.sub config.sub.back
-	cp config.sub config.sub.back
-	cp -f /usr/share/misc/config.sub config.sub
-	cp -f /usr/share/misc/config.guess config.guess
 	cd build-$* && \
 		PYTHON=/usr/bin/python$* CFLAGS="$(CFLAGS)" \
 			$(CURDIR)/configure $(configure_flags)
 	touch $@
 
-dbg-build-%/configure-stamp: apply-patches
+dbg-build-%/configure-stamp: patch-stamp
 	dh_testdir
 	mkdir -p dbg-build-$*
 	cd dbg-build-$* && \
@@ -84,12 +108,11 @@ install: build install-clean $(PYVERS:%=install-%) $(PYVERS:%=dbg-install-%)
 		mv $$i $$(dirname $$i)/$${b}_d.so; \
 	done
 
-clean:: reverse-patches
+clean::
 	dh_testdir
 	dh_testroot
-	rm -Rf build-* dbg-build-*
-	-mv config.sub.back config.sub
-	-mv config.guess.back config.guess
+	rm -rf build-* dbg-build-*
+	$(MAKE) -f debian/rules unpatch
 	dh_clean *.pyc */*.pyc
 
 binary-indep: build install
@@ -131,4 +154,4 @@ binary-arch: build install
 	dh_builddeb -a
 
 binary: binary-arch binary-indep
-.PHONY: build clean binary-indep binary-arch binary build install
+.PHONY: patch unpatch build clean binary-indep binary-arch binary build install
