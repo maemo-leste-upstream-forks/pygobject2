@@ -78,27 +78,28 @@ dbg-build-%/build-stamp: dbg-build-%/configure-stamp
 
 build: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stamp)
 
-install-clean:
-	dh_testdir
-	dh_testroot
-	dh_clean -k
-
-install-%: build-%/build-stamp
+build-%/install-stamp: build-%/build-stamp
 	dh_testdir
 	dh_testroot
 	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dev
+	touch $@
 
-dbg-install-%: dbg-build-%/build-stamp
+dbg-build-%/install-stamp: dbg-build-%/build-stamp
 	dh_testdir
 	dh_testroot
 	PYTHON=/usr/bin/python$* $(MAKE) -C dbg-build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dbg
-	find debian/python-gobject-dbg ! -type d ! \( -name '*.so' -o -name '*.so.*' \) -print0 | xargs -0 rm -f
-	find debian/python-gobject-dbg -depth -empty -exec rmdir {} \;
+	find debian/python-gobject-dbg ! -type d ! \( -name '*.so' -o -name '*.so.*' \) -delete
+	find debian/python-gobject-dbg -type d -empty -delete
+	touch $@
 
-install: build install-clean $(PYVERS:%=install-%) $(PYVERS:%=dbg-install-%)
+install-stamp: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stamp)
 	dh_testdir
 	dh_testroot
-	find debian/python-gobject-dev -name \*.la -exec rm -f \{\} \;
+	# remove the install stamps to force a reinstall (since dh_clean is
+	# removing the package dirs)
+	dh_clean -k $(PYVERS:%=build-%/install-stamp) $(PYVERS:%=dbg-build-%/install-stamp)
+	$(MAKE) -f debian/rules $(PYVERS:%=build-%/install-stamp) $(PYVERS:%=dbg-build-%/install-stamp)
+	find debian/python-gobject-dev -name \*.la -delete
 	mkdir -p debian/python-gobject/usr/lib
 	mv debian/python-gobject-dev/usr/lib/python* debian/python-gobject/usr/lib/
 	mv debian/python-gobject-dev/usr/lib/libpyglib-*so.* \
@@ -107,15 +108,19 @@ install: build install-clean $(PYVERS:%=install-%) $(PYVERS:%=dbg-install-%)
 		b=$$(basename $$i .so); \
 		mv $$i $$(dirname $$i)/$${b}_d.so; \
 	done
+	touch $@
+
+install: install-stamp
 
 clean::
 	dh_testdir
 	dh_testroot
+	rm -f install-stamp
 	rm -rf build-* dbg-build-*
 	$(MAKE) -f debian/rules unpatch
 	dh_clean *.pyc */*.pyc
 
-binary-indep: build install
+binary-indep: install
 	dh_testdir
 	dh_testroot
 	dh_installdocs -i
@@ -132,7 +137,7 @@ binary-indep: build install
 	dh_md5sums -i
 	dh_builddeb -i
 
-binary-arch: build install
+binary-arch: install
 	dh_testdir
 	dh_testroot
 	dh_installdocs -s
@@ -154,4 +159,4 @@ binary-arch: build install
 	dh_builddeb -s
 
 binary: binary-arch binary-indep
-.PHONY: patch unpatch build install-clean $(PYVERS:%=install-%) $(PYVERS:%=dbg-install-%) clean binary-indep binary-arch binary build install
+.PHONY: patch unpatch build install clean binary-indep binary-arch binary
