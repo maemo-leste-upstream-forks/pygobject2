@@ -73,7 +73,7 @@ build-%/build-stamp: build-%/configure-stamp
 
 dbg-build-%/build-stamp: dbg-build-%/configure-stamp
 	dh_testdir
-	PYTHON=/usr/bin/python$* $(MAKE) -C dbg-build-$*
+	PYTHON=/usr/bin/python$*-dbg $(MAKE) -C dbg-build-$*
 	touch $@
 
 build: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stamp)
@@ -87,7 +87,7 @@ build-%/install-stamp: build-%/build-stamp
 dbg-build-%/install-stamp: dbg-build-%/build-stamp
 	dh_testdir
 	dh_testroot
-	PYTHON=/usr/bin/python$* $(MAKE) -C dbg-build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dbg
+	PYTHON=/usr/bin/python$*-dbg $(MAKE) -C dbg-build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dbg
 	find debian/python-gobject-dbg ! -type d ! \( -name '*.so' -o -name '*.so.*' \) -delete
 	find debian/python-gobject-dbg -type d -empty -delete
 	touch $@
