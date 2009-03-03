@@ -143,13 +143,13 @@ binary-arch: install
 	dh_installdocs -s
 	dh_installexamples -s
 	dh_installchangelogs -s ChangeLog
+	dh_pysupport -s
 	dh_strip -ppython-gobject --dbg-package=python-gobject-dbg
 	rm -rf debian/python-gobject-dbg/usr/share/doc/python-gobject-dbg
 	ln -sf python-gobject debian/python-gobject-dbg/usr/share/doc/python-gobject-dbg
 	dh_link -s
 	dh_compress -s -X.py
 	dh_fixperms -s
-	dh_pysupport -s
 	dh_makeshlibs -ppython-gobject     -V'python-gobject (>= 2.15.2)'
 	dh_makeshlibs -ppython-gobject-dbg -V'python-gobject-dbg (>= 2.15.2)'
 	dh_installdeb -s

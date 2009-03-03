@@ -1,5 +1,6 @@
 pygobject (2.15.4-3) UNRELEASED; urgency=low
 
+  [ Loic Minier ]
   * Pass PYTHON to $(MAKE) runs for robustness in case of timestamp skews;
     thanks Colin Watson; closes: #509192.
   * Pass --disable-maintainer-mode to configure.
@@ -11,6 +12,10 @@ pygobject (2.15.4-3) UNRELEASED; urgency=low
   * Call dh_* -s instead of -a in binary-arch.
   * Rework install rules and dependencies completely to avoid .PHONY implicit
     targets.
+
+  [ Josselin Mouette ]
+  * Move dh_pysupport call before dh_strip so that the split debugging 
+    symbols can actually be used.
 
  -- Loic Minier <lool@dooz.org>  Fri, 19 Dec 2008 15:02:47 +0100
 
