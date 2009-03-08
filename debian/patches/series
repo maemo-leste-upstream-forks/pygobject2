@@ -1,5 +1,6 @@
 01_pkgconfig-private.patch
 03_maintainer_mode.patch
+04_testsuite_gtk.patch
 61_wakeupfd-fctnl-and-read.patch
 62_install-pyglib-in-libdir-with-python-version.patch
 64_gil_locking.patch
