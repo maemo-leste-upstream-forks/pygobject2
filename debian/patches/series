@@ -2,6 +2,5 @@
 03_maintainer_mode.patch
 61_wakeupfd-fctnl-and-read.patch
 62_install-pyglib-in-libdir-with-python-version.patch
-63_macro-dir.patch
 64_gil_locking.patch
 90_autofoo.patch

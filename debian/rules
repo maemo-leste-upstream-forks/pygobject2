@@ -8,6 +8,8 @@ CFLAGS += -Wall -g -O$(if $(findstring noopt,$(DEB_BUILD_OPTIONS)),0,2)
 DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
 DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
 
+export echo=/bin/echo
+
 configure_flags += \
 		--prefix=/usr \
 		--enable-thread \
@@ -21,6 +23,7 @@ endif
 PYVERS := $(shell pyversions -vr)
 
 # how to call quilt
+PATCH_DIR := $(CURDIR)/debian/patches
 QUILT := QUILT_PATCHES=$(PATCH_DIR) quilt --quiltrc /dev/null
 
 patch-stamp:
@@ -67,7 +70,7 @@ dbg-build-%/configure-stamp: patch-stamp
 
 build-%/build-stamp: build-%/configure-stamp
 	dh_testdir
-	PYTHON=/usr/bin/python$* $(MAKE) -C build-$*
+	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* pyexecdir=/var/lib/python-support/python$*
 	-PYTHON=/usr/bin/python$* $(MAKE) -C build-$* check
 	touch $@
 
@@ -81,7 +84,7 @@ build: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stamp)
 build-%/install-stamp: build-%/build-stamp
 	dh_testdir
 	dh_testroot
-	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dev
+	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dev pyexecdir=/var/lib/python-support/python$*
 	touch $@
 
 dbg-build-%/install-stamp: dbg-build-%/build-stamp
@@ -100,10 +103,11 @@ install-stamp: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stam
 	dh_clean -k $(PYVERS:%=build-%/install-stamp) $(PYVERS:%=dbg-build-%/install-stamp)
 	$(MAKE) -f debian/rules $(PYVERS:%=build-%/install-stamp) $(PYVERS:%=dbg-build-%/install-stamp)
 	find debian/python-gobject-dev -name \*.la -delete
-	mkdir -p debian/python-gobject/usr/lib
-	mv debian/python-gobject-dev/usr/lib/python* debian/python-gobject/usr/lib/
+	mkdir -p debian/python-gobject/var/lib debian/python-gobject/usr/lib
+	mv debian/python-gobject-dev/var/lib/python* debian/python-gobject/var/lib/
 	mv debian/python-gobject-dev/usr/lib/libpyglib-*so.* \
 	   debian/python-gobject/usr/lib
+	rm -rf debian/python-gobject-dev/usr/lib debian/python-gobject-dev/var/lib
 	for i in $$(find debian/python-gobject-dbg -name '*.so' -path 'debian/python-gobject-dbg/usr/lib/python*/site-packages/*'); do \
 		b=$$(basename $$i .so); \
 		mv $$i $$(dirname $$i)/$${b}_d.so; \
@@ -143,13 +147,13 @@ binary-arch: install
 	dh_installdocs -s
 	dh_installexamples -s
 	dh_installchangelogs -s ChangeLog
-	dh_pysupport -s
 	dh_strip -ppython-gobject --dbg-package=python-gobject-dbg
 	rm -rf debian/python-gobject-dbg/usr/share/doc/python-gobject-dbg
 	ln -sf python-gobject debian/python-gobject-dbg/usr/share/doc/python-gobject-dbg
 	dh_link -s
 	dh_compress -s -X.py
 	dh_fixperms -s
+	dh_pysupport -s
 	dh_makeshlibs -ppython-gobject     -V'python-gobject (>= 2.15.2)'
 	dh_makeshlibs -ppython-gobject-dbg -V'python-gobject-dbg (>= 2.15.2)'
 	dh_installdeb -s

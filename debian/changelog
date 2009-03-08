@@ -1,4 +1,4 @@
-pygobject (2.15.4-3) UNRELEASED; urgency=low
+pygobject (2.16.0-1) unstable; urgency=low
 
   [ Loic Minier ]
   * Pass PYTHON to $(MAKE) runs for robustness in case of timestamp skews;
@@ -14,10 +14,18 @@ pygobject (2.15.4-3) UNRELEASED; urgency=low
     targets.
 
   [ Josselin Mouette ]
-  * Move dh_pysupport call before dh_strip so that the split debugging 
-    symbols can actually be used.
+  * Install files to the python-support directory since objcopy is 
+    completely stupid and doesn’t add the full pathname to the 
+    .gnu_debuglink section. Closes: #518026.
+  * New upstream release.
+  * 63_macro-dir.patch: removed, merged upstream.
+  * 90_autofoo.patch: regenerated.
+  * Fix quilt invocation so that patches are applied.
+  * Pass echo=/bin/echo to the environment to work around the ☠☢☣⚡⚠✈║
+    libtool bug that is not able to find a command as simple as echo, is 
+    that really too much to ask?
 
- -- Loic Minier <lool@dooz.org>  Fri, 19 Dec 2008 15:02:47 +0100
+ -- Josselin Mouette <joss@debian.org>  Sun, 08 Mar 2009 12:44:24 +0100
 
 pygobject (2.15.4-2) experimental; urgency=low
 
