@@ -107,7 +107,7 @@ install-stamp: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stam
 	mv debian/python-gobject-dev/var/lib/python* debian/python-gobject/var/lib/
 	mv debian/python-gobject-dev/usr/lib/libpyglib-*so.* \
 	   debian/python-gobject/usr/lib
-	rm -rf debian/python-gobject-dev/usr/lib/python* debian/python-gobject-dev/var/lib
+	rm -rf debian/python-gobject-dev/usr/lib/python* debian/python-gobject-dev/var
 	for i in $$(find debian/python-gobject-dbg -name '*.so' -path 'debian/python-gobject-dbg/usr/lib/python*/site-packages/*'); do \
 		b=$$(basename $$i .so); \
 		mv $$i $$(dirname $$i)/$${b}_d.so; \
