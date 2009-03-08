@@ -1,0 +1,70 @@
+diff -ruNp pygobject-2.15.4/configure.ac pygobject-2.15.4.new/configure.ac
+--- pygobject-2.15.4/configure.ac	2008-08-31 23:26:11.000000000 +0200
++++ pygobject-2.15.4.new/configure.ac	2008-09-20 11:18:48.000000000 +0200
+@@ -144,6 +144,8 @@ AM_PATH_GLIB_2_0(glib_required_version,,
+ if test -n "$export_dynamic"; then
+   GLIB_LIBS=`echo $GLIB_LIBS | sed -e "s/$export_dynamic//"`
+ fi
++PYTHON_BASENAME=`basename $PYTHON`
++AC_SUBST([PYTHON_BASENAME])
+ 
+ pygobject_CODEGEN_DEFINES=""
+ AC_SUBST([pygobject_CODEGEN_DEFINES])
+diff -ruNp pygobject-2.15.4/gio/Makefile.am pygobject-2.15.4.new/gio/Makefile.am
+--- pygobject-2.15.4/gio/Makefile.am	2008-08-09 16:26:44.000000000 +0200
++++ pygobject-2.15.4.new/gio/Makefile.am	2008-09-20 11:32:56.000000000 +0200
+@@ -54,7 +54,7 @@ EXTRA_DIST += $(GIO_DEFS) $(GIO_OVERRIDE
+ gio.c: $(GIO_DEFS) $(GIO_OVERRIDES)
+ _gio_la_CFLAGS = $(GIO_CFLAGS)
+ _gio_la_LDFLAGS = $(common_ldflags) -export-symbols-regex init_gio
+-_gio_la_LIBADD = $(GIO_LIBS) $(top_builddir)/glib/libpyglib-2.0.la
++_gio_la_LIBADD = $(GIO_LIBS) $(top_builddir)/glib/libpyglib-2.0-@PYTHON_BASENAME@.la
+ _gio_la_SOURCES = \
+ 	giomodule.c \
+ 	pygio-utils.c \
+diff -ruNp pygobject-2.15.4/glib/Makefile.am pygobject-2.15.4.new/glib/Makefile.am
+--- pygobject-2.15.4/glib/Makefile.am	2008-07-26 15:57:53.000000000 +0200
++++ pygobject-2.15.4.new/glib/Makefile.am	2008-09-20 11:27:57.000000000 +0200
+@@ -4,7 +4,7 @@ INCLUDES = $(PYTHON_INCLUDES) $(GLIB_CFL
+ pkgincludedir = $(includedir)/pygtk-2.0
+ pkginclude_HEADERS = pyglib.h
+ 
+-lib_LTLIBRARIES = libpyglib-2.0.la
++lib_LTLIBRARIES = libpyglib-2.0-@PYTHON_BASENAME@.la
+ 
+ pkgpyexecdir = $(pyexecdir)/gtk-2.0
+ 
+@@ -19,9 +19,9 @@ if PLATFORM_WIN32
+ common_ldflags += -no-undefined
+ endif
+ 
+-libpyglib_2_0_la_CFLAGS = $(GLIB_CFLAGS)
+-libpyglib_2_0_la_LIBADD = $(GLIB_LIBS) $(FFI_LIBS)
+-libpyglib_2_0_la_SOURCES = 	\
++libpyglib_2_0_@PYTHON_BASENAME@_la_CFLAGS = $(GLIB_CFLAGS)
++libpyglib_2_0_@PYTHON_BASENAME@_la_LIBADD = $(GLIB_LIBS) $(FFI_LIBS)
++libpyglib_2_0_@PYTHON_BASENAME@_la_SOURCES = 	\
+ 	pyglib.c		\
+ 	pyglib.h		\
+ 	pyglib-private.h 	\
+@@ -29,7 +29,7 @@ libpyglib_2_0_la_SOURCES = 	\
+ 
+ _glib_la_CFLAGS = $(GLIB_CFLAGS)
+ _glib_la_LDFLAGS = $(common_ldflags) -export-symbols-regex "_glib|PyInit__glib"
+-_glib_la_LIBADD = $(GLIB_LIBS) libpyglib-2.0.la
++_glib_la_LIBADD = $(GLIB_LIBS) libpyglib-2.0-@PYTHON_BASENAME@.la
+ _glib_la_SOURCES = 	 	\
+ 	glibmodule.c	 	\
+ 	pygiochannel.c 	 	\
+diff -ruNp pygobject-2.15.4/gobject/Makefile.am pygobject-2.15.4.new/gobject/Makefile.am
+--- pygobject-2.15.4/gobject/Makefile.am	2008-07-27 12:21:46.000000000 +0200
++++ pygobject-2.15.4.new/gobject/Makefile.am	2008-09-20 11:29:01.000000000 +0200
+@@ -42,7 +42,7 @@ _gobject_la_LDFLAGS = $(common_ldflags) 
+ _gobject_la_LIBADD = \
+ 	$(GLIB_LIBS) \
+ 	$(FFI_LIBS) \
+-	$(top_builddir)/glib/libpyglib-2.0.la
++	$(top_builddir)/glib/libpyglib-2.0-@PYTHON_BASENAME@.la
+ _gobject_la_SOURCES =           \
+         gobjectmodule.c         \
+         pygboxed.c              \

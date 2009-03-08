@@ -1,3 +1,97 @@
+pygobject (2.16.0-1) unstable; urgency=low
+
+  [ Loic Minier ]
+  * Pass PYTHON to $(MAKE) runs for robustness in case of timestamp skews;
+    thanks Colin Watson; closes: #509192.
+  * Pass --disable-maintainer-mode to configure.
+  * Rework patch and config.sub/.guess handling: backup config.guess and .sub,
+    call quilt instead of relying on cdbs' quilt patchsys, restore
+    config.guess and .sub after unpatching.  This avoids config.guess and .sub
+    in the diff, and allows control over fully working and fully patched
+    trees.
+  * Call dh_* -s instead of -a in binary-arch.
+  * Rework install rules and dependencies completely to avoid .PHONY implicit
+    targets.
+
+  [ Josselin Mouette ]
+  * Install files to the python-support directory since objcopy is 
+    completely stupid and doesn’t add the full pathname to the 
+    .gnu_debuglink section. Closes: #518026.
+  * New upstream release.
+  * 63_macro-dir.patch: removed, merged upstream.
+  * 90_autofoo.patch: regenerated.
+  * Fix quilt invocation so that patches are applied.
+  * Pass echo=/bin/echo to the environment to work around the ☠☢☣⚡⚠✈║
+    libtool bug that is not able to find a command as simple as echo, is 
+    that really too much to ask?
+  * 04_testsuite_gtk.patch: new patch. Don’t run tests that require 
+    pygtk being installed.
+
+ -- Josselin Mouette <joss@debian.org>  Sun, 08 Mar 2009 12:44:24 +0100
+
+pygobject (2.15.4-2) experimental; urgency=low
+
+  * debian/patches/64_gil_lock.patch, added.
+    + Release the python GIL lock when getting properties and unreffing
+    objects. Prevents deadlocks when using farsight2.
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Fri, 28 Nov 2008 16:07:42 +0100
+
+pygobject (2.15.4-1) experimental; urgency=low
+
+  [ Emilio Pozuelo Monfort ]
+  * Merged 2.15 updates from Ubuntu, thanks to Sebastien Bacher
+    and Loïc Minier:
+    - Build-Depend on libglib2.0-dev >= 2.14.
+    - debian/patches/60_use-python-config-for-includes.patch,
+      debian/patches/02_ffi-use-pkgconfig:
+      + Dropped, fixed upstream.
+    - debian/patches/debian/patches/61_wakeupfd-fix.patch:
+      + Renamed as 61_wakeupfd-fctnl-and-read.patch, updated.
+    - debian/patches/62_install-pyglib-in-libdir-with-python-version.patch:
+      + installs the new pyglib public library to the private directory
+        libdir/pygobject/python<python version> to have one lib per python
+        version
+    - debian/patches/63_macro-dir.patch:
+      + Add AC_CONFIG_MACRO_DIR for libtoolize. GNOME #551227. 
+    - debian/patches/69_pyg-register-pointer-typo:
+      + fixes crash on x86-64 due to a typo. GNOME #550463.
+    - debian/patches/90_autofoo.patch:
+      + Updated.
+    - debian/rules:
+      + Call dh_makeshlibs to generate shlibs on python-gobject >= 2.15.2.
+      + Rework -dbg support for the new pyglib shared lib.
+    - Bump Standards-Version to 3.8.0.
+    - debian/rules:
+      + Use find -print0/xargs -0.
+  * New upstream release. Closes: #492647.
+    - Build-Depend on libglib2.0-dev >= 2.16.0 for GIO support.
+    - debian/patches/69_pyg-register-pointer-typo:
+      + Removed, fixed upstream.
+  * debian/patches/62_install-pyglib-in-libdir-with-python-version.patch:
+    - Changed so that libpyglib is in /usr/lib and shared objects linking
+      to it don't need an RPATH. The library is now in
+      $libdir/libpyglib-2.0-pythonX.Y.so
+      Thanks a lot to Loïc Minier for his help and guidance!
+  * debian/rules:
+    - Adjusted for the above patch.
+    - Copy config.* in build and restore it in clean, so that changes don't
+      end up in the diff.gz.
+  * debian/patches/90_autofoo.patch:
+    - Regenerated.
+
+  [ Josselin Mouette ]
+  * Re-add references in 61_wakeupfd-fctnl-and-read.patch.
+  * 90_autofoo.patch: remove autom4te.cache.
+  * Depend on python 2.5, since the test suite does not run with python 
+    2.4.
+  * Use pyversions -vr to really disable the 2.4 build.
+  * Pass /usr/share/pygobject to dh_pysupport.
+  * Don’t move the -dbg symbolic link to the -dev package.
+  * Run dh_makeshlibs separately for python-gobject-dbg.
+
+ -- Josselin Mouette <joss@debian.org>  Wed, 12 Nov 2008 15:49:34 +0100
+
 pygobject (2.14.2-1) unstable; urgency=low
 
   * Switch to quilt; build-depend on quilt.

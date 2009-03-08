@@ -1,0 +1,53 @@
+From the fix to the initial SETWAKEUPFD support in GNOME #481569.
+
+--- a/glib/pygmainloop.c	(revision 959)
++++ b/glib/pygmainloop.c	(working copy)
+@@ -24,6 +24,7 @@
+ #ifdef HAVE_CONFIG_H
+ #  include <config.h>
+ #endif
++#include <fcntl.h>
+ 
+ #include <Python.h>
+ #include <pythread.h>
+@@ -121,6 +122,7 @@
+ {
+ #ifdef HAVE_PYSIGNAL_SETWAKEUPFD
+     PySignalWatchSource *real_source = (PySignalWatchSource *)source;
++    int flag;
+ #endif
+     
+     /* Python only invokes signal handlers from the main thread,
+@@ -151,6 +153,11 @@
+ 	g_error("Cannot create main loop pipe: %s\n",
+ 		g_strerror(errno));
+ 
++    /* Make the read end of the fd non blocking */
++    flag = fcntl(real_source->fds[0], F_GETFL, 0);
++    flag |= O_NONBLOCK;
++    fcntl(real_source->fds[0], F_SETFL, flag);
++
+     real_source->fd.fd = real_source->fds[0];
+     real_source->fd.events = G_IO_IN | G_IO_HUP | G_IO_ERR;
+     g_source_add_poll(source, &real_source->fd);
+@@ -175,10 +182,20 @@
+     PyGILState_STATE state;
+     GMainLoop *main_loop;
+ 
++#ifdef HAVE_PYSIGNAL_SETWAKEUPFD
++    PySignalWatchSource *real_source = (PySignalWatchSource *)source;
++    char buf[1];
++#endif
++
+     state = pyglib_gil_state_ensure();
+ 
+     main_loop = pyg_get_current_main_loop();
+ 
++#ifdef HAVE_PYSIGNAL_SETWAKEUPFD
++    if (real_source->fds[0])
++        read(real_source->fds[0], &buf, 1);
++#endif
++
+     if (PyErr_CheckSignals() == -1 && main_loop != NULL) {
+ 	PyErr_SetNone(PyExc_KeyboardInterrupt);
+ 	g_main_loop_quit(main_loop);
