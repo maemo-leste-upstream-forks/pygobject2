@@ -31,7 +31,7 @@ XB-Python-Version: ${python:Versions}
 Suggests: python-gobject-dbg
 Conflicts: python-gtk2 (<< 2.10)
 Description: Python bindings for the GObject library
- GObject is an abstraction layer that allows to program with an object
+ GObject is an abstraction layer that allows programming with an object
  paradigm that is compatible with many languages. It is a part of Glib,
  the core library used to build GTK+ and GNOME.
  .
@@ -52,7 +52,7 @@ Replaces: python-gobject-doc
 Provides: python-gobject-doc
 Recommends: docbook-xsl
 Description: Development headers for the GObject Python bindings
- GObject is an abstraction layer that allows to program with an object
+ GObject is an abstraction layer that allows programming with an object
  paradigm that is compatible with many languages. It is a part of Glib,
  the core library used to build GTK+ and GNOME.
  .
@@ -65,7 +65,7 @@ Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, python-dbg, python-gobject (= ${binary:Version})
 Conflicts: python-gtk2 (<< 2.10)
 Description: Python bindings for the GObject library (debug extension)
- GObject is an abstraction layer that allows to program with an object
+ GObject is an abstraction layer that allows programming with an object
  paradigm that is compatible with many languages. It is a part of Glib,
  the core library used to build GTK+ and GNOME.
  .
