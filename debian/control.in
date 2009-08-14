@@ -60,6 +60,7 @@ Description: Development headers for the GObject Python bindings
  other Python bindings relying on pygobject.
 
 Package: python-gobject-dbg
+Section: debug
 Priority: extra
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, python-dbg, python-gobject (= ${binary:Version})
