@@ -1,8 +1,17 @@
-pygobject (2.18.0-2) UNRELEASED; urgency=low
+pygobject (2.20.0-1) unstable; urgency=low
 
+  [ Emilio Pozuelo Monfort ]
   * python-gobject-dbg is section debug.
 
- -- Emilio Pozuelo Monfort <pochu@ubuntu.com>  Fri, 14 Aug 2009 15:05:52 +0200
+  [ Josselin Mouette ]
+  * New upstream release.
+  * Switch installation path to /usr/lib/pymodules instead of 
+    /var/lib/python-support.
+  * Enable girepository support; build-depend on libgirepository1.0-dev.
+  * Suggest some introspection packages.
+  * 90_autofoo.patch: regenerated for the new version.
+
+ -- Josselin Mouette <joss@debian.org>  Thu, 24 Sep 2009 18:53:49 +0200
 
 pygobject (2.18.0-1) unstable; urgency=low
 

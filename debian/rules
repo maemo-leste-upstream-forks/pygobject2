@@ -70,7 +70,7 @@ dbg-build-%/configure-stamp: patch-stamp
 
 build-%/build-stamp: build-%/configure-stamp
 	dh_testdir
-	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* pyexecdir=/var/lib/python-support/python$*
+	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* pyexecdir=/usr/lib/pymodules/python$*
 	-PYTHON=/usr/bin/python$* $(MAKE) -C build-$* check
 	touch $@
 
@@ -84,7 +84,7 @@ build: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stamp)
 build-%/install-stamp: build-%/build-stamp
 	dh_testdir
 	dh_testroot
-	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dev pyexecdir=/var/lib/python-support/python$*
+	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dev pyexecdir=/usr/lib/pymodules/python$*
 	touch $@
 
 dbg-build-%/install-stamp: dbg-build-%/build-stamp
@@ -103,11 +103,11 @@ install-stamp: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stam
 	dh_clean -k $(PYVERS:%=build-%/install-stamp) $(PYVERS:%=dbg-build-%/install-stamp)
 	$(MAKE) -f debian/rules $(PYVERS:%=build-%/install-stamp) $(PYVERS:%=dbg-build-%/install-stamp)
 	find debian/python-gobject-dev -name \*.la -delete
-	mkdir -p debian/python-gobject/var/lib debian/python-gobject/usr/lib
-	mv debian/python-gobject-dev/var/lib/python* debian/python-gobject/var/lib/
+	mkdir -p debian/python-gobject/usr/lib
+	mv debian/python-gobject-dev/usr/lib/pymodules debian/python-gobject/usr/lib/
 	mv debian/python-gobject-dev/usr/lib/libpyglib-*so.* \
 	   debian/python-gobject/usr/lib
-	rm -rf debian/python-gobject-dev/usr/lib/python* debian/python-gobject-dev/var
+	rm -rf debian/python-gobject-dev/usr/lib/python*
 	for i in $$(find debian/python-gobject-dbg -name '*.so' -path 'debian/python-gobject-dbg/usr/lib/python*/site-packages/*'); do \
 		b=$$(basename $$i .so); \
 		mv $$i $$(dirname $$i)/$${b}_d.so; \
