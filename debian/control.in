@@ -30,8 +30,7 @@ Depends: ${python:Depends},
 Provides: ${python:Provides}
 XB-Python-Version: ${python:Versions}
 Suggests: python-gobject-dbg,
-          gobject-introspection-glib-2.0,
-          gobject-introspection-repository
+          gir1.0-glib-2.0
 Conflicts: python-gtk2 (<< 2.10)
 Description: Python bindings for the GObject library
  GObject is an abstraction layer that allows programming with an object
