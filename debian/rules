@@ -80,15 +80,15 @@ dbg-build-%/build-stamp: dbg-build-%/configure-stamp
 
 build: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stamp)
 
-check-%/check-stamp: build-%/build-stamp
+build-%/check-stamp: build-%/build-stamp
 	-PYTHON=/usr/bin/python$* $(MAKE) -C build-$* check
 	touch $@
 
-dbg-check-%/check-stamp: dbg-build-%/build-stamp
+dbg-build-%/check-stamp: dbg-build-%/build-stamp
 	-PYTHON=/usr/bin/python$*-dbg $(MAKE) -C dbg-build-$* check
 	touch $@
 
-check: $(PYVERS:%=check-%/check-stamp) $(PYVERS:%=dbg-build-%/check-stamp)
+check: $(PYVERS:%=build-%/check-stamp) $(PYVERS:%=dbg-build-%/check-stamp)
 
 build-%/install-stamp: build-%/build-stamp
 	dh_testdir
