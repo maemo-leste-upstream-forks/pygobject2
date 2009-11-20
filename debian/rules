@@ -71,7 +71,6 @@ dbg-build-%/configure-stamp: patch-stamp
 build-%/build-stamp: build-%/configure-stamp
 	dh_testdir
 	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* pyexecdir=/usr/lib/pymodules/python$*
-	-PYTHON=/usr/bin/python$* $(MAKE) -C build-$* check
 	touch $@
 
 dbg-build-%/build-stamp: dbg-build-%/configure-stamp
@@ -80,6 +79,16 @@ dbg-build-%/build-stamp: dbg-build-%/configure-stamp
 	touch $@
 
 build: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stamp)
+
+check-%/check-stamp: build-%/build-stamp
+	-PYTHON=/usr/bin/python$* $(MAKE) -C build-$* check
+	touch $@
+
+dbg-check-%/check-stamp: dbg-build-%/build-stamp
+	-PYTHON=/usr/bin/python$*-dbg $(MAKE) -C dbg-build-$* check
+	touch $@
+
+check: $(PYVERS:%=check-%/check-stamp) $(PYVERS:%=dbg-build-%/check-stamp)
 
 build-%/install-stamp: build-%/build-stamp
 	dh_testdir
@@ -124,7 +133,9 @@ clean::
 	$(MAKE) -f debian/rules unpatch
 	dh_clean *.pyc */*.pyc
 
-binary-indep: install
+maybe_check = $(if $(findstring nocheck,$(DEB_BUILD_OPTIONS)),,check)
+
+binary-indep: install $(maybe_check)
 	dh_testdir
 	dh_testroot
 	dh_installdocs -i
@@ -141,7 +152,7 @@ binary-indep: install
 	dh_md5sums -i
 	dh_builddeb -i
 
-binary-arch: install
+binary-arch: install $(maybe_check)
 	dh_testdir
 	dh_testroot
 	dh_installdocs -s
@@ -163,4 +174,4 @@ binary-arch: install
 	dh_builddeb -s
 
 binary: binary-arch binary-indep
-.PHONY: patch unpatch build install clean binary-indep binary-arch binary
+.PHONY: patch unpatch build check install clean binary-indep binary-arch binary
