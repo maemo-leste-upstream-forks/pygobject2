@@ -1,3 +1,9 @@
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=530935
+Author: Sjoerd Simons <sjoerd@debian.org>
+
+    Release the python GIL lock when getting properties and unreffing
+    objects. Prevents deadlocks when using farsight2.
+
 --- a/gobject/pygobject.c	(revision 975)
 +++ b/gobject/pygobject.c	(working copy)
 @@ -291,7 +291,9 @@
