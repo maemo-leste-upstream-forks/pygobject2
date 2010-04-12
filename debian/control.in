@@ -10,13 +10,12 @@ Build-Depends: debhelper (>= 5),
                quilt,
                python2.5-dev (>= 2.5.2-5),
                python-all-dev (>= 2.5),
-               libglib2.0-dev (>= 2.16.0),
+               libglib2.0-dev (>= 2.22.4),
                libffi-dev (>= 3.0.5),
                xsltproc,
                docbook-xsl,
                autotools-dev,
                python-all-dbg,
-               libgirepository1.0-dev (>= 0.6.3)
 Build-Conflicts: python2.3-dev (<< 2.3.5)
 XS-Python-Version: >= 2.5
 Standards-Version: 3.8.0
@@ -29,8 +28,7 @@ Depends: ${python:Depends},
          ${misc:Depends}
 Provides: ${python:Provides}
 XB-Python-Version: ${python:Versions}
-Suggests: python-gobject-dbg,
-          gir1.0-glib-2.0
+Suggests: python-gobject-dbg
 Conflicts: python-gtk2 (<< 2.10)
 Description: Python bindings for the GObject library
  GObject is an abstraction layer that allows programming with an object
