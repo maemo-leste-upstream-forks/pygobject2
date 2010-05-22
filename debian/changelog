@@ -1,3 +1,13 @@
+pygobject (2.21.1-2) UNRELEASED; urgency=low
+
+  * debian/control.in:
+    - Drop python2.5{,-dev} (build) dependencies. They were there to
+      make sure Python had wakeupfd support, but that's already in
+      stable and the 2.5 dependency will be problematic in the future,
+      so drop it already.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sat, 22 May 2010 17:11:46 +0200
+
 pygobject (2.21.1-1) unstable; urgency=low
 
   [ Josselin Mouette ]
