@@ -13,6 +13,7 @@ export echo=/bin/echo
 configure_flags += \
 		--prefix=/usr \
 		--enable-thread \
+                --enable-pygi \
 		--build=$(DEB_BUILD_GNU_TYPE) \
 		--disable-maintainer-mode
 
