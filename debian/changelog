@@ -12,8 +12,9 @@ pygobject (2.21.1-2) unstable; urgency=low
     - Bump Standards-Version to 3.8.4
     - Add Vcs-Svn and Vcs-Browser field
   * debian/rules: Enable pygi support (Closes: #579018)
+  * Switch to dpkg-source 3.0 (quilt) format
 
- -- Laurent Bigonville <bigon@debian.org>  Mon, 07 Jun 2010 19:39:57 +0200
+ -- Laurent Bigonville <bigon@debian.org>  Mon, 07 Jun 2010 19:47:36 +0200
 
 pygobject (2.21.1-1) unstable; urgency=low
 
