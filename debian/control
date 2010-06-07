@@ -76,3 +76,5 @@ Description: Python bindings for the GObject library (debug extension)
  .
  This package contains the Python bindings for GObject. It is mostly
  used by other bindings to map their GObjects to Python objects.
+ .
+ This package contains the extensions built for the python debug interpreter.
