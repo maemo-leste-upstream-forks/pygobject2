@@ -126,6 +126,9 @@ install-stamp: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stam
 		b=$$(basename $$i .so); \
 		mv $$i $$(dirname $$i)/$${b}_d.so; \
 	done
+	sed -i 's,bin/python[23]\.[0-9],bin/python,' \
+		debian/python-gobject-dev/usr/bin/pygobject-codegen-2.0
+
 	touch $@
 
 install: install-stamp

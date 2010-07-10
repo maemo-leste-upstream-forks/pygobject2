@@ -11,12 +11,13 @@ pygobject (2.21.4-1) UNRELEASED; urgency=low
     - Don't need --enable-pygi, it is now merged
     - Install files for python-gobject-cairo
     - Replace dh_clean -k by dh_prep
+    - Make pygobject-codegen-2.0 call the default version of python
   * Dropped debian/patches/03_maintainer_mode.patch 
     debian/patches/04_testsuite_gtk.patch,
     debian/patches/64_gil_locking.patch,
     debian/patches/90_autofoo.patch: not needed anymore
 
- -- Laurent Bigonville <bigon@debian.org>  Sun, 11 Jul 2010 01:08:33 +0200
+ -- Laurent Bigonville <bigon@debian.org>  Sun, 11 Jul 2010 01:38:04 +0200
 
 pygobject (2.21.1-2) unstable; urgency=low
 
