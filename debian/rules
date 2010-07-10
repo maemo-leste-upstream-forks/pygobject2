@@ -13,7 +13,6 @@ export echo=/bin/echo
 configure_flags += \
 		--prefix=/usr \
 		--enable-thread \
-                --enable-pygi \
 		--build=$(DEB_BUILD_GNU_TYPE) \
 		--disable-maintainer-mode
 
@@ -110,9 +109,13 @@ install-stamp: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stam
 	dh_testroot
 	# remove the install stamps to force a reinstall (since dh_clean is
 	# removing the package dirs)
-	dh_clean -k $(PYVERS:%=build-%/install-stamp) $(PYVERS:%=dbg-build-%/install-stamp)
+	dh_prep $(PYVERS:%=build-%/install-stamp) $(PYVERS:%=dbg-build-%/install-stamp)
 	$(MAKE) -f debian/rules $(PYVERS:%=build-%/install-stamp) $(PYVERS:%=dbg-build-%/install-stamp)
 	find debian/python-gobject-dev -name \*.la -delete
+	for i in $(PYVERS); do \
+		mkdir -p debian/python-gobject-cairo/usr/lib/pymodules/python$$i/gtk-2.0/gi; \
+		mv debian/python-gobject-dev/usr/lib/pymodules/python$$i/gtk-2.0/gi/_gi_cairo.so debian/python-gobject-cairo/usr/lib/pymodules/python$$i/gtk-2.0/gi; \
+	done
 	mkdir -p debian/python-gobject/usr/lib
 	mv debian/python-gobject-dev/usr/lib/pymodules debian/python-gobject/usr/lib/
 	mv debian/python-gobject-dev/usr/lib/libpyglib-*so.* \
@@ -160,6 +163,7 @@ binary-arch: install $(maybe_check)
 	dh_installexamples -s
 	dh_installchangelogs -s ChangeLog
 	dh_strip -ppython-gobject --dbg-package=python-gobject-dbg
+	dh_strip -ppython-gobject-cairo --dbg-package=python-gobject-dbg
 	rm -rf debian/python-gobject-dbg/usr/share/doc/python-gobject-dbg
 	ln -sf python-gobject debian/python-gobject-dbg/usr/share/doc/python-gobject-dbg
 	dh_link -s

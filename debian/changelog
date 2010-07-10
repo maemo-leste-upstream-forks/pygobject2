@@ -1,3 +1,23 @@
+pygobject (2.21.4-1) UNRELEASED; urgency=low
+
+  * New upstream release.
+  * Bump Standards-Version to 3.9.0 (no further changes)
+  * Bump debhelper version to 7
+  * debian/control.in:
+    - Build-depend on libgirepository1.0-dev, libcairo2-dev, python-cairo-dev
+    - python-gobject: Conflicts/Replaces/Provides python-gi
+    - Add python-gobject-cairo package and make python-gobject Recommends it
+  * debian/rules:
+    - Don't need --enable-pygi, it is now merged
+    - Install files for python-gobject-cairo
+    - Replace dh_clean -k by dh_prep
+  * Dropped debian/patches/03_maintainer_mode.patch 
+    debian/patches/04_testsuite_gtk.patch,
+    debian/patches/64_gil_locking.patch,
+    debian/patches/90_autofoo.patch: not needed anymore
+
+ -- Laurent Bigonville <bigon@debian.org>  Sun, 11 Jul 2010 01:08:33 +0200
+
 pygobject (2.21.1-2) unstable; urgency=low
 
   [ Emilio Pozuelo Monfort ]
