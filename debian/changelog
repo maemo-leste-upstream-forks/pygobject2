@@ -1,5 +1,6 @@
 pygobject (2.21.4-1) UNRELEASED; urgency=low
 
+  [ Laurent Bigonville ]
   * New upstream release.
   * Bump Standards-Version to 3.9.0 (no further changes)
   * Bump debhelper version to 7
@@ -16,6 +17,11 @@ pygobject (2.21.4-1) UNRELEASED; urgency=low
     debian/patches/04_testsuite_gtk.patch,
     debian/patches/64_gil_locking.patch,
     debian/patches/90_autofoo.patch: not needed anymore
+
+  [ Emilio Pozuelo Monfort ]
+  * debian/rules:
+    - Do not change python3.x to python, as python is the default Python 2
+      interpreter.
 
  -- Laurent Bigonville <bigon@debian.org>  Sun, 11 Jul 2010 01:38:04 +0200
 
