@@ -20,7 +20,9 @@ ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
 	configure_flags += --host=$(DEB_HOST_GNU_TYPE)
 endif
 
-PYVERS := $(shell pyversions -vr)
+PYDEFAULTVER := $(shell pyversions --default --version)
+PYVERS := $(shell pyversions --requested --version debian/control)
+PYVERS := $(filter-out $(PYDEFAULTVER), $(PYVERS)) $(PYDEFAULTVER)
 
 # how to call quilt
 PATCH_DIR := $(CURDIR)/debian/patches
@@ -126,8 +128,6 @@ install-stamp: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stam
 		b=$$(basename $$i .so); \
 		mv $$i $$(dirname $$i)/$${b}_d.so; \
 	done
-	sed -i 's,bin/python2\.[0-9],bin/python,' \
-		debian/python-gobject-dev/usr/bin/pygobject-codegen-2.0
 
 	touch $@
 
