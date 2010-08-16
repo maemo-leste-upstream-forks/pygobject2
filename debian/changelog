@@ -1,3 +1,20 @@
+pygobject (2.21.4+is.2.21.3-1) unstable; urgency=low
+
+  * Downgrade to version 2.21.3 since PyGI is absolutely not ready to 
+    make it to a stable release. Closes: #590680, #592570.
+  * Revert all Laurent’s corresponding packaging changes, except the 
+    following:
+    + 04_testsuite_gtk.patch: dropped, not needed anymore.
+    + 64_gil_locking.patch: dropped, finally merged upstream.
+    + 90_autofoo.patch: refreshed.
+    + Bump Standards-Version to 3.9.0 (no further changes).
+    + Bump debhelper version to 7.
+    + Replace dh_clean -k by dh_prep.
+  * 20_deprecated_spam.patch: new patch. Avoid spamming the console for 
+    using deprecated functions that every program uses.
+
+ -- Josselin Mouette <joss@debian.org>  Mon, 16 Aug 2010 18:14:38 +0200
+
 pygobject (2.21.4-1) unstable; urgency=low
 
   [ Laurent Bigonville ]

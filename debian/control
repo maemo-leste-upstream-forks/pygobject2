@@ -7,7 +7,7 @@ Source: pygobject
 Section: python
 Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Laurent Bigonville <bigon@debian.org>, Sjoerd Simons <sjoerd@debian.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Emilio Pozuelo Monfort <pochu@debian.org>, Laurent Bigonville <bigon@debian.org>, Sjoerd Simons <sjoerd@debian.org>
 Build-Depends: debhelper (>= 7),
                python-support (>= 0.4),
                gnome-pkg-tools (>= 0.10),
@@ -15,10 +15,7 @@ Build-Depends: debhelper (>= 7),
                quilt,
                python-all-dev (>= 2.5),
                libglib2.0-dev (>= 2.22.4),
-               libcairo2-dev,
                libffi-dev (>= 3.0.5),
-               libgirepository1.0-dev (>= 0.6.14),
-               python-cairo-dev (>= 1.0.2),
                xsltproc,
                docbook-xsl,
                autotools-dev,
@@ -34,34 +31,16 @@ Architecture: any
 Depends: ${python:Depends},
          ${shlibs:Depends},
          ${misc:Depends}
-Provides: ${python:Provides}, python-gi
+Provides: ${python:Provides}
 XB-Python-Version: ${python:Versions}
-Recommends: python-gobject-cairo
 Suggests: python-gobject-dbg
-Conflicts: python-gtk2 (<< 2.10), python-gi
-Replaces: python-gi
+Conflicts: python-gtk2 (<< 2.10)
 Description: Python bindings for the GObject library
  GObject is an abstraction layer that allows programming with an object
  paradigm that is compatible with many languages. It is a part of Glib,
  the core library used to build GTK+ and GNOME.
  .
  This package contains the Python bindings for GObject. It is mostly
- used by other bindings to map their GObjects to Python objects.
-
-Package: python-gobject-cairo
-Architecture: any
-Depends: ${python:Depends},
-         ${shlibs:Depends},
-         ${misc:Depends},
-         python-cairo
-Provides: ${python:Provides}
-XB-Python-Version: ${python:Versions}
-Description: Python Cairo bindings for the GObject library
- GObject is an abstraction layer that allows programming with an object
- paradigm that is compatible with many languages. It is a part of Glib,
- the core library used to build GTK+ and GNOME.
- .
- This package contains the Python Cairo bindings for GObject. It is mostly
  used by other bindings to map their GObjects to Python objects.
 
 Package: python-gobject-dev
