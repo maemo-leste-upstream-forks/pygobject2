@@ -1,3 +1,20 @@
+pygobject (2.27.0-1) UNRELEASED; urgency=low
+
+  * New upstream release.
+  * debian/control.in:
+    - Bump Standards-Version to 3.9.0 (no further changes)
+    - Build-depend on libgirepository1.0-dev, libcairo2-dev, python-cairo-dev
+      and gobject-introspection
+    - python-gobject: Conflicts/Replaces/Provides python-gi
+    - python-gobject: Add dependency against gir1.0-glib-2.0
+    - Add python-gobject-cairo package and make python-gobject Recommends it
+    - Bump minimal python version to 2.5.2
+  * debian/rules:
+    - Don't need --enable-pygi, it is now merged
+    - Install files for python-gobject-cairo
+
+ -- Laurent Bigonville <bigon@debian.org>  Sun, 21 Nov 2010 21:24:00 +0100
+
 pygobject (2.21.4+is.2.21.3-1) unstable; urgency=low
 
   * Downgrade to version 2.21.3 since PyGI is absolutely not ready to 
