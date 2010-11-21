@@ -13,6 +13,7 @@ export echo=/bin/echo
 configure_flags += \
 		--prefix=/usr \
 		--enable-thread \
+                --enable-pygi \
 		--build=$(DEB_BUILD_GNU_TYPE) \
 		--disable-maintainer-mode
 
@@ -20,7 +21,9 @@ ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
 	configure_flags += --host=$(DEB_HOST_GNU_TYPE)
 endif
 
-PYVERS := $(shell pyversions -vr)
+PYDEFAULTVER := $(shell pyversions --default --version)
+PYVERS := $(shell pyversions --requested --version debian/control)
+PYVERS := $(filter-out $(PYDEFAULTVER), $(PYVERS)) $(PYDEFAULTVER)
 
 # how to call quilt
 PATCH_DIR := $(CURDIR)/debian/patches
@@ -70,8 +73,7 @@ dbg-build-%/configure-stamp: patch-stamp
 
 build-%/build-stamp: build-%/configure-stamp
 	dh_testdir
-	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* pyexecdir=/var/lib/python-support/python$*
-	-PYTHON=/usr/bin/python$* $(MAKE) -C build-$* check
+	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* pyexecdir=/usr/lib/pymodules/python$*
 	touch $@
 
 dbg-build-%/build-stamp: dbg-build-%/configure-stamp
@@ -81,10 +83,20 @@ dbg-build-%/build-stamp: dbg-build-%/configure-stamp
 
 build: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stamp)
 
+build-%/check-stamp: build-%/build-stamp
+	-PYTHON=/usr/bin/python$* $(MAKE) -C build-$* check
+	touch $@
+
+dbg-build-%/check-stamp: dbg-build-%/build-stamp
+	-PYTHON=/usr/bin/python$*-dbg $(MAKE) -C dbg-build-$* check
+	touch $@
+
+check: $(PYVERS:%=build-%/check-stamp) $(PYVERS:%=dbg-build-%/check-stamp)
+
 build-%/install-stamp: build-%/build-stamp
 	dh_testdir
 	dh_testroot
-	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dev pyexecdir=/var/lib/python-support/python$*
+	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dev pyexecdir=/usr/lib/pymodules/python$*
 	touch $@
 
 dbg-build-%/install-stamp: dbg-build-%/build-stamp
@@ -100,18 +112,20 @@ install-stamp: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stam
 	dh_testroot
 	# remove the install stamps to force a reinstall (since dh_clean is
 	# removing the package dirs)
-	dh_clean -k $(PYVERS:%=build-%/install-stamp) $(PYVERS:%=dbg-build-%/install-stamp)
+	dh_prep
+	rm -f $(PYVERS:%=build-%/install-stamp) $(PYVERS:%=dbg-build-%/install-stamp)
 	$(MAKE) -f debian/rules $(PYVERS:%=build-%/install-stamp) $(PYVERS:%=dbg-build-%/install-stamp)
 	find debian/python-gobject-dev -name \*.la -delete
-	mkdir -p debian/python-gobject/var/lib debian/python-gobject/usr/lib
-	mv debian/python-gobject-dev/var/lib/python* debian/python-gobject/var/lib/
+	mkdir -p debian/python-gobject/usr/lib
+	mv debian/python-gobject-dev/usr/lib/pymodules debian/python-gobject/usr/lib/
 	mv debian/python-gobject-dev/usr/lib/libpyglib-*so.* \
 	   debian/python-gobject/usr/lib
-	rm -rf debian/python-gobject-dev/usr/lib/python* debian/python-gobject-dev/var
+	rm -rf debian/python-gobject-dev/usr/lib/python*
 	for i in $$(find debian/python-gobject-dbg -name '*.so' -path 'debian/python-gobject-dbg/usr/lib/python*/site-packages/*'); do \
 		b=$$(basename $$i .so); \
 		mv $$i $$(dirname $$i)/$${b}_d.so; \
 	done
+
 	touch $@
 
 install: install-stamp
@@ -124,7 +138,9 @@ clean::
 	$(MAKE) -f debian/rules unpatch
 	dh_clean *.pyc */*.pyc
 
-binary-indep: install
+maybe_check = $(if $(findstring nocheck,$(DEB_BUILD_OPTIONS)),,check)
+
+binary-indep: install $(maybe_check)
 	dh_testdir
 	dh_testroot
 	dh_installdocs -i
@@ -141,7 +157,7 @@ binary-indep: install
 	dh_md5sums -i
 	dh_builddeb -i
 
-binary-arch: install
+binary-arch: install $(maybe_check)
 	dh_testdir
 	dh_testroot
 	dh_installdocs -s
@@ -163,4 +179,4 @@ binary-arch: install
 	dh_builddeb -s
 
 binary: binary-arch binary-indep
-.PHONY: patch unpatch build install clean binary-indep binary-arch binary
+.PHONY: patch unpatch build check install clean binary-indep binary-arch binary

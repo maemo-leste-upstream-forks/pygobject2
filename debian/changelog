@@ -1,3 +1,124 @@
+pygobject (2.21.4+is.2.21.3-1) unstable; urgency=low
+
+  * Downgrade to version 2.21.3 since PyGI is absolutely not ready to 
+    make it to a stable release. Closes: #590680, #592570.
+  * Revert all Laurent’s corresponding packaging changes, except the 
+    following:
+    + 04_testsuite_gtk.patch: dropped, not needed anymore.
+    + 64_gil_locking.patch: dropped, finally merged upstream.
+    + 90_autofoo.patch: refreshed.
+    + Bump Standards-Version to 3.9.0 (no further changes).
+    + Bump debhelper version to 7.
+    + Replace dh_clean -k by dh_prep.
+  * 20_deprecated_spam.patch: new patch. Avoid spamming the console for 
+    using deprecated functions that every program uses.
+
+ -- Josselin Mouette <joss@debian.org>  Mon, 16 Aug 2010 18:14:38 +0200
+
+pygobject (2.21.4-1) unstable; urgency=low
+
+  [ Laurent Bigonville ]
+  * New upstream release.
+  * Bump Standards-Version to 3.9.0 (no further changes)
+  * Bump debhelper version to 7
+  * debian/control.in:
+    - Build-depend on libgirepository1.0-dev, libcairo2-dev, python-cairo-dev
+    - python-gobject: Conflicts/Replaces/Provides python-gi
+    - Add python-gobject-cairo package and make python-gobject Recommends it
+  * debian/rules:
+    - Don't need --enable-pygi, it is now merged
+    - Install files for python-gobject-cairo
+    - Replace dh_clean -k by dh_prep
+    - Make pygobject-codegen-2.0 call the default version of python
+  * Dropped debian/patches/03_maintainer_mode.patch 
+    debian/patches/04_testsuite_gtk.patch,
+    debian/patches/64_gil_locking.patch,
+    debian/patches/90_autofoo.patch: not needed anymore
+
+  [ Emilio Pozuelo Monfort ]
+  * debian/rules:
+    - Drop above change to make pygobject-codegen-2.0 call the default
+      Python version. Build with the default Python version after all
+      the other ones instead. Closes: #590358.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Mon, 26 Jul 2010 21:16:58 +0200
+
+pygobject (2.21.1-2) unstable; urgency=low
+
+  [ Emilio Pozuelo Monfort ]
+  * debian/control.in:
+    - Drop python2.5{,-dev} (build) dependencies. They were there to
+      make sure Python had wakeupfd support, but that's already in
+      stable and the 2.5 dependency will be problematic in the future,
+      so drop it already.
+
+  [ Laurent Bigonville ]
+  * debian/control:
+    - Bump Standards-Version to 3.8.4
+    - Add Vcs-Svn and Vcs-Browser field
+    - Be more explicit in -dbg long description
+  * debian/rules: Enable pygi support (Closes: #579018)
+  * Switch to dpkg-source 3.0 (quilt) format
+
+ -- Laurent Bigonville <bigon@debian.org>  Mon, 07 Jun 2010 20:05:07 +0200
+
+pygobject (2.21.1-1) unstable; urgency=low
+
+  [ Josselin Mouette ]
+  * Suggest gir1.0-glib-2.0 instead of gobject-introspection-*.
+
+  [ Loïc Minier ]
+  * Split out make check runs in their own targets.
+  * Also make check the dbg builds.
+  * Don't make check when nocheck is in DEB_BUILD_OPTIONS; thanks
+    Daniel Schepler.
+
+  [ Emilio Pozuelo Monfort ]
+  * debian/patches/64_gil_locking.patch:
+    - Add header.
+
+  [ Josselin Mouette ]
+  * New upstream release.
+  * Introspection stuff has been moved to pygi.
+  * 61_wakeupfd-fctnl-and-read.patch: dropped, merged upstream.
+  * 90_autofoo.patch: regenerated.
+
+ -- Josselin Mouette <joss@debian.org>  Mon, 12 Apr 2010 23:41:32 +0200
+
+pygobject (2.20.0-1) unstable; urgency=low
+
+  [ Emilio Pozuelo Monfort ]
+  * python-gobject-dbg is section debug.
+
+  [ Josselin Mouette ]
+  * New upstream release.
+  * Switch installation path to /usr/lib/pymodules instead of 
+    /var/lib/python-support.
+  * Enable girepository support; build-depend on libgirepository1.0-dev.
+  * Suggest some introspection packages.
+  * 90_autofoo.patch: regenerated for the new version.
+
+ -- Josselin Mouette <joss@debian.org>  Thu, 24 Sep 2009 18:53:49 +0200
+
+pygobject (2.18.0-1) unstable; urgency=low
+
+  * Fix English mistake in long descriptions. Closes: #524545.
+  * New upstream release.
+    + Fixes argument passing for glib.IOChannel. Closes: #528459.
+  * 01_pkgconfig-private.patch, 
+    62_install-pyglib-in-libdir-with-python-version.patch:
+    dropped, merged upstream.
+  * 90_autofoo.patch: regenerated.
+
+ -- Josselin Mouette <joss@debian.org>  Fri, 14 Aug 2009 13:37:12 +0200
+
+pygobject (2.16.1-1) unstable; urgency=low
+
+  * New upstream release.
+    + 90_autofoo.patch: regenerated.
+
+ -- Josselin Mouette <joss@debian.org>  Wed, 11 Mar 2009 22:51:50 +0100
+
 pygobject (2.16.0-1) unstable; urgency=low
 
   [ Loic Minier ]
