@@ -2,7 +2,7 @@ pygobject (2.27.0-1) UNRELEASED; urgency=low
 
   * New upstream release.
   * debian/control.in:
-    - Bump Standards-Version to 3.9.0 (no further changes)
+    - Bump Standards-Version to 3.9.1 (no further changes)
     - Build-depend on libgirepository1.0-dev, libcairo2-dev, python-cairo-dev
       and gobject-introspection
     - python-gobject: Conflicts/Replaces/Provides python-gi
@@ -12,8 +12,10 @@ pygobject (2.27.0-1) UNRELEASED; urgency=low
   * debian/rules:
     - Don't need --enable-pygi, it is now merged
     - Install files for python-gobject-cairo
+  * Drop debian/patches/03_maintainer_mode.patch: Merged upstream
+  * Drop debian/patches/90_autofoo.patch: Not needed anymore
 
- -- Laurent Bigonville <bigon@debian.org>  Sun, 21 Nov 2010 21:24:00 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Sun, 21 Nov 2010 21:48:04 +0100
 
 pygobject (2.21.4+is.2.21.3-1) unstable; urgency=low
 
