@@ -14,8 +14,9 @@ pygobject (2.27.0-1) UNRELEASED; urgency=low
     - Install files for python-gobject-cairo
   * Drop debian/patches/03_maintainer_mode.patch: Merged upstream
   * Drop debian/patches/90_autofoo.patch: Not needed anymore
+  * debian/watch: Bump version to 3
 
- -- Laurent Bigonville <bigon@debian.org>  Sun, 21 Nov 2010 21:48:04 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 24 Nov 2010 22:07:46 +0100
 
 pygobject (2.21.4+is.2.21.3-1) unstable; urgency=low
 
