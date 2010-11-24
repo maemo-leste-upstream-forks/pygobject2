@@ -1,4 +1,4 @@
-pygobject (2.27.0-1) UNRELEASED; urgency=low
+pygobject (2.27.0-1) experimental; urgency=low
 
   * New upstream release.
   * debian/control.in:
@@ -16,7 +16,7 @@ pygobject (2.27.0-1) UNRELEASED; urgency=low
   * Drop debian/patches/90_autofoo.patch: Not needed anymore
   * debian/watch: Bump version to 3
 
- -- Laurent Bigonville <bigon@debian.org>  Wed, 24 Nov 2010 22:07:46 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 24 Nov 2010 22:10:22 +0100
 
 pygobject (2.21.4+is.2.21.3-1) unstable; urgency=low
 
