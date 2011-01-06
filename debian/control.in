@@ -30,7 +30,7 @@ Architecture: any
 Depends: ${python:Depends},
          ${shlibs:Depends},
          ${misc:Depends},
-         gir1.0-glib-2.0
+         gir1.2-glib-2.0
 Provides: ${python:Provides}, python-gi
 XB-Python-Version: ${python:Versions}
 Recommends: python-gobject-cairo
