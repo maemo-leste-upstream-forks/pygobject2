@@ -1,10 +1,10 @@
-pygobject (2.27.0-2) UNRELEASED; urgency=low
+pygobject (2.27.0-2) experimental; urgency=low
 
   * debian/control.in:
     - Depend on gir1.2-glib-2.0 instead of in gir1.0-glib-2.0.
     - Build depend on libglib2.0-dev >= 2.24. Closes: #609277.
 
- -- Emilio Pozuelo Monfort <pochu@debian.org>  Thu, 06 Jan 2011 00:42:19 +0000
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sat, 08 Jan 2011 02:34:41 +0000
 
 pygobject (2.27.0-1) experimental; urgency=low
 
