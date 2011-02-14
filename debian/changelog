@@ -10,8 +10,9 @@ pygobject (2.27.90-1) UNRELEASED; urgency=low
     - Drop C/R/P against python-gobject-doc
     - Drop Conflicts against python-gtk2{-dev,} (<< 2.10)
   * debian/rules: Adjust installation path for cairo binding
+  * debian/copyright: Update copyright file
 
- -- Laurent Bigonville <bigon@debian.org>  Mon, 14 Feb 2011 21:56:21 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Mon, 14 Feb 2011 22:18:53 +0100
 
 pygobject (2.27.0-2) experimental; urgency=low
 

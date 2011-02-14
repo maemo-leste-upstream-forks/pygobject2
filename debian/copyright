@@ -5,6 +5,22 @@ It was downloaded from <http://ftp.gnome.org/pub/GNOME/sources/pygobject/>
 
 Upstream authors: James Henstridge <james@daa.com.au>
                   Johan Dahlin <johan@gnome.org>
+                  Gustavo J A M Carneiro <gjc@gnome.org>
+                  Paul Pogonyshev <pogonyshev@gmx.net>
+                  Gian Mario Tagliaretti <gianmt@gnome.org>
+
+Copyright (C) 1998-2003  James Henstridge
+Copyright (C) 2005       Oracle
+Copyright (C) 2005-2009 Johan Dahlin
+Copyright (C) 2006  Johannes Hoelzl
+Copyright (C) 2006-2009 John Finlay
+Copyright (C) 2008  Gian Mario Tagliaretti
+Copyright (C) 2009 Simon van der Linden
+Copyright (C) 2010 Ignacio Casal Quinteiro
+Copyright (c) 2010  litl, LLC
+Copyright (C) 2010 Tomeu Vizoso
+Copyright (C) 2010  Collabora Ltd.
+Copyright (C) 2010 Paolo Borelli
 
 License:
 
