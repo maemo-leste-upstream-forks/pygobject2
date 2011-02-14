@@ -116,8 +116,8 @@ install-stamp: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stam
 	$(MAKE) -f debian/rules $(PYVERS:%=build-%/install-stamp) $(PYVERS:%=dbg-build-%/install-stamp)
 	find debian/python-gobject-dev -name \*.la -delete
 	for i in $(PYVERS); do \
-		mkdir -p debian/python-gobject-cairo/usr/lib/pymodules/python$$i/gtk-2.0/gi; \
-		mv debian/python-gobject-dev/usr/lib/pymodules/python$$i/gtk-2.0/gi/_gi_cairo.so debian/python-gobject-cairo/usr/lib/pymodules/python$$i/gtk-2.0/gi; \
+		mkdir -p debian/python-gobject-cairo/usr/lib/pymodules/python$$i/gi; \
+		mv debian/python-gobject-dev/usr/lib/pymodules/python$$i/gi/_gi_cairo.so debian/python-gobject-cairo/usr/lib/pymodules/python$$i/gi; \
 	done
 	mkdir -p debian/python-gobject/usr/lib
 	mv debian/python-gobject-dev/usr/lib/pymodules debian/python-gobject/usr/lib/

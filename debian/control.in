@@ -12,14 +12,13 @@ Build-Depends: debhelper (>= 7),
                libglib2.0-dev (>= 2.24.0),
                libcairo2-dev,
                libffi-dev (>= 3.0.5),
-               gobject-introspection (>= 0.9.5),
-               libgirepository1.0-dev (>= 0.9.5),
-               python-cairo-dev (>= 1.0.2),
+               gobject-introspection (>= 0.10.2),
+               libgirepository1.0-dev (>= 0.10.2),
+               python-cairo-dev (>= 1.2.0),
                xsltproc,
                docbook-xsl,
                autotools-dev,
                python-all-dbg,
-Build-Conflicts: python2.3-dev (<< 2.3.5)
 XS-Python-Version: >= 2.5
 Standards-Version: 3.9.1
 Vcs-Svn: svn://svn.debian.org/svn/pkg-gnome/desktop/unstable/pygobject
@@ -35,7 +34,7 @@ Provides: ${python:Provides}, python-gi
 XB-Python-Version: ${python:Versions}
 Recommends: python-gobject-cairo
 Suggests: python-gobject-dbg
-Conflicts: python-gtk2 (<< 2.10), python-gi
+Conflicts: python-gi
 Replaces: python-gi
 Description: Python bindings for the GObject library
  GObject is an abstraction layer that allows programming with an object
@@ -67,11 +66,8 @@ Depends: ${python:Depends},
          ${misc:Depends},
          python-gobject (>= ${source:Version}),
          python-dev,
-         libglib2.0-dev (>= 2.8.0),
+         libglib2.0-dev (>= 2.24.0),
          libffi-dev (>= 3.0.5)
-Conflicts: python-gtk2-dev (<< 2.10), python-gobject-doc
-Replaces: python-gobject-doc
-Provides: python-gobject-doc
 Recommends: docbook-xsl
 Description: Development headers for the GObject Python bindings
  GObject is an abstraction layer that allows programming with an object
@@ -86,7 +82,6 @@ Section: debug
 Priority: extra
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, python-dbg, python-gobject (= ${binary:Version})
-Conflicts: python-gtk2 (<< 2.10)
 Description: Python bindings for the GObject library (debug extension)
  GObject is an abstraction layer that allows programming with an object
  paradigm that is compatible with many languages. It is a part of Glib,

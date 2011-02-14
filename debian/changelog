@@ -1,3 +1,18 @@
+pygobject (2.27.90-1) UNRELEASED; urgency=low
+
+  * New upstream release:
+    - Fix glib.main_context_default() causes immediate segfault
+      (Closes: #580791)
+  * debian/control.in:
+    - Bump python-cairo-dev and gobject-introspection build-dependencies
+    - Bump python-gobject-dev dependency against libglib2.0-dev
+    - Drop Build-Conflicts against python2.3-dev (<< 2.3.5)
+    - Drop C/R/P against python-gobject-doc
+    - Drop Conflicts against python-gtk2{-dev,} (<< 2.10)
+  * debian/rules: Adjust installation path for cairo binding
+
+ -- Laurent Bigonville <bigon@debian.org>  Mon, 14 Feb 2011 21:56:21 +0100
+
 pygobject (2.27.0-2) experimental; urgency=low
 
   * debian/control.in:
