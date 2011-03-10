@@ -1,4 +1,4 @@
-pygobject (2.27.91-1) UNRELEASED; urgency=low
+pygobject (2.28.0-1) UNRELEASED; urgency=low
 
   * New upstream release:
     - Fix glib.main_context_default() causes immediate segfault
@@ -12,7 +12,7 @@ pygobject (2.27.91-1) UNRELEASED; urgency=low
   * debian/rules: Adjust installation path for cairo binding
   * debian/copyright: Update copyright file
 
- -- Laurent Bigonville <bigon@debian.org>  Sun, 06 Mar 2011 21:06:38 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 09 Mar 2011 02:37:26 +0100
 
 pygobject (2.27.0-2) experimental; urgency=low
 
