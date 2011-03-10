@@ -11,8 +11,10 @@ pygobject (2.28.0-1) UNRELEASED; urgency=low
     - Drop Conflicts against python-gtk2{-dev,} (<< 2.10)
   * debian/rules: Adjust installation path for cairo binding
   * debian/copyright: Update copyright file
+  * debian/rules: Remove explicit calls to quilt as we are using '3.0 (quilt)'
+    format
 
- -- Laurent Bigonville <bigon@debian.org>  Wed, 09 Mar 2011 02:37:26 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Thu, 10 Mar 2011 22:54:37 +0100
 
 pygobject (2.27.0-2) experimental; urgency=low
 

@@ -24,14 +24,8 @@ PYDEFAULTVER := $(shell pyversions --default --version)
 PYVERS := $(shell pyversions --requested --version debian/control)
 PYVERS := $(filter-out $(PYDEFAULTVER), $(PYVERS)) $(PYDEFAULTVER)
 
-# how to call quilt
-PATCH_DIR := $(CURDIR)/debian/patches
-QUILT := QUILT_PATCHES=$(PATCH_DIR) quilt --quiltrc /dev/null
-
 patch-stamp:
 	dh_testdir
-	# apply patches
-	$(QUILT) push -a || test $$? = 2
 	# backup the original files to restore them in the clean target
 	[ ! -r config.sub ]   || \
 	    (cp config.sub   config.sub.orig   && \
@@ -50,9 +44,6 @@ unpatch:
 	    cp config.sub.orig   config.sub
 	[ ! -r config.guess.orig ]   || \
 	    cp config.guess.orig config.guess
-	# unapply patches, if any
-	$(QUILT) pop -a || test $$? = 2
-	rm -rf .pc
 
 build-%/configure-stamp: patch-stamp
 	dh_testdir
