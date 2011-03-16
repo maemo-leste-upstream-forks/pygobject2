@@ -1,4 +1,4 @@
-pygobject (2.28.0-1) UNRELEASED; urgency=low
+pygobject (2.28.0-1) experimental; urgency=low
 
   * New upstream stable release:
     - Fix glib.main_context_default() causes immediate segfault
@@ -17,7 +17,7 @@ pygobject (2.28.0-1) UNRELEASED; urgency=low
   * d/p/30_[gi-overrides]-fix-exception-block-so-it-works-in-Python-2.5.patch:
     Make exception compatible with python 2.5 (taken from upstream)
 
- -- Laurent Bigonville <bigon@debian.org>  Wed, 16 Mar 2011 13:26:14 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 16 Mar 2011 13:28:29 +0100
 
 pygobject (2.27.0-2) experimental; urgency=low
 
