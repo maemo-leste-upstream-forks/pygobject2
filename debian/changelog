@@ -1,8 +1,9 @@
 pygobject (2.28.0-1) UNRELEASED; urgency=low
 
-  * New upstream release:
+  * New upstream stable release:
     - Fix glib.main_context_default() causes immediate segfault
       (Closes: #580791)
+    - Fix import error with GTK3 gir binding (Closes: #618557)
   * debian/control.in:
     - Bump python-cairo-dev and gobject-introspection build-dependencies
     - Bump python-gobject-dev dependency against libglib2.0-dev
@@ -16,7 +17,7 @@ pygobject (2.28.0-1) UNRELEASED; urgency=low
   * d/p/30_[gi-overrides]-fix-exception-block-so-it-works-in-Python-2.5.patch:
     Make exception compatible with python 2.5 (taken from upstream)
 
- -- Laurent Bigonville <bigon@debian.org>  Thu, 10 Mar 2011 22:57:15 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 16 Mar 2011 13:26:14 +0100
 
 pygobject (2.27.0-2) experimental; urgency=low
 
