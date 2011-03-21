@@ -1,0 +1,109 @@
+From ac11dc70b34fe077be18f7e605c9f3cce03ad3fa Mon Sep 17 00:00:00 2001
+From: Martin Pitt <martin.pitt@ubuntu.com>
+Date: Mon, 21 Mar 2011 12:25:12 +0000
+Subject: Revert "Deduce PYTHON_LIBS in addition to PYTHON_INCLUDES"
+
+This reverts commit fc7d7f7f153d57ff3866b7bfd5e6479d702cc4d9.
+
+This introduces additional libpython dependencies, which breaks distributions
+which support multiple Python versions, and also causes the python interpreter
+to be in memory twice in some cases.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=620215
+---
+diff --git a/gi/Makefile.am b/gi/Makefile.am
+index 28825ab..31f6c79 100644
+--- a/gi/Makefile.am
++++ b/gi/Makefile.am
+@@ -25,7 +25,6 @@ _gi_la_LDFLAGS = \
+ 	-export-symbols-regex "init_gi|PyInit__gi"
+ _gi_la_LIBADD = \
+ 	$(GI_LIBS) \
+-	$(PYTHON_LIBS) \
+ 	$(top_builddir)/glib/libpyglib-2.0-@PYTHON_BASENAME@.la
+ _gi_la_SOURCES = \
+ 	pygi-repository.c \
+@@ -69,8 +68,7 @@ _gi_cairo_la_LDFLAGS = \
+ 	-export-symbols-regex "init_gi_cairo|PyInit__gi_cairo"
+ _gi_cairo_la_LIBADD = \
+ 	$(GI_LIBS) \
+-	$(PYCAIRO_LIBS) \
+-	$(PYTHON_LIBS)
++	$(PYCAIRO_LIBS)
+ _gi_cairo_la_SOURCES = pygi-foreign-cairo.c
+ 
+ 
+diff --git a/gio/Makefile.am b/gio/Makefile.am
+index b412043..6b3eb57 100644
+--- a/gio/Makefile.am
++++ b/gio/Makefile.am
+@@ -85,7 +85,7 @@ EXTRA_DIST += $(GIOUNIX_DEFS) unix.override
+ unix.c: $(GIOUNIX_DEFS) unix.override
+ unix_la_CFLAGS = $(GIOUNIX_CFLAGS)
+ unix_la_LDFLAGS = $(common_ldflags) -export-symbols-regex initunix
+-unix_la_LIBADD = $(GIOUNIX_LIBS) $(PYTHON_LIBS)
++unix_la_LIBADD = $(GIOUNIX_LIBS)
+ unix_la_SOURCES = unixmodule.c
+ nodist_unix_la_SOURCES = unix.c
+ if BUILD_GIOUNIX
+diff --git a/glib/Makefile.am b/glib/Makefile.am
+index 32d0ec9..e210318 100644
+--- a/glib/Makefile.am
++++ b/glib/Makefile.am
+@@ -20,7 +20,7 @@ common_ldflags += -no-undefined
+ endif
+ 
+ libpyglib_2_0_@PYTHON_BASENAME@_la_CFLAGS = $(GLIB_CFLAGS)
+-libpyglib_2_0_@PYTHON_BASENAME@_la_LIBADD = $(GLIB_LIBS) $(FFI_LIBS) $(PYTHON_LIBS)
++libpyglib_2_0_@PYTHON_BASENAME@_la_LIBADD = $(GLIB_LIBS) $(FFI_LIBS)
+ libpyglib_2_0_@PYTHON_BASENAME@_la_SOURCES = 	\
+ 	pyglib.c		\
+ 	pyglib.h		\
+diff --git a/m4/python.m4 b/m4/python.m4
+index 4f98ad7..523e45a 100644
+--- a/m4/python.m4
++++ b/m4/python.m4
+@@ -38,26 +38,23 @@ fi
+ 
+ dnl a macro to check for ability to create python extensions
+ dnl  AM_CHECK_PYTHON_HEADERS([ACTION-IF-POSSIBLE], [ACTION-IF-NOT-POSSIBLE])
+-dnl function also defines PYTHON_INCLUDES and PYTHON_LIBS
++dnl function also defines PYTHON_INCLUDES
+ AC_DEFUN([AM_CHECK_PYTHON_HEADERS],
+ [AC_REQUIRE([AM_PATH_PYTHON])
+ AC_MSG_CHECKING(for headers required to compile python extensions)
+-dnl deduce PYTHON_INCLUDES and PYTHON_LIBS
++dnl deduce PYTHON_INCLUDES
+ py_prefix=`$PYTHON -c "import sys; sys.stdout.write(sys.prefix)"`
+ py_exec_prefix=`$PYTHON -c "import sys; sys.stdout.write(sys.exec_prefix)"`
+ PYTHON_CONFIG=`which $PYTHON`-config
+ if test -x "$PYTHON_CONFIG"; then
+ PYTHON_INCLUDES=`$PYTHON_CONFIG --includes 2>/dev/null`
+-PYTHON_LIBS=`$PYTHON_CONFIG --libs 2>/dev/null`
+ else
+ PYTHON_INCLUDES="-I${py_prefix}/include/python${PYTHON_VERSION}"
+-PYTHON_LIBS="-lpython${PYTHON_VERSION}"
+ if test "$py_prefix" != "$py_exec_prefix"; then
+   PYTHON_INCLUDES="$PYTHON_INCLUDES -I${py_exec_prefix}/include/python${PYTHON_VERSION}"
+ fi
+ fi
+ AC_SUBST(PYTHON_INCLUDES)
+-AC_SUBST(PYTHON_LIBS)
+ dnl check if the headers exist:
+ save_CPPFLAGS="$CPPFLAGS"
+ CPPFLAGS="$CPPFLAGS $PYTHON_INCLUDES"
+diff --git a/tests/Makefile.am b/tests/Makefile.am
+index e5c2a68..9cdb57f 100644
+--- a/tests/Makefile.am
++++ b/tests/Makefile.am
+@@ -50,7 +50,7 @@ noinst_LTLIBRARIES += testhelper.la
+ 
+ testhelper_la_CFLAGS = -I$(top_srcdir)/gobject -I$(top_srcdir)/glib $(PYTHON_INCLUDES) $(GLIB_CFLAGS)
+ testhelper_la_LDFLAGS = -module -avoid-version
+-testhelper_la_LIBADD = $(GLIB_LIBS) $(PYTHON_LIBS)
++testhelper_la_LIBADD = $(GLIB_LIBS)
+ testhelper_la_SOURCES = \
+ 	testhelpermodule.c \
+ 	test-floating.c \
+--
+cgit v0.8.3.4

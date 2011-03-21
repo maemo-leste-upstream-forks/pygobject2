@@ -1,2 +1,4 @@
 20_deprecated_spam.patch
 30_[gi-overrides]-fix-exception-block-so-it-works-in-Python-2.5.patch
+40_revert_libpython_link.patch
+99_autoreconf.patch
