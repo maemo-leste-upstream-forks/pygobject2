@@ -1,10 +1,10 @@
-pygobject (2.28.0-2) UNRELEASED; urgency=low
+pygobject (2.28.0-2) experimental; urgency=low
 
   * Add debian/patches/40_revert_libpython_link.patch: Do not link against
     libpython, taken from upstream (Closes: #618749)
   * Add debian/patches/99_autoreconf.patch: Run autoreconf
 
- -- Laurent Bigonville <bigon@debian.org>  Mon, 21 Mar 2011 14:13:56 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Mon, 21 Mar 2011 14:15:03 +0100
 
 pygobject (2.28.0-1) experimental; urgency=low
 
