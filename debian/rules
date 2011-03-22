@@ -3,6 +3,8 @@
 include /usr/share/gnome-pkg-tools/1/rules/uploaders.mk
 -include /usr/share/gnome-pkg-tools/1/rules/gnome-get-source.mk
 
+include /usr/share/python/python.mk
+
 CFLAGS += -Wall -g -O$(if $(findstring noopt,$(DEB_BUILD_OPTIONS)),0,2)
 
 DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
@@ -63,12 +65,12 @@ dbg-build-%/configure-stamp: patch-stamp
 
 build-%/build-stamp: build-%/configure-stamp
 	dh_testdir
-	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* pyexecdir=/usr/lib/pymodules/python$*
+	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* pyexecdir=$(call py_libdir_sh, $*)
 	touch $@
 
 dbg-build-%/build-stamp: dbg-build-%/configure-stamp
 	dh_testdir
-	PYTHON=/usr/bin/python$*-dbg $(MAKE) -C dbg-build-$*
+	PYTHON=/usr/bin/python$*-dbg $(MAKE) -C dbg-build-$* pyexecdir=$(call py_libdir_sh, $*)
 	touch $@
 
 build: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stamp)
@@ -86,13 +88,19 @@ check: $(PYVERS:%=build-%/check-stamp) $(PYVERS:%=dbg-build-%/check-stamp)
 build-%/install-stamp: build-%/build-stamp
 	dh_testdir
 	dh_testroot
-	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dev pyexecdir=/usr/lib/pymodules/python$*
+	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dev pyexecdir=$(call py_libdir_sh, $*)
+	# dh_python2 trips over this empty dir in the sanity check for >= 2.6, so remove it
+	-rmdir debian/python-gobject-dev/usr/lib/python$*/site-packages
+	# until all reverse dependencies of pygobject have been converted to
+	# dh_python2, install a library search path which is backwards
+	# compatible to pysupport (see Debian#614764)
+	echo "/usr/lib/pymodules/python$*/gtk-2.0/" > $(CURDIR)/debian/python-gobject-dev/$(call py_libdir_sh, $*)/gtk-2.0-pysupport-compat.pth
 	touch $@
 
 dbg-build-%/install-stamp: dbg-build-%/build-stamp
 	dh_testdir
 	dh_testroot
-	PYTHON=/usr/bin/python$*-dbg $(MAKE) -C dbg-build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dbg
+	PYTHON=/usr/bin/python$*-dbg $(MAKE) -C dbg-build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dbg pyexecdir=$(call py_libdir_sh, $*)
 	find debian/python-gobject-dbg ! -type d ! \( -name '*.so' -o -name '*.so.*' \) -delete
 	find debian/python-gobject-dbg -type d -empty -delete
 	touch $@
@@ -107,15 +115,15 @@ install-stamp: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stam
 	$(MAKE) -f debian/rules $(PYVERS:%=build-%/install-stamp) $(PYVERS:%=dbg-build-%/install-stamp)
 	find debian/python-gobject-dev -name \*.la -delete
 	for i in $(PYVERS); do \
-		mkdir -p debian/python-gobject-cairo/usr/lib/pymodules/python$$i/gi; \
-		mv debian/python-gobject-dev/usr/lib/pymodules/python$$i/gi/_gi_cairo.so debian/python-gobject-cairo/usr/lib/pymodules/python$$i/gi; \
+		mkdir -p debian/python-gobject-cairo/$(call py_libdir_sh, $$i)/gi; \
+		mv debian/python-gobject-dev/$(call py_libdir_sh, $$i)/gi/_gi_cairo.so debian/python-gobject-cairo/$(call py_libdir_sh, $$i)/gi; \
 	done
 	mkdir -p debian/python-gobject/usr/lib
-	mv debian/python-gobject-dev/usr/lib/pymodules debian/python-gobject/usr/lib/
+	mv debian/python-gobject-dev/usr/lib/python* debian/python-gobject/usr/lib/
 	mv debian/python-gobject-dev/usr/lib/libpyglib-*so.* \
 	   debian/python-gobject/usr/lib
 	rm -rf debian/python-gobject-dev/usr/lib/python*
-	for i in $$(find debian/python-gobject-dbg -name '*.so' -path 'debian/python-gobject-dbg/usr/lib/python*/site-packages/*'); do \
+	for i in $$(find debian/python-gobject-dbg -name '*.so' -path 'debian/python-gobject-dbg/usr/lib/python*/*-packages/*'); do \
 		b=$$(basename $$i .so); \
 		mv $$i $$(dirname $$i)/$${b}_d.so; \
 	done
@@ -145,7 +153,7 @@ binary-indep: install $(maybe_check)
 	dh_fixperms -i
 	# More permission fixing
 	chmod 755 `grep -rl "^#\!.*python" debian/python-gobject-dev/usr`
-	dh_pysupport -i /usr/share/pygobject
+	dh_python2 -i /usr/share/pygobject
 	dh_installdeb -i
 	dh_gencontrol -i
 	dh_md5sums -i
@@ -164,9 +172,9 @@ binary-arch: install $(maybe_check)
 	dh_link -s
 	dh_compress -s -X.py
 	dh_fixperms -s
-	dh_pysupport -s
-	dh_makeshlibs -ppython-gobject     -V'python-gobject (>= 2.15.2)'
-	dh_makeshlibs -ppython-gobject-dbg -V'python-gobject-dbg (>= 2.15.2)'
+	dh_python2 -a
+	dh_makeshlibs -ppython-gobject     -V'python-gobject (>= 2.28.1)'
+	dh_makeshlibs -ppython-gobject-dbg -V'python-gobject-dbg (>= 2.28.1)'
 	dh_installdeb -s
 	dh_shlibdeps -s
 	dh_gencontrol -s

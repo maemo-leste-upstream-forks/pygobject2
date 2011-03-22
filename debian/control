@@ -9,11 +9,10 @@ Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
 Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Emilio Pozuelo Monfort <pochu@debian.org>, Laurent Bigonville <bigon@debian.org>
 Build-Depends: debhelper (>= 7),
-               python-support (>= 0.4),
                gnome-pkg-tools (>= 0.10),
-               cdbs,
+               cdbs (>= 0.4.90~),
                quilt,
-               python-all-dev (>= 2.5.2),
+               python-all-dev (>= 2.6.6-3~),
                libglib2.0-dev (>= 2.24.0),
                libcairo2-dev,
                libffi-dev (>= 3.0.5),
@@ -24,7 +23,7 @@ Build-Depends: debhelper (>= 7),
                docbook-xsl,
                autotools-dev,
                python-all-dbg,
-XS-Python-Version: >= 2.5
+X-Python-Version: >= 2.5
 Standards-Version: 3.9.1
 Vcs-Svn: svn://svn.debian.org/svn/pkg-gnome/desktop/unstable/pygobject
 Vcs-Browser: http://svn.debian.org/viewsvn/pkg-gnome/desktop/unstable/pygobject
