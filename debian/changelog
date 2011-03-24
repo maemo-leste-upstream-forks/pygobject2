@@ -1,4 +1,4 @@
-pygobject (2.28.1-1) UNRELEASED; urgency=low
+pygobject (2.28.3-1) UNRELEASED; urgency=low
 
   [ Laurent Bigonville ]
   * New upstream release (Closes: #619338).
@@ -34,16 +34,12 @@ pygobject (2.28.1-1) UNRELEASED; urgency=low
       succeed.
     - debian/rules: Disable fakeroot for the tests by unsetting $LD_PRELOAD.
       Otherwise the tests try to connect to root's session D-BUS.
-    - Add 50_gio_tests_for_separate_build_tree.patch,
-      51_gschema_tests_for_separate_build_tree.patch: Various fixes to allow
-      the tests to succeed with a separate build tree. Also committed into
-      upstream git.
     - debian/control.in: Add build dependencies: xvfb (as we now use it in
       debian/rules), dbus-x11 (as the test suite uses dbus-launch), and
       python-apt-dbg/python-cairo-dbg, so that the test cases for the debug
       builds have all dependencies met.
 
- -- Laurent Bigonville <bigon@debian.org>  Thu, 24 Mar 2011 15:31:51 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Thu, 24 Mar 2011 15:53:34 +0100
 
 pygobject (2.28.0-2) experimental; urgency=low
 
