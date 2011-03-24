@@ -1,4 +1,4 @@
-pygobject (2.28.3-1) UNRELEASED; urgency=low
+pygobject (2.28.3-1) experimental; urgency=low
 
   [ Laurent Bigonville ]
   * New upstream release (Closes: #619338).
@@ -39,7 +39,7 @@ pygobject (2.28.3-1) UNRELEASED; urgency=low
       python-apt-dbg/python-cairo-dbg, so that the test cases for the debug
       builds have all dependencies met.
 
- -- Laurent Bigonville <bigon@debian.org>  Thu, 24 Mar 2011 15:53:34 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Thu, 24 Mar 2011 16:05:06 +0100
 
 pygobject (2.28.0-2) experimental; urgency=low
 
