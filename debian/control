@@ -35,11 +35,11 @@ Depends: ${python:Depends},
          ${misc:Depends},
          gir1.2-glib-2.0
 Provides: ${python:Provides}, python-gi
-XB-Python-Version: ${python:Versions}
 Recommends: python-gobject-cairo
 Suggests: python-gobject-dbg
 Conflicts: python-gi
 Replaces: python-gi
+Breaks: ${python:Breaks}
 Description: Python bindings for the GObject library
  GObject is an abstraction layer that allows programming with an object
  paradigm that is compatible with many languages. It is a part of Glib,
@@ -55,7 +55,7 @@ Depends: ${python:Depends},
          ${misc:Depends},
          python-cairo
 Provides: ${python:Provides}
-XB-Python-Version: ${python:Versions}
+Breaks: ${python:Breaks}
 Description: Python Cairo bindings for the GObject library
  GObject is an abstraction layer that allows programming with an object
  paradigm that is compatible with many languages. It is a part of Glib,
