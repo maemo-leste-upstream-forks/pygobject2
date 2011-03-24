@@ -1,1 +1,3 @@
 20_deprecated_spam.patch
+50_gio_tests_for_separate_build_tree.patch
+51_gschema_tests_for_separate_build_tree.patch

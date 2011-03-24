@@ -28,24 +28,10 @@ PYVERS := $(filter-out $(PYDEFAULTVER), $(PYVERS)) $(PYDEFAULTVER)
 
 patch-stamp:
 	dh_testdir
-	# backup the original files to restore them in the clean target
-	[ ! -r config.sub ]   || \
-	    (cp config.sub   config.sub.orig   && \
-	     cp /usr/share/misc/config.sub   config.sub)
-	[ ! -r config.guess ] || \
-	    (cp config.guess config.guess.orig && \
-	     cp /usr/share/misc/config.guess config.guess)
+	dh_autoreconf
 	touch $@
 
 patch: patch-stamp
-
-unpatch:
-	rm -f patch-stamp
-	# restore files from backup (before unpatching)
-	[ ! -r config.sub.orig ]   || \
-	    cp config.sub.orig   config.sub
-	[ ! -r config.guess.orig ]   || \
-	    cp config.guess.orig config.guess
 
 build-%/configure-stamp: patch-stamp
 	dh_testdir
@@ -76,11 +62,17 @@ dbg-build-%/build-stamp: dbg-build-%/configure-stamp
 build: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stamp)
 
 build-%/check-stamp: build-%/build-stamp
-	-PYTHON=/usr/bin/python$* $(MAKE) -C build-$* check
+	find gi glib gobject gio -name '*.py' -exec cp '$(CURDIR)/{}' build-$*/'{}' \;
+	# don't run the tests under fakeroot, otherwise they will try to
+	# connect to root's session D-BUS
+	-PYTHON=/usr/bin/python$* LD_PRELOAD= xvfb-run $(MAKE) -C build-$* check
 	touch $@
 
 dbg-build-%/check-stamp: dbg-build-%/build-stamp
-	-PYTHON=/usr/bin/python$*-dbg $(MAKE) -C dbg-build-$* check
+	find gi glib gobject gio -name '*.py' -exec cp '$(CURDIR)/{}' dbg-build-$*/'{}' \;
+	# don't run the tests under fakeroot, otherwise they will try to
+	# connect to root's session D-BUS
+	-PYTHON=/usr/bin/python$*-dbg LD_PRELOAD= xvfb-run $(MAKE) -C dbg-build-$* check
 	touch $@
 
 check: $(PYVERS:%=build-%/check-stamp) $(PYVERS:%=dbg-build-%/check-stamp)
@@ -136,8 +128,9 @@ clean::
 	dh_testdir
 	dh_testroot
 	rm -f install-stamp
+	rm -f patch-stamp
 	rm -rf build-* dbg-build-*
-	$(MAKE) -f debian/rules unpatch
+	dh_autoreconf_clean
 	dh_clean *.pyc */*.pyc
 
 maybe_check = $(if $(findstring nocheck,$(DEB_BUILD_OPTIONS)),,check)
@@ -182,4 +175,4 @@ binary-arch: install $(maybe_check)
 	dh_builddeb -s
 
 binary: binary-arch binary-indep
-.PHONY: patch unpatch build check install clean binary-indep binary-arch binary
+.PHONY: patch build check install clean binary-indep binary-arch binary
