@@ -8,7 +8,8 @@ pygobject (2.28.1-1) UNRELEASED; urgency=low
     - Make python-gobject-dbg Depends against ${python:Depends}
       instead of python-dbg
     - Build-dependends against dh-autoreconf
-    - Add xauth to build-depends, needed by the tests
+    - Add xauth, gir1.2-glib-2.0, gir1.2-gtk-3.0 and gir1.2-freedesktop
+      to build-depends, needed by the tests
   * Drop d/p/40_revert_libpython_link.patch,
     d/p/30_[gi-overrides]-fix-exception-block-so-it-works-in-Python-2.5.patch:
     Applied upstream
@@ -42,7 +43,7 @@ pygobject (2.28.1-1) UNRELEASED; urgency=low
       python-apt-dbg/python-cairo-dbg, so that the test cases for the debug
       builds have all dependencies met.
 
- -- Laurent Bigonville <bigon@debian.org>  Thu, 24 Mar 2011 14:53:22 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Thu, 24 Mar 2011 15:31:51 +0100
 
 pygobject (2.28.0-2) experimental; urgency=low
 
