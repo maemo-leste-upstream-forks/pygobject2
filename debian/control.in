@@ -4,20 +4,31 @@ Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
 Uploaders: @GNOME_TEAM@
 Build-Depends: debhelper (>= 7),
-               python-support (>= 0.4),
                gnome-pkg-tools (>= 0.10),
-               cdbs,
+               dh-autoreconf,
+               cdbs (>= 0.4.90~),
                quilt,
-               python-all-dev (>= 2.5),
-               libglib2.0-dev (>= 2.22.4),
+               python-all-dev (>= 2.6.6-3~),
+               libglib2.0-dev (>= 2.24.0),
+               libcairo2-dev,
                libffi-dev (>= 3.0.5),
+               gobject-introspection (>= 0.10.2),
+               libgirepository1.0-dev (>= 0.10.2),
+               python-cairo-dev (>= 1.2.0),
                xsltproc,
+               xvfb,
+               xauth,
+               dbus-x11,
                docbook-xsl,
                autotools-dev,
                python-all-dbg,
-Build-Conflicts: python2.3-dev (<< 2.3.5)
-XS-Python-Version: >= 2.5
-Standards-Version: 3.9.0
+               python-apt-dbg,
+               python-cairo-dbg,
+               gir1.2-glib-2.0,
+               gir1.2-gtk-3.0,
+               gir1.2-freedesktop
+X-Python-Version: >= 2.5
+Standards-Version: 3.9.1
 Vcs-Svn: svn://svn.debian.org/svn/pkg-gnome/desktop/unstable/pygobject
 Vcs-Browser: http://svn.debian.org/viewsvn/pkg-gnome/desktop/unstable/pygobject
 
@@ -25,11 +36,13 @@ Package: python-gobject
 Architecture: any
 Depends: ${python:Depends},
          ${shlibs:Depends},
-         ${misc:Depends}
-Provides: ${python:Provides}
-XB-Python-Version: ${python:Versions}
+         ${misc:Depends},
+         gir1.2-glib-2.0
+Provides: ${python:Provides}, python-gi
+Recommends: python-gobject-cairo
 Suggests: python-gobject-dbg
-Conflicts: python-gtk2 (<< 2.10)
+Conflicts: python-gi
+Replaces: python-gi
 Description: Python bindings for the GObject library
  GObject is an abstraction layer that allows programming with an object
  paradigm that is compatible with many languages. It is a part of Glib,
@@ -38,17 +51,29 @@ Description: Python bindings for the GObject library
  This package contains the Python bindings for GObject. It is mostly
  used by other bindings to map their GObjects to Python objects.
 
+Package: python-gobject-cairo
+Architecture: any
+Depends: ${python:Depends},
+         ${shlibs:Depends},
+         ${misc:Depends},
+         python-cairo
+Provides: ${python:Provides}
+Description: Python Cairo bindings for the GObject library
+ GObject is an abstraction layer that allows programming with an object
+ paradigm that is compatible with many languages. It is a part of Glib,
+ the core library used to build GTK+ and GNOME.
+ .
+ This package contains the Python Cairo bindings for GObject. It is mostly
+ used by other bindings to map their GObjects to Python objects.
+
 Package: python-gobject-dev
 Architecture: all
 Depends: ${python:Depends},
          ${misc:Depends},
          python-gobject (>= ${source:Version}),
          python-dev,
-         libglib2.0-dev (>= 2.8.0),
+         libglib2.0-dev (>= 2.24.0),
          libffi-dev (>= 3.0.5)
-Conflicts: python-gtk2-dev (<< 2.10), python-gobject-doc
-Replaces: python-gobject-doc
-Provides: python-gobject-doc
 Recommends: docbook-xsl
 Description: Development headers for the GObject Python bindings
  GObject is an abstraction layer that allows programming with an object
@@ -62,8 +87,7 @@ Package: python-gobject-dbg
 Section: debug
 Priority: extra
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, python-dbg, python-gobject (= ${binary:Version})
-Conflicts: python-gtk2 (<< 2.10)
+Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}, python-gobject (= ${binary:Version})
 Description: Python bindings for the GObject library (debug extension)
  GObject is an abstraction layer that allows programming with an object
  paradigm that is compatible with many languages. It is a part of Glib,
@@ -72,4 +96,4 @@ Description: Python bindings for the GObject library (debug extension)
  This package contains the Python bindings for GObject. It is mostly
  used by other bindings to map their GObjects to Python objects.
  .
- This package contains the extensions built for the python debug interpreter.
+ This package contains the extensions built for the Python debug interpreter.

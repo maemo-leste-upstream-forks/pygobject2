@@ -1,3 +1,103 @@
+pygobject (2.28.3-1) experimental; urgency=low
+
+  [ Laurent Bigonville ]
+  * New upstream release (Closes: #619338).
+  * debian/control.in:
+    - Bump cdbs and python-all-dev build-dependencies
+    - Drop XB-Python-Version: ${python:Versions}
+    - Make python-gobject-dbg Depends against ${python:Depends}
+      instead of python-dbg
+    - Build-dependends against dh-autoreconf
+    - Add xauth, gir1.2-glib-2.0, gir1.2-gtk-3.0 and gir1.2-freedesktop
+      to build-depends, needed by the tests
+  * Drop d/p/40_revert_libpython_link.patch,
+    d/p/30_[gi-overrides]-fix-exception-block-so-it-works-in-Python-2.5.patch:
+    Applied upstream
+  * Drop debian/patches/99_autoreconf.patch: Not needed anymore
+  * debian/rules: Call dh_autoreconf{_clean} instead of handeling this by hand,
+    should Closes: #558530
+
+  [ Martin Pitt ]
+  * debian/rules: Move from pysupport (which is being deprecated) to
+    dh_python2. Drop python-support build dependency.
+    (Closes: #614764)
+  * debian/rules: Install a library search path for a pysupport compatible
+    gtk-2.0 directory, to avoid instantly breaking all reverse dependencies.
+    This needs to stay until they get converted to dh_python2.
+  * Fix test suite calls during package build (Closes: #619257):
+    - debian/rules: Copy Python files from our modules into build tree, so
+      that the tests actually find them. In Python you can't have Python
+      modules and compiled extensions which belong to the same import in
+      different directories. (Unfortunately it's hard to upstream this, so
+      keep it as a Debian specific hack for now.)
+    - debian/rules: Run the tests under xvfb so that the Gdk/Gtk ones can
+      succeed.
+    - debian/rules: Disable fakeroot for the tests by unsetting $LD_PRELOAD.
+      Otherwise the tests try to connect to root's session D-BUS.
+    - debian/control.in: Add build dependencies: xvfb (as we now use it in
+      debian/rules), dbus-x11 (as the test suite uses dbus-launch), and
+      python-apt-dbg/python-cairo-dbg, so that the test cases for the debug
+      builds have all dependencies met.
+
+ -- Laurent Bigonville <bigon@debian.org>  Thu, 24 Mar 2011 16:05:06 +0100
+
+pygobject (2.28.0-2) experimental; urgency=low
+
+  * Add debian/patches/40_revert_libpython_link.patch: Do not link against
+    libpython, taken from upstream (Closes: #618749)
+  * Add debian/patches/99_autoreconf.patch: Run autoreconf
+
+ -- Laurent Bigonville <bigon@debian.org>  Mon, 21 Mar 2011 14:15:03 +0100
+
+pygobject (2.28.0-1) experimental; urgency=low
+
+  * New upstream stable release:
+    - Fix glib.main_context_default() causes immediate segfault
+      (Closes: #580791)
+    - Fix import error with GTK3 gir binding (Closes: #618557)
+  * debian/control.in:
+    - Bump python-cairo-dev and gobject-introspection build-dependencies
+    - Bump python-gobject-dev dependency against libglib2.0-dev
+    - Drop Build-Conflicts against python2.3-dev (<< 2.3.5)
+    - Drop C/R/P against python-gobject-doc
+    - Drop Conflicts against python-gtk2{-dev,} (<< 2.10)
+  * debian/rules: Adjust installation path for cairo binding
+  * debian/copyright: Update copyright file
+  * debian/rules: Remove explicit calls to quilt as we are using '3.0 (quilt)'
+    format
+  * d/p/30_[gi-overrides]-fix-exception-block-so-it-works-in-Python-2.5.patch:
+    Make exception compatible with python 2.5 (taken from upstream)
+
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 16 Mar 2011 13:28:29 +0100
+
+pygobject (2.27.0-2) experimental; urgency=low
+
+  * debian/control.in:
+    - Depend on gir1.2-glib-2.0 instead of in gir1.0-glib-2.0.
+    - Build depend on libglib2.0-dev >= 2.24. Closes: #609277.
+
+ -- Emilio Pozuelo Monfort <pochu@debian.org>  Sat, 08 Jan 2011 02:34:41 +0000
+
+pygobject (2.27.0-1) experimental; urgency=low
+
+  * New upstream release.
+  * debian/control.in:
+    - Bump Standards-Version to 3.9.1 (no further changes)
+    - Build-depend on libgirepository1.0-dev, libcairo2-dev, python-cairo-dev
+      and gobject-introspection
+    - python-gobject: Conflicts/Replaces/Provides python-gi
+    - python-gobject: Add dependency against gir1.0-glib-2.0
+    - Add python-gobject-cairo package and make python-gobject Recommends it
+    - Bump minimal python version to 2.5.2
+  * debian/rules:
+    - Don't need --enable-pygi, it is now merged
+    - Install files for python-gobject-cairo
+  * Drop debian/patches/03_maintainer_mode.patch: Merged upstream
+  * Drop debian/patches/90_autofoo.patch: Not needed anymore
+  * debian/watch: Bump version to 3
+
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 24 Nov 2010 22:10:22 +0100
+
 pygobject (2.21.4+is.2.21.3-1) unstable; urgency=low
 
   * Downgrade to version 2.21.3 since PyGI is absolutely not ready to 
