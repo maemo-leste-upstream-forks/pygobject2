@@ -1,8 +1,8 @@
-pygobject (2.28.3-3) UNRELEASED; urgency=low
+pygobject (2.28.3-3) unstable; urgency=low
 
   * Rebuild for python 2.7 transition, no source changes.
 
- -- Laurent Bigonville <bigon@debian.org>  Tue, 19 Apr 2011 21:26:33 +0200
+ -- Laurent Bigonville <bigon@debian.org>  Tue, 19 Apr 2011 21:38:48 +0200
 
 pygobject (2.28.3-2) unstable; urgency=low
 
