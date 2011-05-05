@@ -1,9 +1,15 @@
-pygobject (2.28.3-4) UNRELEASED; urgency=low
+pygobject (2.28.4-1) UNRELEASED; urgency=low
 
+  [ Josselin Mouette ]
   * Drop ${python:Provides} for python-gobject-cairo (it depends on 
     python-cairo).
 
- -- Josselin Mouette <joss@debian.org>  Mon, 25 Apr 2011 17:30:13 +0200
+  [ Laurent Bigonville ]
+  * New upstream release.
+    - Revert ABI break (Closes: #625703)
+  * debian/control.in: Bump Standards-Version to 3.9.2 (no further changes)
+
+ -- Laurent Bigonville <bigon@debian.org>  Thu, 05 May 2011 18:39:13 +0200
 
 pygobject (2.28.3-3) unstable; urgency=low
 

@@ -33,7 +33,7 @@ Build-Depends: debhelper (>= 7),
                gir1.2-gtk-3.0,
                gir1.2-freedesktop
 X-Python-Version: >= 2.5
-Standards-Version: 3.9.1
+Standards-Version: 3.9.2
 Vcs-Svn: svn://svn.debian.org/svn/pkg-gnome/desktop/unstable/pygobject
 Vcs-Browser: http://svn.debian.org/viewsvn/pkg-gnome/desktop/unstable/pygobject
 
