@@ -1,0 +1,152 @@
+From ad96a3f1d187a640ec0a463b766fd5e027f3c16a Mon Sep 17 00:00:00 2001
+From: Martin Pitt <martin.pitt@ubuntu.com>
+Date: Mon, 02 May 2011 13:49:52 +0000
+Subject: Fix symbol names to be locale independent
+
+We currently use upper() to present enum values, which are usually defined in
+lower case in the typelib, in upper cases. However, upper() is locale
+dependent, so that e. g. in tr_TR.UTF-8, "invalid" becomes "iNVALiD"
+because Turkish has some extra variants of "i".
+
+Use a local ASCII-only translate() call instead to avoid this. Thanks to Nils
+Philippsen for the idea!
+
+This also adds a test locale "te_ST@nouppera" which defines toupper('a') == 'a'.
+Run the Enum tests under this locale to reproduce the bug and verify the fix.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=649165
+---
+diff --git a/gi/module.py b/gi/module.py
+index 3e2b59e..463d975 100644
+--- a/gi/module.py
++++ b/gi/module.py
+@@ -24,6 +24,7 @@ from __future__ import absolute_import
+ 
+ import os
+ import gobject
++import string
+ 
+ import gi
+ from .overrides import registry
+@@ -120,8 +121,14 @@ class IntrospectionModule(object):
+                 wrapper.__info__ = info
+                 wrapper.__module__ = 'gi.repository.' + info.get_namespace()
+ 
++                # Don't use upper() here to avoid locale specific
++                # identifier conversion (e. g. in Turkish 'i'.upper() == 'i')
++                # see https://bugzilla.gnome.org/show_bug.cgi?id=649165
++                ascii_upper_trans = string.maketrans(
++                        'abcdefgjhijklmnopqrstuvwxyz', 
++                        'ABCDEFGJHIJKLMNOPQRSTUVWXYZ')
+                 for value_info in info.get_values():
+-                    value_name = value_info.get_name().upper()
++                    value_name = value_info.get_name().translate(ascii_upper_trans)
+                     setattr(wrapper, value_name, wrapper(value_info.get_value()))
+ 
+             if g_type != gobject.TYPE_NONE:
+diff --git a/tests/te_ST@nouppera b/tests/te_ST@nouppera
+new file mode 100644
+index 0000000..a511e90
+--- a/dev/null
++++ b/tests/te_ST@nouppera
+@@ -0,0 +1,50 @@
++LC_IDENTIFICATION
++title      "pygobject test locale"
++END LC_IDENTIFICATION
++
++LC_COLLATE
++copy "POSIX"
++END LC_COLLATE
++
++LC_CTYPE
++# a → a, other characters normally
++toupper (<U0061>,<U0061>); (<U0062>,<U0042>); (<U0063>,<U0043>); \
++        (<U0076>,<U0056>); (<U006C>,<U004C>); (<U0075>,<U0055>); \
++        (<U0065>,<U0045>);
++END LC_CTYPE
++
++LC_MESSAGES
++copy "en_US"
++END LC_MESSAGES
++
++LC_MONETARY
++copy "en_US"
++END LC_MONETARY
++
++LC_NUMERIC
++copy "POSIX"
++END LC_NUMERIC
++
++LC_TIME
++copy "POSIX"
++END LC_TIME
++
++LC_PAPER
++copy "en_US"
++END LC_PAPER
++
++LC_TELEPHONE
++copy "en_US"
++END LC_TELEPHONE
++
++LC_MEASUREMENT
++copy "en_US"
++END LC_MEASUREMENT
++
++LC_NAME
++copy "en_US"
++END LC_NAME
++
++LC_ADDRESS
++copy "en_US"
++END LC_ADDRESS
+diff --git a/tests/test_gi.py b/tests/test_gi.py
+index 4aa5532..6990225 100644
+--- a/tests/test_gi.py
++++ b/tests/test_gi.py
+@@ -5,6 +5,11 @@
+ import sys
+ 
+ import unittest
++import tempfile
++import shutil
++import os
++import locale
++import subprocess
+ from gi.repository import GObject
+ 
+ import gobject
+@@ -960,6 +965,31 @@ class TestPointer(unittest.TestCase):
+ 
+ class TestEnum(unittest.TestCase):
+ 
++    @classmethod
++    def setUpClass(cls):
++        '''Run tests under a test locale.
++
++        Upper case conversion of member names should not be locale specific;
++        e.  g. in Turkish, "i".upper() == "i", which gives results like "iNVALiD"
++
++        Run test under a locale which defines toupper('a') == 'a'
++        '''
++        cls.locale_dir = tempfile.mkdtemp()
++        subprocess.check_call(['localedef', '-i',
++            os.path.join(os.path.dirname(os.path.realpath(__file__)), 'te_ST@nouppera'),
++            '-c', '-f', 'UTF-8', os.path.join(cls.locale_dir, 'te_ST.UTF-8@nouppera')])
++        os.environ['LOCPATH'] = cls.locale_dir
++        locale.setlocale(locale.LC_ALL, 'te_ST.UTF-8@nouppera')
++
++    @classmethod
++    def tearDownClass(cls):
++        locale.setlocale(locale.LC_ALL, 'C')
++        shutil.rmtree(cls.locale_dir)
++        try:
++            del os.environ['LOCPATH']
++        except KeyError:
++            pass
++
+     def test_enum(self):
+         self.assertTrue(issubclass(GIMarshallingTests.Enum, int))
+         self.assertTrue(isinstance(GIMarshallingTests.Enum.VALUE1, GIMarshallingTests.Enum))
+--
+cgit v0.9

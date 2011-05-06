@@ -1,1 +1,2 @@
 20_deprecated_spam.patch
+21_fix_symbol_names_to_be_locale_independent.patch

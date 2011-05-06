@@ -8,8 +8,10 @@ pygobject (2.28.4-1) UNRELEASED; urgency=low
   * New upstream release.
     - Revert ABI break (Closes: #625703)
   * debian/control.in: Bump Standards-Version to 3.9.2 (no further changes)
+  * debian/patches/21_fix_symbol_names_to_be_locale_independent.patch:
+    Fix case conversion issue (Taken from upstream)
 
- -- Laurent Bigonville <bigon@debian.org>  Thu, 05 May 2011 18:39:13 +0200
+ -- Laurent Bigonville <bigon@debian.org>  Fri, 06 May 2011 13:36:18 +0200
 
 pygobject (2.28.3-3) unstable; urgency=low
 
