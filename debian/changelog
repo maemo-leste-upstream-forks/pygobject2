@@ -1,3 +1,9 @@
+pygobject (2.28.4-2) UNRELEASED; urgency=low
+
+  * debian/watch: Fix syntax to actually catch current versions.
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 14 Jun 2011 10:46:01 +0200
+
 pygobject (2.28.4-1) unstable; urgency=low
 
   [ Josselin Mouette ]
