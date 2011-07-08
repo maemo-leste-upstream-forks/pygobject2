@@ -1,1 +1,4 @@
+00git_enum_properties.patch
+00git_cairo_init.patch
+00git_textiter_crash.patch
 20_deprecated_spam.patch

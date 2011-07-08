@@ -1,3 +1,14 @@
+pygobject (2.28.6-2) UNRELEASED; urgency=low
+
+  * Cherrypick some fixes from pygobject-2-28 upstream branch:
+    - Add 00git_enum_properties.patch: Add support for enums in
+      gobject.property
+    - Add 00git_cairo_init.patch: Correctly initialize the _gi_cairo_functions
+      array to be zero filled
+    - 00git_textiter_crash.patch: Fix crash in Gtk.TextIter overrides
+
+ -- Martin Pitt <mpitt@debian.org>  Fri, 08 Jul 2011 09:54:25 +0200
+
 pygobject (2.28.6-1) unstable; urgency=low
 
   * New upstream bug fix release.
