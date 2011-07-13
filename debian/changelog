@@ -1,3 +1,11 @@
+pygobject (2.28.6-3) UNRELEASED; urgency=low
+
+  * Add 00git_test_case_hang.patch: Fix hang in test suite when
+    TestGDBusClient.test_native_calls_async() test case fails. (Cherrypicked
+    from upstream pygobject-2-28 branch.)
+
+ -- Martin Pitt <mpitt@debian.org>  Wed, 13 Jul 2011 08:21:03 +0200
+
 pygobject (2.28.6-2) unstable; urgency=low
 
   * Cherrypick some fixes from pygobject-2-28 upstream branch:
