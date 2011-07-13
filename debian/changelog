@@ -1,8 +1,13 @@
 pygobject (2.28.6-3) UNRELEASED; urgency=low
 
-  * Add 00git_test_case_hang.patch: Fix hang in test suite when
-    TestGDBusClient.test_native_calls_async() test case fails. (Cherrypicked
-    from upstream pygobject-2-28 branch.)
+  * Cherrypick some fixes from pygobject-2-28 upstream branch:
+    - 00git_test_case_hang.patch: Fix hang in test suite when
+      TestGDBusClient.test_native_calls_async() test case fails.
+    - 00git_messagebox_type.patch: Fix MessageBox so it correctly handles
+      the type constructor param.
+    - 00git_python3_build.patch, 00git_python3-maketrans.patch: Python 3 fixes.
+    - 00git_gio_test.patch: Port test_properties from static gio to GI Gio, so
+      that the tests will also work with Python 3.
 
  -- Martin Pitt <mpitt@debian.org>  Wed, 13 Jul 2011 08:21:03 +0200
 
