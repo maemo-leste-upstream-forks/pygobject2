@@ -8,6 +8,11 @@ pygobject (2.28.6-3) UNRELEASED; urgency=low
     - 00git_python3_build.patch, 00git_python3-maketrans.patch: Python 3 fixes.
     - 00git_gio_test.patch: Port test_properties from static gio to GI Gio, so
       that the tests will also work with Python 3.
+  * debian/control.in, debian/rules: Add and build python3-gobject and
+    python3-gobject-dbg packages. Until we get py3cairo packaged in Debian (in
+    the works), we need to build the python3 flavour with --disable-cairo, and
+    apply some workarounds in debian/rules (see the "FIXME"s); these will
+    disappear again with py3cairo.
 
  -- Martin Pitt <mpitt@debian.org>  Wed, 13 Jul 2011 08:21:03 +0200
 
