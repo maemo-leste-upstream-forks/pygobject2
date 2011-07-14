@@ -212,6 +212,7 @@ binary-arch: install $(maybe_check)
 	dh_installchangelogs -s ChangeLog
 	dh_strip -ppython-gobject --dbg-package=python-gobject-dbg
 	dh_strip -ppython-gobject-cairo --dbg-package=python-gobject-dbg
+	dh_strip -ppython3-gobject --dbg-package=python3-gobject-dbg
 	rm -rf debian/python-gobject-dbg/usr/share/doc/python-gobject-dbg
 	ln -sf python-gobject debian/python-gobject-dbg/usr/share/doc/python-gobject-dbg
 	dh_link -s
