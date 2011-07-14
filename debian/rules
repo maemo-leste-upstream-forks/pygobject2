@@ -219,8 +219,10 @@ binary-arch: install $(maybe_check)
 	dh_fixperms -s
 	dh_python2 -a
 	dh_python3 -a
-	dh_makeshlibs -ppython-gobject     -V'python-gobject (>= 2.28.1)'
-	dh_makeshlibs -ppython-gobject-dbg -V'python-gobject-dbg (>= 2.28.1)'
+	dh_makeshlibs -ppython-gobject      -V'python-gobject (>= 2.28.1)'
+	dh_makeshlibs -ppython-gobject-dbg  -V'python-gobject-dbg (>= 2.28.1)'
+	dh_makeshlibs -ppython3-gobject     -V'python3-gobject (>= 2.28.1)'
+	dh_makeshlibs -ppython3-gobject-dbg -V'python3-gobject-dbg (>= 2.28.1)'
 	dh_installdeb -s
 	dh_shlibdeps -s
 	dh_gencontrol -s
