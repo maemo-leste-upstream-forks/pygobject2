@@ -1,3 +1,10 @@
+pygobject-2 (2.28.6-6) UNRELEASED; urgency=low
+
+  * debian/copyright: Update to current licenses/copyrights, and convert to
+    DEP-5.
+
+ -- Martin Pitt <mpitt@debian.org>  Thu, 18 Aug 2011 07:49:03 +0200
+
 pygobject-2 (2.28.6-5) experimental; urgency=low
 
   * Split package: The 2.28 version is now deprecated and called pygobject-2;
