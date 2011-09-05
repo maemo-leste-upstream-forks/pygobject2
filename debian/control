@@ -38,8 +38,8 @@ Depends: ${python:Depends},
          ${shlibs:Depends},
          ${misc:Depends}
 Provides: ${python:Provides}
-Conflicts: python-gobject (<< 2.90)
 Breaks: python-gobject (<< 2.90)
+Replaces: python-gobject (<< 2.90)
 Suggests: python-gobject-2-dbg
 Description: deprecated static Python bindings for the GObject library
  GObject is an abstraction layer that allows programming with an object
@@ -61,6 +61,8 @@ Depends: ${python:Depends},
          libglib2.0-dev (>= 2.24.0),
          libffi-dev (>= 3.0.5)
 Recommends: docbook-xsl
+Breaks: python-gobject-dev (<< 2.90)
+Replaces: python-gobject-dev (<< 2.90)
 Description: development headers for the static GObject Python bindings
  GObject is an abstraction layer that allows programming with an object
  paradigm that is compatible with many languages. It is a part of Glib,
@@ -76,8 +78,8 @@ Section: debug
 Priority: extra
 Architecture: any
 Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}, python-gobject-2 (= ${binary:Version})
-Conflicts: python-gobject-dbg (<< 2.90)
 Breaks: python-gobject-dbg (<< 2.90)
+Replaces: python-gobject-dbg (<< 2.90)
 Description: deprecated static Python bindings for the GObject library (debug extension)
  GObject is an abstraction layer that allows programming with an object
  paradigm that is compatible with many languages. It is a part of Glib,
