@@ -81,13 +81,13 @@ check: $(PYVERS:%=build-%/check-stamp) $(PYVERS:%=dbg-build-%/check-stamp)
 build-%/install-stamp: build-%/build-stamp
 	dh_testdir
 	dh_testroot
-	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-dev pyexecdir=$(call py_libdir_sh, $*)
+	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-2-dev pyexecdir=$(call py_libdir_sh, $*)
 	# dh_python2 trips over this empty dir in the sanity check for >= 2.6, so remove it
-	-rmdir debian/python-gobject-dev/usr/lib/python$*/site-packages
+	-rmdir debian/python-gobject-2-dev/usr/lib/python$*/site-packages
 	# until all reverse dependencies of pygobject have been converted to
 	# dh_python2, install a library search path which is backwards
 	# compatible to pysupport (see Debian#614764)
-	echo "/usr/lib/pymodules/python$*/gtk-2.0/" > $(CURDIR)/debian/python-gobject-dev/$(call py_libdir_sh, $*)/gtk-2.0-pysupport-compat.pth
+	echo "/usr/lib/pymodules/python$*/gtk-2.0/" > $(CURDIR)/debian/python-gobject-2-dev/$(call py_libdir_sh, $*)/gtk-2.0-pysupport-compat.pth
 	touch $@
 
 dbg-build-%/install-stamp: dbg-build-%/build-stamp
@@ -106,12 +106,12 @@ install-stamp: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stam
 	dh_prep
 	rm -f $(PYVERS:%=build-%/install-stamp) $(PYVERS:%=dbg-build-%/install-stamp)
 	$(MAKE) -f debian/rules $(PYVERS:%=build-%/install-stamp) $(PYVERS:%=dbg-build-%/install-stamp)
-	find debian/python-gobject-dev -name \*.la -delete
+	find debian/python-gobject-2-dev -name \*.la -delete
 	mkdir -p debian/python-gobject-2/usr/lib
-	mv debian/python-gobject-dev/usr/lib/python* debian/python-gobject-2/usr/lib/
-	mv debian/python-gobject-dev/usr/lib/libpyglib-*so.* \
+	mv debian/python-gobject-2-dev/usr/lib/python* debian/python-gobject-2/usr/lib/
+	mv debian/python-gobject-2-dev/usr/lib/libpyglib-*so.* \
 	   debian/python-gobject-2/usr/lib
-	rm -rf debian/python-gobject-dev/usr/lib/python*
+	rm -rf debian/python-gobject-2-dev/usr/lib/python*
 	for i in $$(find debian/python-gobject-2-dbg -name '*.so' -path 'debian/python-gobject-2-dbg/usr/lib/python*/*-packages/*'); do \
 		b=$$(basename $$i .so); \
 		mv $$i $$(dirname $$i)/$${b}_d.so; \
@@ -142,7 +142,7 @@ binary-indep: install $(maybe_check)
 	dh_compress -i -X.py
 	dh_fixperms -i
 	# More permission fixing
-	chmod 755 `grep -rl "^#\!.*python" debian/python-gobject-dev/usr`
+	chmod 755 `grep -rl "^#\!.*python" debian/python-gobject-2-dev/usr`
 	dh_python2 -i /usr/share/pygobject
 	dh_installdeb -i
 	dh_gencontrol -i

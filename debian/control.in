@@ -47,7 +47,7 @@ Description: deprecated static Python bindings for the GObject library
  written code. These static bindings just exist to provide backwards
  compatibility for GNOME 2 based software.
 
-Package: python-gobject-dev
+Package: python-gobject-2-dev
 Architecture: all
 Depends: ${python:Depends},
          ${misc:Depends},
@@ -56,6 +56,8 @@ Depends: ${python:Depends},
          libglib2.0-dev (>= 2.24.0),
          libffi-dev (>= 3.0.5)
 Recommends: docbook-xsl
+Breaks: python-gobject-dev (<< 2.90)
+Replaces: python-gobject-dev (<< 2.90)
 Description: development headers for the static GObject Python bindings
  GObject is an abstraction layer that allows programming with an object
  paradigm that is compatible with many languages. It is a part of Glib,

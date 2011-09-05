@@ -52,7 +52,7 @@ Description: deprecated static Python bindings for the GObject library
  written code. These static bindings just exist to provide backwards
  compatibility for GNOME 2 based software.
 
-Package: python-gobject-dev
+Package: python-gobject-2-dev
 Architecture: all
 Depends: ${python:Depends},
          ${misc:Depends},
