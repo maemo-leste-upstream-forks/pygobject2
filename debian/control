@@ -37,7 +37,7 @@ Architecture: any
 Depends: ${python:Depends},
          ${shlibs:Depends},
          ${misc:Depends}
-Provides: ${python:Provides}
+Provides: ${python:Provides}, python2.6-gobject, python2.7-gobject
 Breaks: python-gobject (<< 2.90)
 Replaces: python-gobject (<< 2.90)
 Suggests: python-gobject-2-dbg
