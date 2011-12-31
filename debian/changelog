@@ -1,3 +1,9 @@
+pygobject-2 (2.28.6-10) UNRELEASED; urgency=low
+
+  * Update repository URL.
+
+ -- Josselin Mouette <joss@debian.org>  Sat, 31 Dec 2011 14:55:08 +0100
+
 pygobject-2 (2.28.6-9) unstable; urgency=high
 
   * Urgency high as this blocks the testing migration of g-i, pygobject, and

@@ -29,8 +29,8 @@ Build-Depends: debhelper (>= 7),
                python-cairo-dbg
 X-Python-Version: >= 2.5
 Standards-Version: 3.9.2
-Vcs-Svn: svn://svn.debian.org/svn/pkg-gnome/desktop/unstable/pygobject-2
-Vcs-Browser: http://svn.debian.org/viewsvn/pkg-gnome/desktop/unstable/pygobject-2
+Vcs-Svn: svn://svn.debian.org/svn/pkg-gnome/packages/unstable/pygobject-2
+Vcs-Browser: http://svn.debian.org/viewsvn/pkg-gnome/packages/unstable/pygobject-2
 
 Package: python-gobject-2
 Architecture: any
