@@ -1,8 +1,5 @@
-Format: http://dep.debian.net/deps/dep5/
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: pygobject
-Upstream-Contact: 
- John (J5) Palmieri <johnp@redhat.com>
- Tomeu Vizoso <tomeu.vizoso@collabora.co.uk>
 Source: http://ftp.gnome.org/pub/GNOME/sources/pygobject/
 
 Files: *
