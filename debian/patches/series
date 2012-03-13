@@ -7,4 +7,5 @@
 00git_python3_build.patch
 00git_python3-maketrans.patch
 00git_fix_qdata_warning.patch
+00git_gio_flag_type.patch
 20_deprecated_spam.patch
