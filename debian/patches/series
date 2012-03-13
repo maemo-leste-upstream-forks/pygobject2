@@ -6,4 +6,5 @@
 00git_messagebox_type.patch
 00git_python3_build.patch
 00git_python3-maketrans.patch
+00git_fix_qdata_warning.patch
 20_deprecated_spam.patch
