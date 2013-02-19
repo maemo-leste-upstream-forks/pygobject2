@@ -2,6 +2,9 @@ pygobject-2 (2.28.6-11) UNRELEASED; urgency=low
 
   * debian/control.in: Drop the "Provides: python2.6-gobject". There are no
     reverse dependencies anyway, and we don't encourage any new ones.
+  * Add 00git_class_init.patch: Move property and signal creation into
+    _class_init(). This allows old PyGTK applications to work with static
+    PyGObject and GLib 2.35.x. (LP: #1129309)
 
  -- Martin Pitt <mpitt@debian.org>  Tue, 19 Feb 2013 16:03:43 +0100
 
