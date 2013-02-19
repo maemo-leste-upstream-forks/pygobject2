@@ -2,12 +2,11 @@
 # 
 # Modifications should be made to debian/control.in instead.
 # This file is regenerated automatically in the clean target.
-
 Source: pygobject-2
 Section: oldlibs
 Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Sjoerd Simons <sjoerd@debian.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Martin Pitt <mpitt@debian.org>, Sjoerd Simons <sjoerd@debian.org>
 Build-Depends: debhelper (>= 7),
                gnome-pkg-tools (>= 0.10),
                dh-autoreconf,
@@ -37,7 +36,7 @@ Architecture: any
 Depends: ${python:Depends},
          ${shlibs:Depends},
          ${misc:Depends}
-Provides: ${python:Provides}, python2.6-gobject, python2.7-gobject
+Provides: ${python:Provides}, python2.7-gobject
 Breaks: python-gobject (<< 2.90)
 Replaces: python-gobject (<< 2.90)
 Suggests: python-gobject-2-dbg

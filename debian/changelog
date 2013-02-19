@@ -1,3 +1,10 @@
+pygobject-2 (2.28.6-11) UNRELEASED; urgency=low
+
+  * debian/control.in: Drop the "Provides: python2.6-gobject". There are no
+    reverse dependencies anyway, and we don't encourage any new ones.
+
+ -- Martin Pitt <mpitt@debian.org>  Tue, 19 Feb 2013 16:03:43 +0100
+
 pygobject-2 (2.28.6-10) unstable; urgency=low
 
   [ Josselin Mouette ]
