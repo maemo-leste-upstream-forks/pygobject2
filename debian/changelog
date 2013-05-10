@@ -1,6 +1,7 @@
 pygobject-2 (2.28.6-12) UNRELEASED; urgency=low
 
   * Rebuild to use Python 2.7 by default. (Closes: #701972)
+  * Bump Standards-Version to 3.9.4, no changes necessary.
 
  -- Martin Pitt <mpitt@debian.org>  Fri, 10 May 2013 08:13:06 +0200
 
