@@ -17,6 +17,7 @@ configure_flags += \
 		--enable-thread \
 		--build=$(DEB_BUILD_GNU_TYPE) \
 		--disable-introspection \
+		--disable-silent-rules \
 		--disable-maintainer-mode
 
 ifneq ($(DEB_BUILD_GNU_TYPE),$(DEB_HOST_GNU_TYPE))
