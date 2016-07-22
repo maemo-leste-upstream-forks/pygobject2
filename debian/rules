@@ -62,6 +62,7 @@ dbg-build-%/build-stamp: dbg-build-%/configure-stamp
 	touch $@
 
 build: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stamp)
+build-arch build-indep: build
 
 build-%/check-stamp: build-%/build-stamp
 	find gi glib gobject gio -name '*.py' -exec cp '$(CURDIR)/{}' build-$*/'{}' \;
@@ -172,4 +173,4 @@ binary-arch: install $(maybe_check)
 	dh_builddeb -s
 
 binary: binary-arch binary-indep
-.PHONY: patch build check install clean binary-indep binary-arch binary
+.PHONY: patch build-indep build-arch build check install clean binary-indep binary-arch binary
