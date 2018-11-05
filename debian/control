@@ -10,6 +10,7 @@ Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.o
 Build-Depends: autotools-dev,
                dbus (>= 1.8) <!nocheck>,
                debhelper (>= 11),
+               dh-python,
                docbook-xsl,
                gnome-pkg-tools (>= 0.10),
                libcairo2-dev,

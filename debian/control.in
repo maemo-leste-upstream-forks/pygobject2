@@ -6,6 +6,7 @@ Uploaders: @GNOME_TEAM@
 Build-Depends: autotools-dev,
                dbus (>= 1.8) <!nocheck>,
                debhelper (>= 11),
+               dh-python,
                docbook-xsl,
                gnome-pkg-tools (>= 0.10),
                libcairo2-dev,
