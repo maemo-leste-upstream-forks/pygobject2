@@ -45,8 +45,8 @@ Description: deprecated static Python bindings for the GObject library
  the core library used to build GTK+ and GNOME.
  .
  This package contains the static Python bindings for gobject, glib, and gio.
- These are deprecated by dynamic gobject-introspection bindings (which are
- provided with the python-gobject package), and should not be used in newly
+ These are deprecated by dynamic GObject-Introspection bindings (which are
+ provided by the python-gi package), and should not be used in newly
  written code. These static bindings just exist to provide backwards
  compatibility for GNOME 2 based software.
 
@@ -69,7 +69,7 @@ Description: development headers for the static GObject Python bindings
  This package contains the development headers needed to build
  static Python bindings relying on pygobject. Note that this is obsolete, new
  libraries and applications should use the dynamic gobject-introspection
- bindings (which are provided with the python-gobject package).
+ bindings (which are provided by the python-gi package).
 
 Package: python-gobject-2-dbg
 Section: debug
@@ -86,8 +86,8 @@ Description: deprecated static Python bindings for the GObject library (debug ex
  the core library used to build GTK+ and GNOME.
  .
  This package contains the static Python bindings for gobject, glib, and gio.
- These are deprecated by dynamic gobject-introspection bindings (which are
- provided with the python-gobject package), and should not be used in newly
+ These are deprecated by dynamic GObject-Introspection bindings (which are
+ provided by the python-gi package), and should not be used in newly
  written code. These static bindings just exist to provide backwards
  compatibility for GNOME 2 based software.
  .
