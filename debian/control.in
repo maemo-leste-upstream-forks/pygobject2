@@ -71,7 +71,6 @@ Description: development headers for the static GObject Python bindings
 
 Package: python-gobject-2-dbg
 Section: debug
-Priority: extra
 Architecture: any
 Depends: python-gobject-2 (= ${binary:Version}),
          ${misc:Depends},
