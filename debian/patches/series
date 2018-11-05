@@ -10,3 +10,4 @@
 00git_gio_flag_type.patch
 00git_class_init.patch
 20_deprecated_spam.patch
+Use-dbus-run-session-instead-of-dbus-launch-to-run-tests.patch

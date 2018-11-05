@@ -8,7 +8,7 @@ Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
 Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Emilio Pozuelo Monfort <pochu@debian.org>, Martin Pitt <mpitt@debian.org>, Sjoerd Simons <sjoerd@debian.org>
 Build-Depends: autotools-dev,
-               dbus-x11 <!nocheck>,
+               dbus (>= 1.8) <!nocheck>,
                debhelper (>= 11),
                docbook-xsl,
                gnome-pkg-tools (>= 0.10),
