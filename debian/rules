@@ -125,7 +125,6 @@ install: install-stamp
 
 clean::
 	dh_testdir
-	dh_testroot
 	rm -f install-stamp
 	rm -f patch-stamp
 	rm -rf build-* dbg-build-*
