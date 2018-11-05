@@ -3,25 +3,25 @@ Section: oldlibs
 Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
 Uploaders: @GNOME_TEAM@
-Build-Depends: debhelper (>= 7),
-               gnome-pkg-tools (>= 0.10),
-               dh-autoreconf,
+Build-Depends: autotools-dev,
                cdbs (>= 0.4.90~),
-               quilt,
-               python-all-dev (>= 2.6.6-3~),
-               libglib2.0-dev (>= 2.24.0),
+               dbus-x11 <!nocheck>,
+               debhelper (>= 7),
+               dh-autoreconf,
+               docbook-xsl,
+               gnome-pkg-tools (>= 0.10),
                libcairo2-dev,
                libffi-dev (>= 3.0.5),
-               python-cairo-dev (>= 1.2.0),
-               xsltproc,
-               xvfb <!nocheck>,
-               xauth <!nocheck>,
-               dbus-x11 <!nocheck>,
-               docbook-xsl,
-               autotools-dev,
+               libglib2.0-dev (>= 2.24.0),
                python-all-dbg,
+               python-all-dev (>= 2.6.6-3~),
                python-apt-dbg <!nocheck>,
-               python-cairo-dbg <!nocheck>
+               python-cairo-dbg <!nocheck>,
+               python-cairo-dev (>= 1.2.0),
+               quilt,
+               xauth <!nocheck>,
+               xsltproc,
+               xvfb <!nocheck>
 X-Python-Version: >= 2.5
 Standards-Version: 3.9.4
 Vcs-Git: https://salsa.debian.org/gnome-team/pygobject.git -b debian/pygobject-2
@@ -29,10 +29,11 @@ Vcs-Browser: https://salsa.debian.org/gnome-team/pygobject
 
 Package: python-gobject-2
 Architecture: any
-Depends: ${python:Depends},
-         ${shlibs:Depends},
-         ${misc:Depends}
-Provides: ${python:Provides}, python2.7-gobject
+Depends: ${misc:Depends},
+         ${python:Depends},
+         ${shlibs:Depends}
+Provides: python2.7-gobject,
+          ${python:Provides}
 Breaks: python-gobject (<< 2.90)
 Replaces: python-gobject (<< 2.90)
 Suggests: python-gobject-2-dbg
@@ -49,12 +50,12 @@ Description: deprecated static Python bindings for the GObject library
 
 Package: python-gobject-2-dev
 Architecture: all
-Depends: ${python:Depends},
-         ${misc:Depends},
-         python-gobject-2 (>= ${source:Version}),
-         python-dev,
+Depends: libffi-dev (>= 3.0.5),
          libglib2.0-dev (>= 2.24.0),
-         libffi-dev (>= 3.0.5)
+         python-dev,
+         python-gobject-2 (>= ${source:Version}),
+         ${misc:Depends},
+         ${python:Depends}
 Recommends: docbook-xsl
 Breaks: python-gobject-dev (<< 2.90)
 Replaces: python-gobject-dev (<< 2.90)
@@ -72,7 +73,10 @@ Package: python-gobject-2-dbg
 Section: debug
 Priority: extra
 Architecture: any
-Depends: ${python:Depends}, ${shlibs:Depends}, ${misc:Depends}, python-gobject-2 (= ${binary:Version})
+Depends: python-gobject-2 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python:Depends},
+         ${shlibs:Depends}
 Breaks: python-gobject-dbg (<< 2.90)
 Replaces: python-gobject-dbg (<< 2.90)
 Description: deprecated static Python bindings for the GObject library (debug extension)
