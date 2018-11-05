@@ -18,14 +18,14 @@ Build-Depends: debhelper (>= 7),
                libffi-dev (>= 3.0.5),
                python-cairo-dev (>= 1.2.0),
                xsltproc,
-               xvfb,
-               xauth,
-               dbus-x11,
+               xvfb <!nocheck>,
+               xauth <!nocheck>,
+               dbus-x11 <!nocheck>,
                docbook-xsl,
                autotools-dev,
                python-all-dbg,
-               python-apt-dbg,
-               python-cairo-dbg
+               python-apt-dbg <!nocheck>,
+               python-cairo-dbg <!nocheck>
 X-Python-Version: >= 2.5
 Standards-Version: 3.9.4
 Vcs-Git: https://salsa.debian.org/gnome-team/pygobject.git -b debian/pygobject-2
