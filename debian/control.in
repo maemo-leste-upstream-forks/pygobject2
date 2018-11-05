@@ -5,8 +5,7 @@ Maintainer: Josselin Mouette <joss@debian.org>
 Uploaders: @GNOME_TEAM@
 Build-Depends: autotools-dev,
                dbus-x11 <!nocheck>,
-               debhelper (>= 7),
-               dh-autoreconf,
+               debhelper (>= 11),
                docbook-xsl,
                gnome-pkg-tools (>= 0.10),
                libcairo2-dev,
