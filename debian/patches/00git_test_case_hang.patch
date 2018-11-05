@@ -1,13 +1,12 @@
-From 09d6cc2a6c857c7ef96432a279a853410718b150 Mon Sep 17 00:00:00 2001
 From: Martin Pitt <martin.pitt@ubuntu.com>
 Date: Fri, 8 Jul 2011 10:15:53 +0200
-Subject: [PATCH] gdbus tests: Fix hang if test case fails
+Subject: gdbus tests: Fix hang if test case fails
 
 In the TestGDBusClient.test_native_calls_async() test case, the main loop was
 never quit when the call failed.
 ---
- tests/test_gdbus.py |    6 ++++--
- 1 files changed, 4 insertions(+), 2 deletions(-)
+ tests/test_gdbus.py | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/tests/test_gdbus.py b/tests/test_gdbus.py
 index a9442fe..ca4150a 100644
@@ -26,6 +25,3 @@ index a9442fe..ca4150a 100644
  
          main_loop = gobject.MainLoop()
          data = {'main_loop': main_loop}
--- 
-1.7.5.4
-

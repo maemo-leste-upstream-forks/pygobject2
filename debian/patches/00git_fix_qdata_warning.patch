@@ -1,12 +1,11 @@
-From 42d871eb0b08ee6d55e95cc7e4b90844919555b9 Mon Sep 17 00:00:00 2001
 From: Ivan Stankovic <ivan.stankovic@avl.com>
 Date: Tue, 21 Feb 2012 12:24:58 +0100
-Subject: [PATCH 1/2] Fix set_qdata warning on accessing NULL gobject property
+Subject: Fix set_qdata warning on accessing NULL gobject property
 
-https://bugzilla.gnome.org/show_bug.cgi?id=661155
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=661155
 ---
- gobject/pygobject.c |    4 +++-
- 1 files changed, 3 insertions(+), 1 deletions(-)
+ gobject/pygobject.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/gobject/pygobject.c b/gobject/pygobject.c
 index 6c2f06c..70dc89a 100644
@@ -23,6 +22,3 @@ index 6c2f06c..70dc89a 100644
      return pygobject_new_full(obj, TRUE, NULL);
  }
  
--- 
-1.7.9.1
-

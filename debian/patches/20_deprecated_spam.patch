@@ -1,8 +1,16 @@
-Index: pygobject-2.21.3/gobject/pygobject.c
-===================================================================
---- pygobject-2.21.3.orig/gobject/pygobject.c	2010-08-16 18:53:01.622365078 +0200
-+++ pygobject-2.21.3/gobject/pygobject.c	2010-08-16 18:53:09.678366668 +0200
-@@ -176,9 +176,6 @@ pygobject_register_sinkfunc(GType type,
+From: Josselin Mouette <joss@debian.org>
+Date: Mon, 16 Aug 2010 18:14:38 +0200
+Subject: Avoid spamming the console for using deprecated functions
+
+---
+ gobject/pygobject.c | 3 ---
+ 1 file changed, 3 deletions(-)
+
+diff --git a/gobject/pygobject.c b/gobject/pygobject.c
+index 70dc89a..456f743 100644
+--- a/gobject/pygobject.c
++++ b/gobject/pygobject.c
+@@ -182,9 +182,6 @@ pygobject_register_sinkfunc(GType type, void (* sinkfunc)(GObject *object))
  {
      SinkFunc sf;
  

@@ -1,12 +1,10 @@
-From e2dc4ac346a16b6976b92e84819c7203629beb4a Mon Sep 17 00:00:00 2001
 From: Ignacio Casal Quinteiro <icq@gnome.org>
 Date: Thu, 21 Apr 2011 16:52:20 +0200
-Subject: [PATCH 3/4] [python3] fix build. PYcairo_IMPORT doesn't exists
- anymore
+Subject: [python3] fix build. PYcairo_IMPORT doesn't exists anymore
 
 ---
- gi/pygi-foreign-cairo.c |    7 ++++++-
- 1 files changed, 6 insertions(+), 1 deletions(-)
+ gi/pygi-foreign-cairo.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/gi/pygi-foreign-cairo.c b/gi/pygi-foreign-cairo.c
 index 81b9865..edf52d7 100644
@@ -34,6 +32,3 @@ index 81b9865..edf52d7 100644
      if (Pycairo_CAPI == NULL)
          return PYGLIB_MODULE_ERROR_RETURN;
  
--- 
-1.7.5.4
-

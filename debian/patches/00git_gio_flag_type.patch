@@ -1,4 +1,3 @@
-From 42d01f060c5d764baa881d13c103d68897163a49 Mon Sep 17 00:00:00 2001
 From: Ryan Lortie <desrt@desrt.ca>
 Date: Mon, 12 Mar 2012 16:44:14 -0400
 Subject: gio-types.defs: change some enums to flags
@@ -9,10 +8,10 @@ warnings about the mismatch.
 
 Change them to flags.
 
-https://bugzilla.gnome.org/show_bug.cgi?id=668522
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=668522
 ---
- gio/gio-types.defs |    6 +++---
- 1 files changed, 3 insertions(+), 3 deletions(-)
+ gio/gio-types.defs | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/gio/gio-types.defs b/gio/gio-types.defs
 index 331e0bc..7eee5c8 100644
@@ -45,6 +44,3 @@ index 331e0bc..7eee5c8 100644
    (in-module "gio")
    (c-name "GSocketMsgFlags")
    (gtype-id "G_TYPE_SOCKET_MSG_FLAGS")
--- 
-1.7.9.1
-

@@ -1,12 +1,11 @@
-From 71e7762e884d1dce82acbab4851c0436718c029a Mon Sep 17 00:00:00 2001
 From: Johan Dahlin <jdahlin@litl.com>
 Date: Mon, 27 Jun 2011 10:56:20 -0300
-Subject: [PATCH 1/4] Add support for enums in gobject.property
+Subject: Add support for enums in gobject.property
 
-https://bugzilla.gnome.org/show_bug.cgi?id=653488
+Bug: https://bugzilla.gnome.org/show_bug.cgi?id=653488
 ---
- gobject/propertyhelper.py |   23 ++++++++++++++++-------
- tests/test_properties.py  |   40 ++++++++++++++++++++++++++++++++++++----
+ gobject/propertyhelper.py | 23 ++++++++++++++++-------
+ tests/test_properties.py  | 40 ++++++++++++++++++++++++++++++++++++----
  2 files changed, 52 insertions(+), 11 deletions(-)
 
 diff --git a/gobject/propertyhelper.py b/gobject/propertyhelper.py
@@ -138,6 +137,3 @@ index 54afd11..74c1b38 100644
          self.assertRaises(TypeError, gobject.property, type=object, default=0)
          self.assertRaises(TypeError, gobject.property, type=complex)
          self.assertRaises(TypeError, gobject.property, flags=-10)
--- 
-1.7.5.4
-

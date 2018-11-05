@@ -1,12 +1,10 @@
-From 9281ce8876ca5205c7cbe0a55eba94e7ea3fc10d Mon Sep 17 00:00:00 2001
 From: "John (J5) Palmieri" <johnp@redhat.com>
 Date: Fri, 1 Jul 2011 05:19:15 -0400
-Subject: [PATCH 3/4] correctly initialize the _gi_cairo_functions array to be
- zero filled
+Subject: correctly initialize the _gi_cairo_functions array to be zero filled
 
 ---
- gi/pygi-foreign-cairo.c |    2 +-
- 1 files changed, 1 insertions(+), 1 deletions(-)
+ gi/pygi-foreign-cairo.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/gi/pygi-foreign-cairo.c b/gi/pygi-foreign-cairo.c
 index e332a22..81b9865 100644
@@ -21,6 +19,3 @@ index e332a22..81b9865 100644
  PYGLIB_MODULE_START(_gi_cairo, "_gi_cairo")
  {
      Pycairo_IMPORT;
--- 
-1.7.5.4
-

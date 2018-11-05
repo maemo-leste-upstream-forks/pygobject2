@@ -1,7 +1,6 @@
-From 9456ba70fdb98b3a4eb7ee2f630182387a54ca00 Mon Sep 17 00:00:00 2001
 From: Martin Pitt <martinpitt@gnome.org>
 Date: Tue, 19 Feb 2013 15:39:56 +0100
-Subject: [PATCH] Move property and signal creation into _class_init()
+Subject: Move property and signal creation into _class_init()
 
 We must not add class interfaces after g_type_class_ref() has been called the
 first time. Move signal and property creation from pyg_type_register() into
@@ -94,7 +93,7 @@ index 2a84606..91f7315 100644
                  Py_DECREF(value);
                  value = PYGLIB_PyUnicode_FromString(msg);
              }
-@@ -892,11 +881,63 @@ add_properties (GType instance_type, PyObject *properties)
+@@ -892,10 +881,62 @@ add_properties (GType instance_type, PyObject *properties)
  	}
      }
  
@@ -102,7 +101,7 @@ index 2a84606..91f7315 100644
      return ret;
  }
  
- static void
++static void
 +pyg_object_class_init(GObjectClass *class, PyObject *py_class)
 +{
 +    PyObject *gproperties, *gsignals, *overridden_signals;
@@ -155,10 +154,9 @@ index 2a84606..91f7315 100644
 +    }
 +}
 +
-+static void
+ static void
  pyg_register_class_init(GType gtype, PyGClassInitFunc class_init)
  {
-     GSList *list;
 @@ -1068,7 +1109,7 @@ pygobject__g_instance_init(GTypeInstance   *instance,
   */
  static void
@@ -311,6 +309,3 @@ index 2a84606..91f7315 100644
      return 0;
  }
  
--- 
-1.8.1.2
-

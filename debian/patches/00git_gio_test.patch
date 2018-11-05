@@ -1,14 +1,13 @@
-From 5c2786804d997df680131542b4afb31e2db3a2cb Mon Sep 17 00:00:00 2001
 From: Martin Pitt <martin.pitt@ubuntu.com>
 Date: Wed, 13 Jul 2011 10:40:25 +0200
-Subject: [PATCH 4/4] [gi] Port test_properties from static gio to GI Gio
+Subject: [gi] Port test_properties from static gio to GI Gio
 
 As we ripped out the static gio bindings a while ago, this test case was using
 the system installed gio bindings with Python 2, and now fails completely with
 Python 3. Rewrite it to use gi.repository.Gio.
 ---
- tests/test_properties.py |   38 +++++++++++++++++++-------------------
- 1 files changed, 19 insertions(+), 19 deletions(-)
+ tests/test_properties.py | 38 +++++++++++++++++++-------------------
+ 1 file changed, 19 insertions(+), 19 deletions(-)
 
 diff --git a/tests/test_properties.py b/tests/test_properties.py
 index 74c1b38..3930671 100644
@@ -80,6 +79,3 @@ index 74c1b38..3930671 100644
                            default=1)
  
      def testRange(self):
--- 
-1.7.5.4
-

@@ -1,13 +1,12 @@
-From 667bec76ccbc85cc1d54a0e68977dbda241c028c Mon Sep 17 00:00:00 2001
 From: Martin Pitt <martin.pitt@ubuntu.com>
 Date: Wed, 13 Jul 2011 08:42:22 +0200
-Subject: [PATCH 2/4] [python3] Fix maketrans import
+Subject: [python3] Fix maketrans import
 
 Python3 moved the maketrans() function from the string module to a str method.
 This unbreaks gi/module.py for Python 3 again.
 ---
- gi/module.py |    8 ++++++--
- 1 files changed, 6 insertions(+), 2 deletions(-)
+ gi/module.py | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
 diff --git a/gi/module.py b/gi/module.py
 index 70df76c..d56bdaf 100644
@@ -35,6 +34,3 @@ index 70df76c..d56bdaf 100644
                          'abcdefgjhijklmnopqrstuvwxyz', 
                          'ABCDEFGJHIJKLMNOPQRSTUVWXYZ')
                  for value_info in info.get_values():
--- 
-1.7.5.4
-
