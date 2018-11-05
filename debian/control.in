@@ -22,6 +22,7 @@ Build-Depends: autotools-dev,
                xauth <!nocheck>,
                xsltproc,
                xvfb <!nocheck>
+Rules-Requires-Root: no
 X-Python-Version: >= 2.5
 Standards-Version: 3.9.4
 Vcs-Git: https://salsa.debian.org/gnome-team/pygobject.git -b debian/pygobject-2
