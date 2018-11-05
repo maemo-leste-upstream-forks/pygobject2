@@ -82,7 +82,6 @@ check: $(PYVERS:%=build-%/check-stamp) $(PYVERS:%=dbg-build-%/check-stamp)
 
 build-%/install-stamp: build-%/build-stamp
 	dh_testdir
-	dh_testroot
 	PYTHON=/usr/bin/python$* $(MAKE) -C build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-2-dev pyexecdir=$(call py_libdir_sh, $*)
 	# dh_python2 trips over this empty dir in the sanity check for >= 2.6, so remove it
 	-rmdir debian/python-gobject-2-dev/usr/lib/python$*/site-packages
@@ -94,7 +93,6 @@ build-%/install-stamp: build-%/build-stamp
 
 dbg-build-%/install-stamp: dbg-build-%/build-stamp
 	dh_testdir
-	dh_testroot
 	PYTHON=/usr/bin/python$*-dbg $(MAKE) -C dbg-build-$* install DESTDIR=$(CURDIR)/debian/python-gobject-2-dbg pyexecdir=$(call py_libdir_sh, $*)
 	find debian/python-gobject-2-dbg ! -type d ! \( -name '*.so' -o -name '*.so.*' \) -delete
 	find debian/python-gobject-2-dbg -type d -empty -delete
@@ -102,7 +100,6 @@ dbg-build-%/install-stamp: dbg-build-%/build-stamp
 
 install-stamp: $(PYVERS:%=build-%/build-stamp) $(PYVERS:%=dbg-build-%/build-stamp)
 	dh_testdir
-	dh_testroot
 	# remove the install stamps to force a reinstall (since dh_clean is
 	# removing the package dirs)
 	dh_prep
@@ -135,7 +132,6 @@ maybe_check = $(if $(findstring nocheck,$(DEB_BUILD_OPTIONS)),,check)
 
 binary-indep: install $(maybe_check)
 	dh_testdir
-	dh_testroot
 	dh_installdocs -i
 	dh_installexamples -i
 	dh_installchangelogs ChangeLog -i
@@ -152,7 +148,6 @@ binary-indep: install $(maybe_check)
 
 binary-arch: install $(maybe_check)
 	dh_testdir
-	dh_testroot
 	dh_installdocs -s
 	dh_installexamples -s
 	dh_installchangelogs -s ChangeLog
