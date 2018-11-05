@@ -3,8 +3,7 @@ Section: oldlibs
 Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
 Uploaders: @GNOME_TEAM@
-Build-Depends: autotools-dev,
-               dbus (>= 1.8) <!nocheck>,
+Build-Depends: dbus (>= 1.8) <!nocheck>,
                debhelper (>= 11),
                dh-python,
                docbook-xsl,

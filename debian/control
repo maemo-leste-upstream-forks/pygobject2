@@ -7,8 +7,7 @@ Section: oldlibs
 Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
 Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Emilio Pozuelo Monfort <pochu@debian.org>, Martin Pitt <mpitt@debian.org>, Sjoerd Simons <sjoerd@debian.org>
-Build-Depends: autotools-dev,
-               dbus (>= 1.8) <!nocheck>,
+Build-Depends: dbus (>= 1.8) <!nocheck>,
                debhelper (>= 11),
                dh-python,
                docbook-xsl,
