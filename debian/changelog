@@ -1,4 +1,6 @@
-pygobject-2 (2.28.6-14) UNRELEASED; urgency=medium
+pygobject-2 (2.28.6-14) unstable; urgency=medium
+
+  * Team upload
 
   [ Helmut Grohne ]
   * Reduce build dependencies using <!nocheck> profile (Closes: #912942)
@@ -35,7 +37,7 @@ pygobject-2 (2.28.6-14) UNRELEASED; urgency=medium
   * python-gobject-2-dev: Depend on python2-dev instead of python-dev
   * d/tests: Add autopkgtests, based on the ones from src:pygobject
 
- -- Simon McVittie <smcv@debian.org>  Mon, 05 Nov 2018 11:15:08 +0000
+ -- Simon McVittie <smcv@debian.org>  Sat, 16 Nov 2019 19:38:15 +0000
 
 pygobject-2 (2.28.6-13) unstable; urgency=low
 
