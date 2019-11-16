@@ -32,6 +32,7 @@ pygobject-2 (2.28.6-14) UNRELEASED; urgency=medium
   * Take over the transitional python-gobject package from src:pygobject.
     To allow for upgrades from the one from src:pygobject, it is versioned
     3.34.0+2.28.6-14 instead of 2.28.6-14.
+  * python-gobject-2-dev: Depend on python2-dev instead of python-dev
 
  -- Simon McVittie <smcv@debian.org>  Mon, 05 Nov 2018 11:15:08 +0000
 

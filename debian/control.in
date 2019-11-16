@@ -50,7 +50,7 @@ Package: python-gobject-2-dev
 Architecture: all
 Depends: libffi-dev (>= 3.0.5),
          libglib2.0-dev (>= 2.24.0),
-         python-dev,
+         python2-dev,
          python-gobject-2 (>= ${source:Version}),
          ${misc:Depends},
          ${python:Depends}
