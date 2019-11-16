@@ -92,3 +92,15 @@ Description: deprecated static Python bindings for the GObject library (debug ex
  compatibility for GNOME 2 based software.
  .
  This package contains the extensions built for the Python debug interpreter.
+
+Package: python-gobject
+Section: oldlibs
+Architecture: all
+Depends: python-gi (>= 3.34.0),
+         python-gobject-2 (>= ${source:Version}),
+         ${misc:Depends}
+Description: Python 2.x bindings for GObject - transitional package
+ This package will bring the two versions of GObject Python modules: the
+ deprecated gobject module, and the new gobject-introspection system. It
+ is here for upgrade purposes only. You can remove it safely when
+ nothing else depends on it.
