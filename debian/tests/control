@@ -1,0 +1,11 @@
+Tests: build2
+Restrictions: allow-stderr
+Depends: build-essential, python-gobject-2-dev, python2-dev
+
+Tests: python2
+Restrictions: allow-stderr
+Depends: python-gobject-2
+
+Tests: python2-dbg
+Restrictions: allow-stderr
+Depends: python-gobject-2-dbg
